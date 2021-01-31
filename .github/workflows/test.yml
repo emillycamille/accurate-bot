@@ -1,0 +1,75 @@
+name: Test
+
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'SKIP ACTIONS')"
+    container: sail-8.0/app
+
+    # services:
+    #   mysql_testing:
+    #     image: mysql:8.0
+    #     env:
+    #       MYSQL_DATABASE: accurate_bot_testing
+    #     ports:
+    #       - 33306:3306
+    #     options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 --tmpfs="/var/lib/mysql"
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Prepare cache Composer
+      id: composer-cache
+      run: |
+        echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - uses: actions/cache@v2
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+
+    # - name: Prepare cache Yarn
+    #   id: yarn-cache-dir-path
+    #   run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    # - uses: actions/cache@v2
+    #   id: yarn-cache
+    #   with:
+    #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+    #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-yarn-
+
+    - name: Composer
+      run: |
+        composer install --no-scripts
+
+    - name: Lint PHP
+      run: |
+        composer lint
+
+    # - name: Yarn
+    #   run: |
+    #     yarn
+    #     yarn prod
+
+    # - name: Lint JS
+    #   run: |
+    #     yarn lint
+
+    # - name: Lint SCSS
+    #   run: |
+    #     yarn stylelint
+
+    - name: Prepare testing app
+      run: |
+        cp .env.example .env
+        php artisan key:generate
+
+    - name: Test PHP
+      run: |
+        composer test
