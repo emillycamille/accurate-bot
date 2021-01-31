@@ -131,8 +131,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'token' => [
+            'invalid' => 'The :attribute is invalid.',
         ],
     ],
 
