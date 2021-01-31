@@ -29,11 +29,9 @@ test('messenger cant verify webhook with invalid token', function () {
 function buildQuery(string $token): string
 {
     return http_build_query([
-        'hub' => [
-            'mode' => 'subscribe',
-            'verify_token' => $token,
-            'challenge' => 'TEST_CHALLENGE',
-        ],
+        'hub.mode' => 'subscribe',
+        'hub.verify_token' => $token,
+        'hub.challenge' => 'TEST_CHALLENGE',
     ]);
 }
 
