@@ -31,4 +31,13 @@ class WebhookController
         // Else, throw validation exception, which will result in 422 response.
         throw ValidationException::withMessages([]);
     }
+
+    /**
+     * Handle the webhook event sent by Messenger.
+     * https://developers.facebook.com/docs/messenger-platform/reference/webhook-events.
+     */
+    public function handle(Request $request): Response
+    {
+        return response('');
+    }
 }
