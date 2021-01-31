@@ -4,7 +4,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "recipient": {
-            "id": "PAGE_ID"
+            "id": "PS_ID"
         },
         "message": {
             "text": "I'm still learning, so I don't understand 'Hello bot!' yet. Chat with me again in a few days!"

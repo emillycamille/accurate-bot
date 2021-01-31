@@ -17,7 +17,7 @@ class Bot
 
         $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
 
-        static::sendMessage($reply, $event['recipient']['id']);
+        static::sendMessage($reply, $event['sender']['id']);
     }
 
     /**
