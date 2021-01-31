@@ -27,5 +27,8 @@
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
+
+        <server name="FB_PAGE_TOKEN" value="TEST_PAGE_TOKEN"/>
+        <server name="FB_VERIFY_TOKEN" value="TEST_VERIFY_TOKEN"/>
     </php>
 </phpunit>
