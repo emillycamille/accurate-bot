@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bot\Bot;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -38,6 +39,16 @@ class WebhookController
      */
     public function handle(Request $request): Response
     {
+        $entries = $request->entry;
+
+        foreach ($entries as $entry) {
+            $messagingEvent = $entry['messaging'][0];
+
+            if (array_key_exists('message', $messagingEvent)) {
+                Bot::receivedMessage($messagingEvent);
+            }
+        }
+
         return response('');
     }
 }

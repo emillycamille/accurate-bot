@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Feature\Webhook\Reply;
-
 test('bot can reply message', function () {
-    $response = $this->receiveMessage('Hello bot!');
+    $this->receiveMessage('Hello bot!');
+
+    // Assert that correct Send API request is sent.
+    $this->assertRequestSent();
 });
