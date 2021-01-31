@@ -131,9 +131,6 @@ return [
     */
 
     'custom' => [
-        'token' => [
-            'invalid' => 'The :attribute is invalid.',
-        ],
     ],
 
     /*

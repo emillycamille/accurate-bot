@@ -22,6 +22,8 @@
         "matt-allan/laravel-code-style": "^0.6.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
+        "owowagency/laravel-test-response": "^0.0.5",
+        "owowagency/phpunit-snapshot-assertions": "^0.0.8",
         "pestphp/pest": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.0",
         "phpunit/phpunit": "^9.3.3"

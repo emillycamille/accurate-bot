@@ -29,8 +29,6 @@ class WebhookController
         }
 
         // Else, throw validation exception, which will result in 422 response.
-        throw ValidationException::withMessages([
-            'token' => __('validation.custom.token.invalid'),
-        ]);
+        throw ValidationException::withMessages([]);
     }
 }
