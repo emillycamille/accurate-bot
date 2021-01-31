@@ -18,15 +18,13 @@ class WebhookController
      */
     public function verify(Request $request): Response
     {
-        $data = $request->query();
-
         // If `verify_token` is valid, ...
         if (
-            data_get($data, 'hub_mode') === 'subscribe'
-            && data_get($data, 'hub_verify_token') === config('bot.fb_verify_token')
+            $request->get('hub_mode') === 'subscribe'
+            && $request->get('hub_verify_token') === config('bot.fb_verify_token')
         ) {
             // ... return back the challenge.
-            return response(data_get($data, 'hub_challenge'));
+            return response($request->get('hub_challenge'));
         }
 
         // Else, throw validation exception, which will result in 422 response.
