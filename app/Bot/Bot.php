@@ -15,7 +15,13 @@ class Bot
 
         $message = $event['message']['text'];
 
-        $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
+        if ($message === "1+1") {
+            $reply = "2";
+        }
+
+        else {
+            $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
+        }
 
         static::sendMessage($reply, $event['sender']['id']);
     }
