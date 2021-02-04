@@ -15,9 +15,48 @@ class Bot
 
         $message = $event['message']['text'];
 
-        if ($message === "1+1") {
-            $reply = "2";
+        if (strpos($message,"+")) {
+            $message = preg_replace('/\s+/', '', $message);
+            echo "tambah\n";
+            $pieces = explode("+", $message);
+            $reply = $pieces[0] + $pieces[1];
         }
+        elseif (strpos($message,"-")) {
+            $message = preg_replace('/\s+/', '', $message);
+            echo "kurang\n";
+            $pieces = explode("-", $message);
+            $reply = $pieces[0] - $pieces[1];
+        }
+        elseif (strpos($message,"*") or strpos($message,"x")) {
+            $message = preg_replace('/\s+/', '', $message);
+            echo "kali\n";
+            if (strpos($message,"*")) {
+                $pieces = explode("*", $message);
+        }
+        elseif (strpos($message,"x")) {
+            $message = preg_replace('/\s+/', '', $message);
+            $pieces = explode("x", $message);
+        }
+            $reply = $pieces[0] * $pieces[1];
+        }
+        elseif (strpos($message,"/") or strpos($message, "÷") or strpos($message, ":")) {
+            $message = preg_replace('/\s+/', '', $message);
+            echo "bagi\n";
+            if (strpos($message,"/")) {
+                $pieces = explode("/", $message);
+        }
+        elseif (strpos($message, "÷")) {
+            $message = preg_replace('/\s+/', '', $message);
+            $pieces = explode("÷",$message);
+        }
+        elseif (strpos($message,":")) {
+            $message = preg_replace('/\s+/', '', $message);
+            $pieces = explode(":", $message);
+        }
+            $reply = $pieces[0] / $pieces[1];
+        }
+
+        //echo $reply;
 
         else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
