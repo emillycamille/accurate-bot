@@ -14,6 +14,9 @@ class Bot
         // TODO: Create MessagingEvent interface.
 
         $message = $event['message']['text'];
+        
+        // Define which operation is called
+        // Assign reply with the result
 
         if (strpos($message,"+")) {
             $message = preg_replace('/\s+/', '', $message);
@@ -55,8 +58,6 @@ class Bot
         }
             $reply = $pieces[0] / $pieces[1];
         }
-
-        //echo $reply;
 
         else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
