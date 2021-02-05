@@ -3,6 +3,7 @@
 namespace App\Bot;
 
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class Bot
 {
@@ -22,7 +23,7 @@ class Bot
             $message = preg_replace('/\s+/', '', $message);
             echo "tambah\n";
             $pieces = explode("+", $message);
-            $reply = $pieces[0] + $pieces[1];
+            $reply = (int)$pieces[0] + (int)$pieces[1];
         }
         elseif (strpos($message,"-")) {
             $message = preg_replace('/\s+/', '', $message);
@@ -48,21 +49,63 @@ class Bot
             if (strpos($message,"/")) {
                 $pieces = explode("/", $message);
         }
-        elseif (strpos($message, "÷")) {
-            $message = preg_replace('/\s+/', '', $message);
-            $pieces = explode("÷",$message);
+            elseif (strpos($message, "÷")) {
+                $message = preg_replace('/\s+/', '', $message);
+                $pieces = explode("÷",$message);
         }
-        elseif (strpos($message,":")) {
-            $message = preg_replace('/\s+/', '', $message);
-            $pieces = explode(":", $message);
+            elseif (strpos($message,":")) {
+                $message = preg_replace('/\s+/', '', $message);
+                $pieces = explode(":", $message);
         }
             $reply = $pieces[0] / $pieces[1];
         }
-
+        elseif ($message === "jam") {
+            // $current = Carbon::now()->format('H:i');
+            $current = Carbon::now()->setTimezone('Asia/Bangkok')->format('H:i');
+            // $current->setTimezone('Asia/Bangkok');
+            $reply = $current;
+        }
+        elseif ($message === "hari") {
+            $current = Carbon::now()->setTimezone('Asia/Bangkok')->format('l');
+            $reply = $current;
+        }
+        elseif ($message === "hari jam") {
+            $current = Carbon::now()->setTimezone('Asia/Bangkok')->format('l H:i');
+            $reply = $current;
+        }
+        elseif ($message === "hari indo") {
+            $current = Carbon::now()->setTimezone('Asia/Bangkok')->format('l');
+            switch($current){
+                case "Monday":
+                    $day = "Senin";
+                break;
+                case "Tuesday":
+                    $day = "Selasa";
+                break;
+                case "Wednesday":
+                    $day = "Rabu";
+                break;
+                case "Thursday":
+                    $day = "Kamis";
+                break;
+                case "Friday":
+                    $day = "Jumat";
+                break;
+                case "Saturday":
+                    $day = "Sabtu";
+                break;
+                case "Sunday":
+                    $day = "Minggu";
+                break;
+                default:
+                $day = "Error";
+            }
+            $reply = $day;
+        }
         else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
-
+        
         static::sendMessage($reply, $event['sender']['id']);
     }
 
