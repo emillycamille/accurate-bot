@@ -6,17 +6,23 @@ use Illuminate\Support\Str;
 
 trait CanTellTime
 {
+    /**
+     * Determine whether the $message is asking time.
+     */
     public static function isAskingTime(string $message): bool
     {
         return Str::contains($message, ['hari', 'jam']);
     }
 
+    /**
+     * Tell the current time, as requested in $message.
+     */
     public static function tellTime(string $message): string
     {
         $reply = '';
 
         if (Str::contains($message, 'hari')) {
-            $reply .= now()->format('l ');
+            $reply .= now()->dayName.' ';
         }
 
         if (Str::contains($message, 'jam')) {

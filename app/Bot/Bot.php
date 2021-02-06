@@ -19,9 +19,6 @@ class Bot
 
         $message = $event['message']['text'];
 
-        // Define which operation is called
-        // Assign reply with the result
-
         if (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
         } elseif (static::isAskingTime($message)) {

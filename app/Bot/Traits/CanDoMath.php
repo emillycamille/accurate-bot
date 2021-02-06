@@ -9,11 +9,17 @@ use MathParser\Exceptions\SyntaxErrorException;
 
 trait CanDoMath
 {
+    /**
+     * Determine whether $message is a math expression.
+     */
     public static function isMathExpression(string $message): bool
     {
         return Str::contains($message, ['+', '-', '*', '/', 'x', ':', '÷']);
     }
 
+    /**
+     * Calculate the given math expression.
+     */
     public static function calculateMathExpression(string $message): string
     {
         try {
