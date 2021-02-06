@@ -26,5 +26,9 @@ A Messenger chatbot that can assist Accurate users to find information.
 
 
 ## Share Publicly
-To test the webhook with Messenger, run this command and a public URL will be generated:
-`sail share`
+To test the webhook with Messenger, run this command and a public URL will be generated: 
+```
+sail share // or
+
+docker run --init beyondcodegmbh/expose-server share http://host.docker.internal --auth=a35534d3-4777-4092-b845-3d905de583a7
+```
