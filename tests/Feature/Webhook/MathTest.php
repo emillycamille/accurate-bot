@@ -35,3 +35,15 @@ test('bot cant calculate 64 /+8', function () {
 
     $this->assertRequestSent();
 });
+
+test('bot cant calculate "1/0"', function () {
+    $this->receiveMessage('1/0');
+
+    $this->assertRequestSent();
+});
+
+test('bot cant calculate "(1+2"', function () {
+    $this->receiveMessage('(1+2');
+
+    $this->assertRequestSent();
+});
