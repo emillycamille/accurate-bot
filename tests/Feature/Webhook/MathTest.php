@@ -18,8 +18,20 @@ test('bot can calculate  4 * 25', function () {
     $this->assertRequestSent();
 });
 
-test('bot can calculate 64 /8', function () {
+test('bot can calculate "64 /8"', function () {
     $this->receiveMessage('64 /8');
+
+    $this->assertRequestSent();
+});
+
+test('bot can calculate "1 + 16 / 8"', function () {
+    $this->receiveMessage('1 + 16 / 8');
+
+    $this->assertRequestSent();
+});
+
+test('bot cant calculate 64 /+8', function () {
+    $this->receiveMessage('64 /+8');
 
     $this->assertRequestSent();
 });
