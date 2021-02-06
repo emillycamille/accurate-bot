@@ -2,11 +2,14 @@
 
 namespace App\Bot;
 
+use App\Bot\Traits\CanDoMath;
+use App\Bot\Traits\CanTellTime;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 
 class Bot
 {
+    use CanDoMath, CanTellTime;
+
     /**
      * Handle received message event.
      */
@@ -28,67 +31,6 @@ class Bot
         }
 
         static::sendMessage($reply, $event['sender']['id']);
-    }
-
-    public static function isMathExpression(string $message): bool
-    {
-        return Str::contains($message, ['+', '-', '*', '/', 'x', ':', '÷']);
-    }
-
-    public static function calculateMathExpression(string $message): string
-    {
-        // Trim whitespace.
-        $message = preg_replace('/\s+/', '', $message);
-
-        // Extract the operator out of the message.
-        foreach (['+', '-', '*', '/', 'x', ':', '÷'] as $sign) {
-            if (Str::contains($message, $sign)) {
-                $operator = $sign;
-
-                break;
-            }
-        }
-
-        // Find the 2 numbers to calculate.
-        $pieces = explode($operator, $message);
-
-        // Calculate according to the operator.
-        switch ($operator) {
-            case '+':
-                return $pieces[0] + $pieces[1];
-
-            case '-':
-                return $pieces[0] - $pieces[1];
-
-            case '*':
-            case 'x':
-                return $pieces[0] * $pieces[1];
-
-            case '/':
-            case ':':
-            case '÷':
-                return $pieces[0] / $pieces[1];
-        }
-    }
-
-    public static function isAskingTime(string $message): bool
-    {
-        return Str::contains($message, ['hari', 'jam']);
-    }
-
-    public static function tellTime(string $message): string
-    {
-        $reply = '';
-
-        if (Str::contains($message, 'hari')) {
-            $reply .= now()->format('l ');
-        }
-
-        if (Str::contains($message, 'jam')) {
-            $reply .= now()->format('H:i');
-        }
-
-        return $reply;
     }
 
     /**
