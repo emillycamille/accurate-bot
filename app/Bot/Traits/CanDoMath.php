@@ -3,6 +3,8 @@
 namespace App\Bot\Traits;
 
 use Illuminate\Support\Str;
+use MathParser\Exceptions\DivisionByZeroException;
+use MathParser\Exceptions\ParenthesisMismatchException;
 use MathParser\Exceptions\SyntaxErrorException;
 
 trait CanDoMath
@@ -15,11 +17,13 @@ trait CanDoMath
     public static function calculateMathExpression(string $message): string
     {
         try {
-            $reply = math_eval($message);
-        } catch (SyntaxErrorException $th) {
-            $reply = 'This is not a valid math expression.';
+            return math_eval($message);
+        } catch (SyntaxErrorException $e) {
+            return 'This is not a valid math expression.';
+        } catch (DivisionByZeroException $e) {
+            return 'You can not divide by zero.';
+        } catch (ParenthesisMismatchException $e) {
+            return 'The expression contains mismatching parenthesis.';
         }
-
-        return $reply;
     }
 }
