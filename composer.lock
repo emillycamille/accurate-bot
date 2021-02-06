@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0dc7bd1336d8073ea51510c6123565f",
+    "content-hash": "fa5c690cb4b2851aff5b8eb58576731b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -893,6 +893,55 @@
             "time": "2020-09-30T07:37:11+00:00"
         },
         {
+            "name": "langleyfoxall/math_eval",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/langleyfoxall/math_eval.git",
+                "reference": "f650532d34834dc0af12535f77f194683249bc42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/langleyfoxall/math_eval/zipball/f650532d34834dc0af12535f77f194683249bc42",
+                "reference": "f650532d34834dc0af12535f77f194683249bc42",
+                "shasum": ""
+            },
+            "require": {
+                "mossadal/math-parser": "^1.3",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.6",
+                "php-coveralls/php-coveralls": "^2.0",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LangleyFoxall\\MathEval\\": "src/"
+                },
+                "files": [
+                    "src/math_eval.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Jordan Hall",
+                    "email": "jordan@langleyfoxall.co.uk"
+                }
+            ],
+            "description": "✖️➕➖➗ `math_eval` safely evaluates mathematical expressions",
+            "support": {
+                "issues": "https://github.com/langleyfoxall/math_eval/issues",
+                "source": "https://github.com/langleyfoxall/math_eval/tree/master"
+            },
+            "time": "2019-09-20T08:13:49+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v8.25.0",
             "source": {
@@ -1475,6 +1524,57 @@
                 }
             ],
             "time": "2020-12-14T13:15:25+00:00"
+        },
+        {
+            "name": "mossadal/math-parser",
+            "version": "v1.3.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mossadal/math-parser.git",
+                "reference": "981b03ca603fd281049e092d75245ac029e13dec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mossadal/math-parser/zipball/981b03ca603fd281049e092d75245ac029e13dec",
+                "reference": "981b03ca603fd281049e092d75245ac029e13dec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/php-code-coverage": "6.0.*",
+                "phpunit/phpunit": "7.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MathParser\\": "src/MathParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Frank Wikström",
+                    "email": "frank@mossadal.se",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP parser for mathematical expressions, including elementary functions, variables and implicit multiplication. Also supports symbolic differentiation.",
+            "homepage": "https://github.com/mossadal/math-parser",
+            "keywords": [
+                "mathematics",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/mossadal/math-parser/issues",
+                "source": "https://github.com/mossadal/math-parser/tree/master"
+            },
+            "time": "2018-09-15T22:20:34+00:00"
         },
         {
             "name": "nesbot/carbon",
