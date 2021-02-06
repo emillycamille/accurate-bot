@@ -14,7 +14,7 @@ trait CanDoMath
      */
     public static function isMathExpression(string $message): bool
     {
-        return Str::contains($message, ['+', '-', '*', '/', 'x', ':', '÷']);
+        return Str::contains($message, ['+', '-', '*', '/', 'x', ':', '÷', '^']);
     }
 
     /**

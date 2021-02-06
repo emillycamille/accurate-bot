@@ -30,6 +30,12 @@ test('bot can calculate "1 + 16 / 8"', function () {
     $this->assertRequestSent();
 });
 
+test('bot can calculate "3^2"', function () {
+    $this->receiveMessage('3^2');
+
+    $this->assertRequestSent();
+});
+
 test('bot cant calculate "64 /+8"', function () {
     $this->receiveMessage('64 /+8');
 
