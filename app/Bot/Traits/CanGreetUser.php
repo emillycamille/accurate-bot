@@ -22,7 +22,7 @@ trait CanGreetUser
         // $fbPageToken = env('FB_PAGE_TOKEN');
         $json = json_decode(file_get_contents("https://graph.facebook.com/v3.2/100000188118411?access_token=EAACVBIrdOPMBAATZBa4bqr5ZBWIFUecMGnRqw4E5usQlPXQdjZCfkt2ZAkEZALx8RtabnG6BDajKHYh2CcvOhZBxLQoM67ZB1ZB3U2nmATIPeVOOKJgK4qVP5Cjv6TUpLtHKtB8tWW5MaI53QK2c3NWKnuhdjWLYPmyrNDZCOycbvnuRB3ZC1PHHOk"), true);
         $name = $json['name'];
-        $nameSplit = explode(' ',$name);
+        $nameSplit = preg_split('/\s+/',$name);
         $nickname = $nameSplit[0];
         return "Halo {$nickname}!";
 
