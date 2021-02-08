@@ -4,11 +4,12 @@ namespace App\Bot;
 
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanTellTime;
+use App\Bot\Traits\CanGreetUser;
 use Illuminate\Support\Facades\Http;
 
 class Bot
 {
-    use CanDoMath, CanTellTime;
+    use CanDoMath, CanTellTime, CanGreetUser;
 
     /**
      * Handle received message event.
@@ -23,6 +24,8 @@ class Bot
             $reply = static::calculateMathExpression($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
+        } elseif (static::isSayingHello($message)) {
+            $reply = static::greetUser($message);
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
