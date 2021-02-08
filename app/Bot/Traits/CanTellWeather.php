@@ -34,6 +34,10 @@ trait CanTellWeather
     //     dd(json_decode(file_get_content($response),true));
 
     $json = json_decode(file_get_contents("http://api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&lang=id&appid={$weatherKey}"),true);
+        if ($json['cod'] === '404') {
+            return "Kota tidak ditemukan";
+        } else {
         return ($json['weather'][0]['description']);
+        }
     }
 }
