@@ -25,15 +25,15 @@ trait CanTellWeather
     $city = end($messageSplit);
     $weatherKey = env('WEATHER_API_KEY');
 
-    // $response = Http::get("api.openweathermap.org/data/2.5/weather",
-    // [
-    //     'q' => $city,
-    //     'units' => 'metric',
-    //     'appid' => $weatherKey,
-    // ]);
-    //     dd(json_decode(file_get_content($response),true));
+    $response = Http::get("http://api.openweathermap.org/data/2.5/weather",
+    [
+        'q' => $city,
+        'units' => 'metric',
+        'appid' => $weatherKey,
+    ]);
+        dd($response);
 
-    $json = json_decode(file_get_contents("http://api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&lang=id&appid={$weatherKey}"),true);
-        return ($json['weather'][0]['description']);
+    // $json = json_decode(file_get_contents("http://api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&lang=id&appid={$weatherKey}"),true);
+    //     return ($json['weather'][0]['description']);
     }
 }

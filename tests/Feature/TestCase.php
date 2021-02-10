@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use OwowAgency\LaravelTestResponse\TestResponse;
 use Tests\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Http;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -42,6 +43,11 @@ abstract class TestCase extends BaseTestCase
                 ],
             ],
         ];
+
+        Http::fake([
+            // Stub a JSON response for Website endpoints...
+            'http://api.openweathermap.org/*' => Http::response(['weather' => 'clear'], 200, ['Headers']),
+        ]);
 
         $response = $this->postJson('/webhook', $data);
 
