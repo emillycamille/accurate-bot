@@ -2,7 +2,12 @@
 
 namespace Tests\Feature\Webhook\Verify;
 
+use Illuminate\Support\Facades\Http;
 use OwowAgency\LaravelTestResponse\TestResponse;
+
+beforeEach(function () {
+    Http::fake();
+});
 
 test('messenger can verify webhook', function () {
     $query = buildQuery(config('bot.fb_verify_token'));

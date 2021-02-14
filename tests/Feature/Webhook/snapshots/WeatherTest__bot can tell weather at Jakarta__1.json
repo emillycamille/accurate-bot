@@ -1,13 +1,9 @@
 {
-    "method": "POST",
-    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "method": "GET",
+    "url": "http:\/\/api.openweathermap.org\/data\/2.5\/weather?q=jakarta&units=metric&appid=b5721389e44bd0de815c837492a93194",
     "data": {
-        "messaging_type": "RESPONSE",
-        "recipient": {
-            "id": "PS_ID"
-        },
-        "message": {
-            "text": "hujan sedang"
-        }
+        "q": "jakarta",
+        "units": "metric",
+        "appid": "b5721389e44bd0de815c837492a93194"
     }
 }

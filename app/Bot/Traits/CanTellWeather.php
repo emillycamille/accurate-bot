@@ -2,9 +2,8 @@
 
 namespace App\Bot\Traits;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Client\Response;
+use Illuminate\Support\Str;
 
 trait CanTellWeather
 {
@@ -13,7 +12,7 @@ trait CanTellWeather
      */
     public static function isAskingWeather(string $message): bool
     {
-        return Str::contains($message, ['cuaca','Cuaca']);
+        return Str::contains($message, ['cuaca', 'Cuaca']);
     }
 
     /**
@@ -21,19 +20,16 @@ trait CanTellWeather
      */
     public static function tellWeather(string $message): string
     {
-    $messageSplit = preg_split("/\s+/", $message);
-    $city = end($messageSplit);
-    $weatherKey = env('WEATHER_API_KEY');
+        $messageSplit = preg_split("/\s+/", $message);
+        $city = end($messageSplit);
+        $weatherKey = env('WEATHER_API_KEY');
 
-    $response = Http::get("http://api.openweathermap.org/data/2.5/weather",
-    [
-        'q' => $city,
-        'units' => 'metric',
-        'appid' => $weatherKey,
-    ]);
-        dd($response);
+        $response = Http::get('http://api.openweathermap.org/data/2.5/weather', [
+            'q' => $city,
+            'units' => 'metric',
+            'appid' => $weatherKey,
+        ]);
 
-    // $json = json_decode(file_get_contents("http://api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&lang=id&appid={$weatherKey}"),true);
-    //     return ($json['weather'][0]['description']);
+        return data_get($response, 'weather.0.description', 'Cuaca tidak ditemukan.');
     }
 }
