@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Http;
 
 test('bot can tell weather at Jakarta', function () {
     Http::fake([
-        'http://api.openweathermap.org/*' => Http::response([
+        config('bot.weather_api_url').'*' => Http::response([
             'weather' => [['description' => 'TEST_WEATHER_RESULT']],
         ]),
     ]);

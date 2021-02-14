@@ -1,9 +1,9 @@
 {
     "method": "GET",
-    "url": "http:\/\/api.openweathermap.org\/data\/2.5\/weather?q=jakarta&units=metric&appid=b5721389e44bd0de815c837492a93194",
+    "url": "http:\/\/api.openweathermap.org\/data\/2.5\/weather?q=jakarta&units=metric&appid=TEST_WEATHER_KEY",
     "data": {
         "q": "jakarta",
         "units": "metric",
-        "appid": "b5721389e44bd0de815c837492a93194"
+        "appid": "TEST_WEATHER_KEY"
     }
 }
