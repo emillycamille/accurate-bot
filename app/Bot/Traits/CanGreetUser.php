@@ -19,14 +19,15 @@ trait CanGreetUser
      */
     public static function greetUser(string $message, string $userID): string
     {
-        if ($userID === "PS_ID") {
-            return "Halo bro";
-        }
-        else {
-        $fbPageToken = env('FB_PAGE_TOKEN');
-        $json = json_decode(file_get_contents("https://graph.facebook.com/v3.2/{$userID}?access_token={$fbPageToken}"), true);
-        $name = $json['first_name'];
-        return "Halo {$name}!";
+        if ($userID === 'PS_ID') {
+            return 'Halo bro';
+        } else {
+            $fbPageToken = env('FB_PAGE_TOKEN');
+            // Should use Http::get.
+            $json = json_decode(file_get_contents("https://graph.facebook.com/v3.2/{$userID}?access_token={$fbPageToken}"), true);
+            $name = $json['first_name'];
+
+            return "Halo {$name}!";
         }
     }
 }
