@@ -2,6 +2,7 @@
 
 namespace App\Bot\Traits;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 trait CanGreetUser
@@ -17,17 +18,18 @@ trait CanGreetUser
     /**
      * Tell the current time, as requested in $message.
      */
-    public static function greetUser(string $message, string $userID): string
+    public static function greetUser(string $message, $event): string
     {
-        if ($userID === 'PS_ID') {
-            return 'Halo bro';
-        } else {
-            $fbPageToken = env('FB_PAGE_TOKEN');
-            // Should use Http::get.
-            $json = json_decode(file_get_contents("https://graph.facebook.com/v3.2/{$userID}?access_token={$fbPageToken}"), true);
-            $name = $json['first_name'];
+        $userID = $event['sender']['id'];
 
-            return "Halo {$name}!";
-        }
+        // Should use Http::get.
+        $response = Http::get(config('bot.fb_user_url').$userID, [
+            'access_token' => config('bot.fb_page_token'),
+
+        ]);
+
+        $name = $response['first_name'];
+
+        return "Halo {$name}!";
     }
 }
