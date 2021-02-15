@@ -16,6 +16,9 @@ return [
         $fbPageToken,
     ),
     
+    /*
+     * FB Url to get user first name.
+     */
     'fb_user_url' => env('FB_USER_URL'),
 
     /*

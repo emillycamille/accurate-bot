@@ -18,9 +18,8 @@ trait CanGreetUser
     /**
      * Tell the current time, as requested in $message.
      */
-    public static function greetUser(string $message, $event): string
+    public static function greetUser(string $message, string $userID): string
     {
-        $userID = $event['sender']['id'];
 
         // Should use Http::get.
         $response = Http::get(config('bot.fb_user_url').$userID, [
