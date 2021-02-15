@@ -7,7 +7,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "TEST_WEATHER_RESULT"
+            "text": "Cuaca di kota CITY_NAME adalah TEST_WEATHER_RESULT dengan suhu TEMPERATURE \u00baC"
         }
     }
 }

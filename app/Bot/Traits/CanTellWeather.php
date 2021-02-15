@@ -26,9 +26,13 @@ trait CanTellWeather
         $response = Http::get(config('bot.weather_api_url'), [
             'q' => $city,
             'units' => 'metric',
+            'lang' => 'id',
             'appid' => config('bot.weather_api_key'),
         ]);
+        if ($response['cod'] === 200) {
+            return "Cuaca di kota {$response['name']} adalah {$response['weather'][0]['description']} dengan suhu {$response['main']['temp']} ºC";
+        }
 
-        return data_get($response, 'weather.0.description', 'Cuaca tidak ditemukan.');
+        return 'Cuaca tidak ditemukan.';
     }
 }
