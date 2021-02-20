@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/accurate-callback', function () {
+    return redirect(
+        sprintf(
+            'https://www.messenger.com/closeWindow?image_url=%s&display_text=Success',
+            urlencode('https://thebrag.com/wp-content/uploads/2021/02/Dogecoin-970x550-1.jpg'),
+        ),
+    );
+});

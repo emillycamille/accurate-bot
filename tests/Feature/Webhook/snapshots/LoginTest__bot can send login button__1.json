@@ -7,7 +7,21 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "login"
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Login to Accurate",
+                    "buttons": [
+                        {
+                            "type": "web_url",
+                            "title": "Login",
+                            "url": "https:\/\/accurate.id\/oauth\/authorize?client_id=b83fe634-316e-457b-a8db-f389e7e6807c&response_type=code&redirect_uri=https%3A%2F%2Faccurate-bot.herokuapp.com%2Faccurate-callback&scope=item_view+item_save+sales_invoice_view",
+                            "webview_height_ratio": "tall"
+                        }
+                    ]
+                }
+            }
         }
     }
 }

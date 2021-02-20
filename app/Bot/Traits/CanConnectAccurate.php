@@ -11,8 +11,24 @@ trait CanConnectAccurate
         return Str::contains($message, ['login', 'Login']);
     }
 
-    public static function sendLoginButton(): string
+    public static function sendLoginButton(): array
     {
-        return 'login';
+        return [
+            'attachment' => [
+                'type' => 'template',
+                'payload' => [
+                    'template_type' => 'button',
+                    'text' => 'Login to Accurate',
+                    'buttons' => [
+                        [
+                            'type' => 'web_url',
+                            'title' => 'Login',
+                            'url' => config('bot.accurate_login_url'),
+                            'webview_height_ratio' => 'tall',
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 }
