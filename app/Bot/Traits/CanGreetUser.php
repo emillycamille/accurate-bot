@@ -2,6 +2,7 @@
 
 namespace App\Bot\Traits;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 trait CanGreetUser
@@ -19,14 +20,12 @@ trait CanGreetUser
      */
     public static function greetUser(string $message, string $userID): string
     {
-        if ($userID === "PS_ID") {
-            return "Halo bro";
-        }
-        else {
-        $fbPageToken = env('FB_PAGE_TOKEN');
-        $json = json_decode(file_get_contents("https://graph.facebook.com/v3.2/{$userID}?access_token={$fbPageToken}"), true);
-        $name = $json['first_name'];
+        $response = Http::get(config('bot.fb_api_url').$userID, [
+            'access_token' => config('bot.fb_page_token'),
+        ]);
+
+        $name = $response['first_name'];
+
         return "Halo {$name}!";
-        }
     }
 }

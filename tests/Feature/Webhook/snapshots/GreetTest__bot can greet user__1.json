@@ -1,13 +1,7 @@
 {
-    "method": "POST",
-    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "method": "GET",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/PS_ID?access_token=TEST_PAGE_TOKEN",
     "data": {
-        "messaging_type": "RESPONSE",
-        "recipient": {
-            "id": "PS_ID"
-        },
-        "message": {
-            "text": "Halo bro"
-        }
+        "access_token": "TEST_PAGE_TOKEN"
     }
 }

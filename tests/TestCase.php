@@ -14,17 +14,6 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication, MatchesSnapshots;
 
     /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        // Ensure that during testing, no real HTTP requests are ever made.
-        Http::fake();
-    }
-
-    /**
      * Create the test response instance from the given response.
      *
      * @param  \Illuminate\Http\Response  $response

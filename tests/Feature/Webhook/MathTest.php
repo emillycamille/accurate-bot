@@ -1,5 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
+beforeEach(function () {
+    Http::fake();
+});
+
 test('bot can calculate "1+1"', function () {
     $this->receiveMessage('1+1');
 

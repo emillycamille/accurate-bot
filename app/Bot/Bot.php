@@ -14,6 +14,23 @@ class Bot
     use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate;
 
     /**
+     * Return an array that can be used as button payload for `sendMessage`.
+     */
+    public static function makeButtonPayload(string $text, array $buttons): array
+    {
+        return [
+            'attachment' => [
+                'type' => 'template',
+                'payload' => [
+                    'template_type' => 'button',
+                    'text' => $text,
+                    'buttons' => $buttons,
+                ],
+            ],
+        ];
+    }
+
+    /**
      * Handle received message event.
      */
     public static function receivedMessage(array $event): void
@@ -22,7 +39,7 @@ class Bot
 
         $message = $event['message']['text'];
 
-        if (static::isLoginRequest($message)) {
+        if (static::isRequestingLogin($message)) {
             $reply = static::sendLoginButton();
         } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
@@ -40,7 +57,7 @@ class Bot
     }
 
     /**
-     * Send $message to $recipient using Messenger Send API.
+     * Send $payload to $recipient using Messenger Send API.
      * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
      */
     public static function sendMessage($payload, string $recipient): void

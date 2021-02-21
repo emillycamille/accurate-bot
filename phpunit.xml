@@ -28,7 +28,9 @@
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
 
+        <server name="ACCURATE_CLIENT_ID" value="ACCURATE_CLIENT_ID"/>
         <server name="FB_PAGE_TOKEN" value="TEST_PAGE_TOKEN"/>
         <server name="FB_VERIFY_TOKEN" value="TEST_VERIFY_TOKEN"/>
+        <server name="WEATHER_API_KEY" value="TEST_WEATHER_KEY"/>
     </php>
 </phpunit>
