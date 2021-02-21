@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 Route::get('/accurate-callback', function () {
     return redirect(
-        sprintf(
-            'https://www.messenger.com/closeWindow?image_url=%s&display_text=Success',
-            urlencode('https://thebrag.com/wp-content/uploads/2021/02/Dogecoin-970x550-1.jpg'),
-        ),
+        'https://www.messenger.com/closeWindow?'.http_build_query([
+            'image_url' => 'https://thebrag.com/wp-content/uploads/2021/02/Dogecoin-970x550-1.jpg',
+            'display_text' => 'Login successful',
+        ]),
     );
 });

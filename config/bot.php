@@ -10,11 +10,12 @@ return [
     /*
      * URL to login to Accurate.
      */
-    'accurate_login_url' => sprintf(
-        'https://accurate.id/oauth/authorize?client_id=%s&response_type=code&redirect_uri=%s&scope=item_view+item_save+sales_invoice_view',
-        $accurateClientId,
-        'https%3A%2F%2Faccurate-bot.herokuapp.com%2Faccurate-callback',
-    ),
+    'accurate_login_url' => 'https://accurate.id/oauth/authorize?'.http_build_query([
+        'client_id' => $accurateClientId,
+        'response_type' => 'code',
+        'redirect_uri' => 'https://accurate-bot.herokuapp.com/accurate-callback',
+        'scope' => 'item_view item_save sales_invoice_view',
+    ]),
 
     /*
      * FB base API URL.
