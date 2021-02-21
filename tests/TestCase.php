@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
@@ -11,7 +12,7 @@ use Tests\Concerns\MatchesSnapshots;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, MatchesSnapshots;
+    use CreatesApplication, MatchesSnapshots, RefreshDatabase;
 
     /**
      * Create the test response instance from the given response.

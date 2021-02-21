@@ -16,7 +16,7 @@
                         {
                             "type": "web_url",
                             "title": "Login",
-                            "url": "https:\/\/accurate.id\/oauth\/authorize?client_id=ACCURATE_CLIENT_ID&response_type=code&redirect_uri=https%3A%2F%2Faccurate-bot.herokuapp.com%2Faccurate-callback&scope=item_view+item_save+sales_invoice_view",
+                            "url": "https:\/\/accurate.id\/oauth\/authorize?client_id=ACCURATE_CLIENT_ID&response_type=code&redirect_uri=https%3A%2F%2Faccurate-bot.herokuapp.com%2Fauth%2Fcallback&scope=item_view+item_save+sales_invoice_view",
                             "webview_height_ratio": "tall"
                         }
                     ]

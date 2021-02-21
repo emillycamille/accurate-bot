@@ -10,6 +10,9 @@ use Illuminate\View\View;
 
 trait CanConnectAccurate
 {
+    /**
+     * Get access token from Accurate and store it with the user data.
+     */
     public static function getAccessToken(string $code): View
     {
         // Get access token from Accurate API.
@@ -19,7 +22,7 @@ trait CanConnectAccurate
         )->asForm()->post(config('accurate.access_token_url'), [
             'code' => $code,
             'grant_type' => 'authorization_code',
-            'redirect_uri' => 'https://accurate-bot.herokuapp.com/accurate-callback',
+            'redirect_uri' => config('accurate.callback_url'),
         ]);
 
         if ($response->failed()) {
@@ -32,6 +35,7 @@ trait CanConnectAccurate
         $data['name'] = $response->json('user.name');
 
         // Save the data to the `users` table.
+        // TODO: Use PGsql.
         User::updateOrCreate([
             'email' => $response->json('user.email'),
         ], $data);
