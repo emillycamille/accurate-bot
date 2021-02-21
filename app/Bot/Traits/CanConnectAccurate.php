@@ -2,10 +2,25 @@
 
 namespace App\Bot\Traits;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 trait CanConnectAccurate
 {
+    public static function getAccessToken(string $code): void
+    {
+        $authorization = 'Basic '.base64_encode(
+            config('accurate.client_id').':'.config('accurate.client_secret'),
+        );
+
+        $response = Http::withHeaders([
+            'Authorization' => $authorization,
+        ])->post('https://account.accurate.id/oauth/token', [
+            'code' => $code,
+            'grant_type' => 'authorization_code',
+        ]);
+    }
+
     /**
      * Determine whether the $message is requesting to login.
      */
@@ -23,7 +38,7 @@ trait CanConnectAccurate
             [
                 'type' => 'web_url',
                 'title' => 'Login',
-                'url' => config('bot.accurate_login_url'),
+                'url' => config('accurate.login_url'),
                 'webview_height_ratio' => 'tall',
             ],
         ]);

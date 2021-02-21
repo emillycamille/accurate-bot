@@ -1,0 +1,25 @@
+{
+    "headers": {
+        "Content-Length": [
+            "58"
+        ],
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Content-Type": [
+            "application\/json"
+        ],
+        "Host": [
+            "account.accurate.id"
+        ],
+        "Authorization": [
+            "Basic QUNDVVJBVEVfQ0xJRU5UX0lEOkFDQ1VSQVRFX0NMSUVOVF9TRUNSRVQ="
+        ]
+    },
+    "method": "POST",
+    "url": "https:\/\/account.accurate.id\/oauth\/token",
+    "data": {
+        "code": "ACCURATE_CODE",
+        "grant_type": "authorization_code"
+    }
+}

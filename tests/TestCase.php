@@ -27,10 +27,14 @@ abstract class TestCase extends BaseTestCase
     /**
      * Assert that a HTTP request is sent and snapshot its method, url, data.
      */
-    protected function assertRequestSent(): self
+    protected function assertRequestSent(bool $withHeaders = false): self
     {
-        Http::assertSent(function (Request $request) {
-            $snapshot = [
+        Http::assertSent(function (Request $request) use ($withHeaders) {
+            $snapshot = $withHeaders
+                ? ['headers' => $request->headers()]
+                : [];
+
+            $snapshot += [
                 'method' => $request->method(),
                 'url' => $request->url(),
                 'data' => $request->data(),
