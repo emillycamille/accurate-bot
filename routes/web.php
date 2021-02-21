@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/accurate-callback', function () {
+    return response();
     return redirect(
         'https://www.messenger.com/closeWindow?'.http_build_query([
             'image_url' => 'https://thebrag.com/wp-content/uploads/2021/02/Dogecoin-970x550-1.jpg',
