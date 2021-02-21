@@ -14,6 +14,11 @@ return [
     'client_secret' => env('ACCURATE_CLIENT_SECRET'),
 
     /*
+     * URL to get Accurate access token.
+     */
+    'access_token_url' => 'https://account.accurate.id/oauth/token',
+
+    /*
      * URL to login to Accurate.
      */
     'login_url' => 'https://accurate.id/oauth/authorize?'.http_build_query([
