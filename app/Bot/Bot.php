@@ -2,6 +2,7 @@
 
 namespace App\Bot;
 
+use App\Bot\Traits\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanTellTime;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 
 class Bot
 {
-    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser;
+    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate;
 
     /**
      * Handle received message event.
@@ -21,7 +22,9 @@ class Bot
 
         $message = $event['message']['text'];
 
-        if (static::isMathExpression($message)) {
+        if (static::isLoginRequest($message)) {
+            $reply = static::sendLoginButton();
+        } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
@@ -40,12 +43,16 @@ class Bot
      * Send $message to $recipient using Messenger Send API.
      * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
      */
-    public static function sendMessage(string $message, string $recipient): void
+    public static function sendMessage($payload, string $recipient): void
     {
+        if (is_string($payload)) {
+            $payload = ['text' => $payload];
+        }
+
         $data = [
             'messaging_type' => 'RESPONSE',
             'recipient' => ['id' => $recipient],
-            'message' => ['text' => $message],
+            'message' => $payload,
         ];
 
         Http::post(config('bot.fb_sendapi_url'), $data);

@@ -3,6 +3,12 @@
 $fbPageToken = env('FB_PAGE_TOKEN');
 
 return [
+    'accurate_login_url' => sprintf(
+        'https://accurate.id/oauth/authorize?client_id=%s&response_type=code&redirect_uri=%s&scope=item_view+item_save+sales_invoice_view',
+        'b83fe634-316e-457b-a8db-f389e7e6807c',
+        'https%3A%2F%2Faccurate-bot.herokuapp.com%2Faccurate-callback'
+    ),
+
     /*
      * Token to allow this app to send message using Messenger Send API.
      */
