@@ -39,8 +39,10 @@ class Bot
 
         $message = $event['message']['text'];
 
+        $senderId = $event['sender']['id'];
+
         if (static::isRequestingLogin($message)) {
-            $reply = static::sendLoginButton();
+            $reply = static::sendLoginButton($senderId);
         } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
         } elseif (static::isAskingTime($message)) {
@@ -48,12 +50,12 @@ class Bot
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
         } elseif (static::isSayingHello($message)) {
-            $reply = static::greetUser($message, $event['sender']['id']);
+            $reply = static::greetUser($message, $senderId);
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
 
-        static::sendMessage($reply, $event['sender']['id']);
+        static::sendMessage($reply, $senderId);
     }
 
     /**

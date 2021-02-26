@@ -22,7 +22,7 @@ trait CanConnectAccurate
         )->asForm()->post(config('accurate.access_token_url'), [
             'code' => $code,
             'grant_type' => 'authorization_code',
-            'redirect_uri' => config('accurate.callback_url'),
+            'redirect_uri' => config('accurate.redirect_url'),
         ]);
 
         if ($response->failed()) {
@@ -55,13 +55,21 @@ trait CanConnectAccurate
     /**
      * Return payload that will send login button to user.
      */
-    public static function sendLoginButton(): array
+    public static function sendLoginButton(string $psid): array
     {
+        // Accurate should redirect back to this app carrying the PSID, so we can
+        // associate the PSID with the Accurate access token.
+        $redirect_uri = config('accurate.redirect_url')
+            .'?'.http_build_query(compact('psid'));
+
+        $url = config('accurate.login_url')
+            .'&'.http_build_query(compact('redirect_uri'));
+
         return static::makeButtonPayload('Login to Accurate', [
             [
                 'type' => 'web_url',
                 'title' => 'Login',
-                'url' => config('accurate.login_url'),
+                'url' => $url,
                 'webview_height_ratio' => 'tall',
             ],
         ]);

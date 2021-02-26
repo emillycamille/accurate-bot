@@ -8,9 +8,12 @@ use Illuminate\Http\Response;
 
 class AuthController
 {
+    /**
+     * Handle the redirect from Accurate, carrying Accurate code and user PSID.
+     */
     public function callback(Request $request): Response
     {
-        if (! $request->has('code')) {
+        if (! $request->has(['code', 'psid'])) {
             return response('', 404);
         }
 

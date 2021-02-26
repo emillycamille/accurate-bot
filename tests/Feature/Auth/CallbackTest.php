@@ -23,6 +23,7 @@ test('user can store accurate access token', function () {
 
     $this->get('auth/callback?'.http_build_query([
         'code' => 'ACCURATE_CODE',
+        'psid' => 'PS_ID',
     ]));
 
     $this->assertRequestSent(true);

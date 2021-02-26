@@ -2,8 +2,6 @@
 
 $clientId = env('ACCURATE_CLIENT_ID');
 
-$callbackUrl = 'https://accurate-bot.herokuapp.com/auth/callback';
-
 return [
     /*
      * Accurate client_id for this app, to enable this app to use Accurate API.
@@ -20,15 +18,15 @@ return [
      */
     'access_token_url' => 'https://account.accurate.id/oauth/token',
 
-    'callback_url' => $callbackUrl,
+    'redirect_url' => 'https://accurate-bot.herokuapp.com/auth/callback',
 
     /*
-     * URL to login to Accurate.
+     * URL to login to Accurate. Note that this is still missing a `redirect_uri`
+     * query, which should be appended manually with the `psid`.
      */
     'login_url' => 'https://accurate.id/oauth/authorize?'.http_build_query([
         'client_id' => $clientId,
         'response_type' => 'code',
-        'redirect_uri' => $callbackUrl,
         'scope' => 'item_view item_save sales_invoice_view',
     ]),
 ];
