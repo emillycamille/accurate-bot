@@ -6,14 +6,13 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 
 trait CanConnectAccurate
 {
     /**
      * Get access token from Accurate and store it with the user data.
      */
-    public static function getAccessToken(string $code, string $psid): View
+    public static function getAccessToken(string $code, string $psid): void
     {
         // Get access token from Accurate API.
         $response = Http::withBasicAuth(
@@ -23,26 +22,19 @@ trait CanConnectAccurate
             'code' => $code,
             'grant_type' => 'authorization_code',
             'redirect_uri' => config('accurate.redirect_url'),
-        ]);
-
-        if ($response->failed()) {
-            // TODO: create proper view.
-            return view('error');
-        }
+        ])->throw();
 
         // Get access token and user data from the response.
+        $name = $response->json('user.name');
         $data = Arr::only($response->json(), ['access_token', 'refresh_token']);
         $data['email'] = $response->json('user.email');
-        $data['name'] = $response->json('user.name');
+        $data['name'] = $name;
 
         // Save the data to the `users` table.
-        // TODO: Use PGsql.
-        User::updateOrCreate([
-            'psid' => $psid,
-        ], $data);
+        User::updateOrCreate(['psid' => $psid], $data);
 
-        // TODO: create proper view.
-        return view('success');
+        // Send message to user that the login is successful.
+        static::sendMessage(__('auth.login_successful', compact('name')), $psid);
     }
 
     /**
