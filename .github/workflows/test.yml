@@ -18,6 +18,14 @@ jobs:
     #       - 33306:3306
     #     options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 --tmpfs="/var/lib/mysql"
 
+    services:
+      pgsql:
+        image: postgres:13
+        tmpfs: /var/lib/pgsql
+        ports:
+            - '${FORWARD_DB_PORT:-5432}:5432'
+        options: --health-interval=10s --health-timeout=5s --health-retries=3 --tmpfs="/var/lib/pgsql"
+
     steps:
     - uses: actions/checkout@v2
 

@@ -18,9 +18,9 @@ services:
             - '.:/var/www/html'
         networks:
             - sail
-        #depends_on:
+        depends_on:
+            - pgsql
             # - mysql
-            # - pgsql
             # - redis
             # - selenium
 
@@ -54,21 +54,23 @@ services:
     #     healthcheck:
     #       test: ["CMD", "mysqladmin", "ping"]
 
-    # pgsql:
-    #     image: postgres:13
-    #     ports:
-    #         - '${FORWARD_DB_PORT:-5432}:5432'
-    #     environment:
-    #         PGPASSWORD: '${DB_PASSWORD:-secret}'
-    #         POSTGRES_DB: '${DB_DATABASE}'
-    #         POSTGRES_USER: '${DB_USERNAME}'
-    #         POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
-    #     volumes:
-    #         - 'sailpostgresql:/var/lib/postgresql/data'
-    #     networks:
-    #         - sail
-    #     healthcheck:
-    #       test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+    pgsql:
+        container_name: ab-pgsql
+        image: postgres:13
+        tmpfs: /var/lib/pgsql
+        ports:
+            - '${FORWARD_DB_PORT:-5432}:5432'
+        environment:
+            PGPASSWORD: '${DB_PASSWORD:-secret}'
+            POSTGRES_DB: '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+        volumes:
+            - 'sailpostgresql:/var/lib/postgresql/data'
+        networks:
+            - sail
+        healthcheck:
+          test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
 
     # selenium:
     #     image: 'selenium/standalone-chrome'
@@ -108,9 +110,9 @@ networks:
         driver: bridge
 
 volumes:
-    sailmysql:
-        driver: local
-    # sailpostgresql:
-    #   driver: local
+    # sailmysql:
+    #     driver: local
+    sailpostgresql:
+      driver: local
     # sailredis:
     #     driver: local
