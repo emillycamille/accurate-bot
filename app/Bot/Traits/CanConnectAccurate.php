@@ -13,7 +13,7 @@ trait CanConnectAccurate
     /**
      * Get access token from Accurate and store it with the user data.
      */
-    public static function getAccessToken(string $code): View
+    public static function getAccessToken(string $code, string $psid): View
     {
         // Get access token from Accurate API.
         $response = Http::withBasicAuth(
@@ -32,12 +32,13 @@ trait CanConnectAccurate
 
         // Get access token and user data from the response.
         $data = Arr::only($response->json(), ['access_token', 'refresh_token']);
+        $data['email'] = $response->json('user.email');
         $data['name'] = $response->json('user.name');
 
         // Save the data to the `users` table.
         // TODO: Use PGsql.
         User::updateOrCreate([
-            'email' => $response->json('user.email'),
+            'psid' => $psid,
         ], $data);
 
         // TODO: create proper view.

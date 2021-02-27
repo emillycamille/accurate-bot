@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Http;
 
 test('user can store accurate access token', function () {
     $data = [
+        'psid' => 'PS_ID',
         'name' => 'USER_NAME',
         'email' => 'USER_EMAIL',
         'access_token' => 'ACCESS_TOKEN',
@@ -23,7 +24,7 @@ test('user can store accurate access token', function () {
 
     $this->get('auth/callback?'.http_build_query([
         'code' => 'ACCURATE_CODE',
-        'psid' => 'PS_ID',
+        'psid' => $data['psid'],
     ]));
 
     $this->assertRequestSent(true);

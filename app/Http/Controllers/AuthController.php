@@ -17,7 +17,7 @@ class AuthController
             return response('', 404);
         }
 
-        Bot::getAccessToken($request->code);
+        Bot::getAccessToken($request->code, $request->psid);
 
         return response();
     }
