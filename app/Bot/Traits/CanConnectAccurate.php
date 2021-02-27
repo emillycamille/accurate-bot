@@ -21,7 +21,7 @@ trait CanConnectAccurate
         )->asForm()->post(config('accurate.access_token_url'), [
             'code' => $code,
             'grant_type' => 'authorization_code',
-            'redirect_uri' => config('accurate.redirect_url'),
+            'redirect_uri' => url()->full(),
         ])->throw();
 
         // Get access token and user data from the response.
