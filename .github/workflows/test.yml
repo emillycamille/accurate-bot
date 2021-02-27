@@ -20,8 +20,11 @@ jobs:
     services:
       pgsql:
         image: postgres:13
-        ports:
-            - 5432:5432
+        env:
+          PGPASSWORD: 'secret'
+          POSTGRES_DB: 'accurate_bot'
+          POSTGRES_USER: 'root'
+          POSTGRES_PASSWORD: 'secret'
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
