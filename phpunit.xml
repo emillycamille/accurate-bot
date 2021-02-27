@@ -21,14 +21,15 @@
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
-        <!-- <server name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <server name="DB_DATABASE" value=":memory:"/> -->
+        <server name="DB_HOST" value="pgsql"/>
+        <server name="DB_DATABASE" value="accurate_bot"/>
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
 
         <server name="ACCURATE_CLIENT_ID" value="ACCURATE_CLIENT_ID"/>
+        <server name="ACCURATE_CLIENT_SECRET" value="ACCURATE_CLIENT_SECRET"/>
         <server name="FB_PAGE_TOKEN" value="TEST_PAGE_TOKEN"/>
         <server name="FB_VERIFY_TOKEN" value="TEST_VERIFY_TOKEN"/>
         <server name="WEATHER_API_KEY" value="TEST_WEATHER_KEY"/>
