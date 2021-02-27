@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "140"
+            "135"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -21,6 +21,6 @@
     "data": {
         "code": "ACCURATE_CODE",
         "grant_type": "authorization_code",
-        "redirect_uri": "http:\/\/localhost\/auth\/callback?code=ACCURATE_CODE&psid=PS_ID"
+        "redirect_uri": "https:\/\/accurate-bot.herokuapp.com\/auth\/callback?psid=PS_ID"
     }
 }
