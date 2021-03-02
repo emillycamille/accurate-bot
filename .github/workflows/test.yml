@@ -8,15 +8,6 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'SKIP ACTIONS')"
     container: thomasowow/laravel-php:8.0
 
-    services:
-      mysql_testing:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: accurate_bot
-        ports:
-          - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=3 --tmpfs="/var/lib/mysql"
-
     steps:
     - uses: actions/checkout@v2
 
@@ -72,11 +63,7 @@ jobs:
 
     - name: Test PHP
       env:
-        DB_CONNECTION: mysql
-        DB_HOST: mysql_testing
-        DB_PORT: 3306
-        DB_DATABASE: accurate_bot
-        DB_USERNAME: root
-        DB_PASSWORD: secret
+        DB_CONNECTION: sqlite
+        DB_DATABASE: :memory:
       run: |
         composer test
