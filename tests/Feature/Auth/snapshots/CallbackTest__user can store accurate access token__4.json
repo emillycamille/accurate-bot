@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "284"
+            "304"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -30,12 +30,12 @@
                         {
                             "type": "postback",
                             "title": "ALIAS_1",
-                            "payload": 1
+                            "payload": "OPEN_DB:1"
                         },
                         {
                             "type": "postback",
                             "title": "ALIAS_2",
-                            "payload": 2
+                            "payload": "OPEN_DB:2"
                         }
                     ]
                 }

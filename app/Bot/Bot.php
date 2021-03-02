@@ -8,10 +8,25 @@ use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class Bot
 {
     use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate;
+
+    /**
+     * Get the handler method (camelCase string) and payload of $postback event.
+     */
+    public static function getPostbackHandler(array $postback): array
+    {
+        $postback = $postback['postback']['payload'];
+
+        [$handler, $payload] = explode(':', $postback) + [1 => null];
+
+        $handler = Str::camel(strtolower($handler));
+
+        return [$handler, $payload];
+    }
 
     /**
      * Return an array that can be used as button payload for `sendMessage`.
@@ -42,7 +57,7 @@ class Bot
         $senderId = $event['sender']['id'];
 
         if (static::isRequestingLogin($message)) {
-            $reply = static::sendLoginButton($senderId);
+            static::sendLoginButton($senderId);
         } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
         } elseif (static::isAskingTime($message)) {
@@ -55,7 +70,9 @@ class Bot
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
 
-        static::sendMessage($reply, $senderId);
+        if (isset($reply)) {
+            static::sendMessage($reply, $senderId);
+        }
     }
 
     /**
@@ -63,6 +80,9 @@ class Bot
      */
     public static function receivedPostback(array $event): void
     {
+        [$handler, $payload] = static::getPostbackHandler($event);
+
+        static::$handler($event['sender']['id'], $payload);
     }
 
     /**
