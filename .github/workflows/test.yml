@@ -8,16 +8,6 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'SKIP ACTIONS')"
     container: thomasowow/laravel-php:8.0
 
-    services:
-      pgsql:
-        image: postgres:13
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-          --tmpfs="/var/lib/postgresql/data"
-
     steps:
     - uses: actions/checkout@v2
 
@@ -72,5 +62,8 @@ jobs:
         php artisan key:generate
 
     - name: Test PHP
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: ':memory:'
       run: |
         composer test

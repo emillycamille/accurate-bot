@@ -57,7 +57,7 @@ services:
     pgsql:
         container_name: ab-pgsql
         image: postgres:13
-        tmpfs: /var/lib/pgsql
+        tmpfs: /var/lib/postgresql/data
         ports:
             - '${FORWARD_DB_PORT:-5432}:5432'
         environment:
@@ -65,8 +65,6 @@ services:
             POSTGRES_DB: '${DB_DATABASE}'
             POSTGRES_USER: '${DB_USERNAME}'
             POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
-        volumes:
-            - 'sailpostgresql:/var/lib/postgresql/data'
         networks:
             - sail
         healthcheck:
@@ -109,10 +107,10 @@ networks:
     sail:
         driver: bridge
 
-volumes:
+# volumes:
     # sailmysql:
     #     driver: local
-    sailpostgresql:
-      driver: local
+    # sailpostgresql:
+    #   driver: local
     # sailredis:
     #     driver: local
