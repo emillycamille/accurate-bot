@@ -6,22 +6,26 @@ jobs:
   test:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'SKIP ACTIONS')"
-    container: laravelsail/php80-composer:latest
+    container: thomasowow/laravel-php:8.0
 
     services:
-      pgsql:
-        image: postgres:13
+      mysql:
+        image: mysql:8.0
         env:
-            PGPASSWORD: secret
-            POSTGRES_DB: accurate_bot
-            POSTGRES_USER: root
-            POSTGRES_PASSWORD: secret
+          DB_CONNECTION: mysql
+          DB_HOST: mysql
+          DB_PORT: 3306
+          DB_DATABASE: accurate_bot
+          DB_USERNAME: root
+          DB_PASSWORD: secret
+        ports:
+          - 33306:3306
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-          --tmpfs="/var/lib/postgresql/data"
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+          --tmpfs="/var/lib/mysql"
 
     steps:
     - uses: actions/checkout@v2
@@ -54,10 +58,9 @@ jobs:
       run: |
         composer install --no-scripts
 
-    # TODO: Use PHP 8.0.1 so phpcsfixer can be used.
-    # - name: Lint PHP
-    #   run: |
-    #     composer lint
+    - name: Lint PHP
+      run: |
+        composer lint
 
     # - name: Yarn
     #   run: |
