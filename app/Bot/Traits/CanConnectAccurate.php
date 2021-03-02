@@ -54,7 +54,7 @@ trait CanConnectAccurate
         User::updateOrCreate(['psid' => $psid], $data);
 
         // Send message to user that the login is successful.
-        static::sendMessage(__('auth.login_successful', compact('name')), $psid);
+        static::sendMessage(__('bot.login_successful', compact('name')), $psid);
     }
 
     /**
@@ -72,7 +72,7 @@ trait CanConnectAccurate
     {
         $dbs = static::askAccurate($psid, 'db-list.do')['d'];
 
-        $payload = static::makeButtonPayload(__('common.choose_db'), array_map(function ($db) {
+        $payload = static::makeButtonPayload(__('bot.choose_db'), array_map(function ($db) {
             return [
                 'type' => 'postback',
                 'title' => $db['alias'],
@@ -96,7 +96,7 @@ trait CanConnectAccurate
                 'session' => $data['session'],
             ]);
 
-            static::sendMessage(__('common.db_opened'), $psid);
+            static::sendMessage(__('bot.db_opened'), $psid);
         }
     }
 
