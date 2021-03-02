@@ -9,7 +9,7 @@ jobs:
     container: thomasowow/laravel-php:8.0
 
     services:
-      mysql:
+      mysql_testing:
         image: mysql:5.7
         env:
           MYSQL_DATABASE: accurate_bot
@@ -73,7 +73,7 @@ jobs:
     - name: Test PHP
       env:
         DB_CONNECTION: mysql
-        DB_HOST: mysql
+        DB_HOST: mysql_testing
         DB_PORT: 3306
         DB_DATABASE: accurate_bot
         DB_USERNAME: root
