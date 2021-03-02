@@ -80,6 +80,9 @@ trait CanConnectAccurate
                 return [
                     'type' => 'postback',
                     'title' => $db['alias'],
+
+                    // We should always include the $psid as the second payload,
+                    // because FB won't include it in the `messaging_postback` event.
                     'payload' => "OPEN_DB:$psid:{$db['id']}",
                 ];
             }, $dbs)
