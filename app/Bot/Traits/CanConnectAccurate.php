@@ -16,6 +16,7 @@ trait CanConnectAccurate
     {
         $user = User::firstWhere('psid', $psid);
 
+        // If the psid is unrecognized, we should ask the user to login to Accurate.
         if (! $user) {
             static::sendLoginButton($psid);
 
@@ -72,6 +73,7 @@ trait CanConnectAccurate
     {
         $dbs = static::askAccurate($psid, 'db-list.do')['d'];
 
+        // Send postback buttons so user can choose which DB to open.
         $payload = static::makeButtonPayload(__('bot.choose_db'), array_map(function ($db) {
             return [
                 'type' => 'postback',
@@ -91,6 +93,8 @@ trait CanConnectAccurate
         $data = static::askAccurate($psid, 'open-db.do', compact('id'));
 
         if ($data) {
+            // Save the host and session to DB, because they will be needed
+            // for the next Accurate requests.
             User::where('psid', $psid)->update([
                 'host' => $data['host'],
                 'session' => $data['session'],
