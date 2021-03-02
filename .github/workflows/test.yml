@@ -10,14 +10,8 @@ jobs:
 
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:5.7
         env:
-          DB_CONNECTION: mysql
-          DB_HOST: mysql
-          DB_PORT: 3306
-          DB_DATABASE: accurate_bot
-          DB_USERNAME: root
-          DB_PASSWORD: secret
           MYSQL_DATABASE: accurate_bot
         ports:
           - 33306:3306
@@ -77,5 +71,12 @@ jobs:
         php artisan key:generate
 
     - name: Test PHP
+      env:
+        DB_CONNECTION: mysql
+        DB_HOST: mysql
+        DB_PORT: 3306
+        DB_DATABASE: accurate_bot
+        DB_USERNAME: root
+        DB_PASSWORD: secret
       run: |
         composer test
