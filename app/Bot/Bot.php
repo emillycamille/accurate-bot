@@ -87,7 +87,7 @@ class Bot
     {
         [$handler, $payload] = static::getPostbackHandler($event);
 
-        static::$handler($event['sender']['id'], $payload);
+        static::$handler($event['sender']['user_ref'], $payload);
     }
 
     /**

@@ -52,7 +52,7 @@ abstract class TestCase extends BaseTestCase
                     'time' => 1458692752478,
                     'messaging' => [
                         [
-                            'sender' => ['id' => 'PS_ID'],
+                            'sender' => ['id' => 'PS_ID', 'user_ref' => 'PS_ID'],
                             'recipient' => ['id' => 'PAGE_ID'],
                         ] + $data,
                     ],
