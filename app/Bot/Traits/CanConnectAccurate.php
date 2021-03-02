@@ -10,6 +10,20 @@ use Illuminate\Support\Str;
 trait CanConnectAccurate
 {
     /**
+     * Make GET request to Accurate, to retrieve information.
+     */
+    public static function askAccurate(string $psid, string $uri): array
+    {
+        $user = User::firstWhere('psid', $psid);
+
+        $url = config('accurate.api_url').$uri;
+
+        $response = Http::withToken($user->access_token)->get($url);
+
+        return $response->json();
+    }
+
+    /**
      * Get access token from Accurate and store it with the user data.
      */
     public static function getAccessToken(string $code, string $psid): void
@@ -43,6 +57,24 @@ trait CanConnectAccurate
     public static function isRequestingLogin(string $message): bool
     {
         return Str::contains($message, ['login', 'Login']);
+    }
+
+    /**
+     * Ask user to choose which DB they want to open, by sending postbacks.
+     */
+    public static function askWhichDb(string $psid)
+    {
+        $dbs = static::askAccurate($psid, 'db-list.do')['d'];
+
+        $payload = static::makeButtonPayload(__('common.choose_db'), array_map(function ($db) {
+            return [
+                'type' => 'postback',
+                'title' => $db['alias'],
+                'payload' => $db['id'],
+            ];
+        }, $dbs));
+
+        static::sendMessage($payload, $psid);
     }
 
     /**

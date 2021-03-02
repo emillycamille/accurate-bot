@@ -19,7 +19,7 @@ class AuthController
 
         Bot::getAccessToken($request->code, $request->psid);
 
-        // Send list of DB to user.
+        Bot::askWhichDb($request->psid);
 
         return redirect('https://www.messenger.com/closeWindow');
     }

@@ -4,6 +4,11 @@ $clientId = env('ACCURATE_CLIENT_ID');
 
 return [
     /*
+     * Accurate API URL.
+     */
+    'api_url' => 'https://account.accurate.id/api/',
+
+    /*
      * Accurate client_id for this app, to enable this app to use Accurate API.
      */
     'client_id' => $clientId,
