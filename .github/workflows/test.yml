@@ -64,6 +64,6 @@ jobs:
     - name: Test PHP
       env:
         DB_CONNECTION: sqlite
-        DB_DATABASE: :memory:
+        DB_DATABASE: ':memory:'
       run: |
         composer test
