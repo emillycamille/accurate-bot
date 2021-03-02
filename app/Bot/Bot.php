@@ -59,6 +59,13 @@ class Bot
     }
 
     /**
+     * Handle received postback event.
+     */
+    public static function receivedPostback(array $event): void
+    {
+    }
+
+    /**
      * Send $payload to $recipient using Messenger Send API.
      * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
      */

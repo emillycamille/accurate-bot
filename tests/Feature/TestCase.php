@@ -18,13 +18,33 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Make request from Messenger that simulates the bot receiving $message.
+     * Make request from Messenger that simulates the bot receiving $text.
      */
-    public function receiveMessage(string $message): TestResponse
+    public function receiveMessage(string $text): TestResponse
     {
-        // The data sent by Messenger.
         // https://developers.facebook.com/docs/messenger-platform/reference/webhook-events/messages
-        $data = [
+        $data = ['message' => compact('text')];
+
+        return $this->receiveEvent($data);
+    }
+
+    /**
+     * Make request from Messenger that simulates the bot receiving postback with $payload.
+     */
+    public function receivePostback(string $payload): TestResponse
+    {
+        // https://developers.facebook.com/docs/messenger-platform/reference/webhook-events/messaging_postbacks
+        $data = ['postback' => compact('payload')];
+
+        return $this->receiveEvent($data);
+    }
+
+    /**
+     * Make request from Messenger that simulates the bot receiving a messaging event.
+     */
+    public function receiveEvent(array $data): TestResponse
+    {
+        $payload = [
             'object' => 'page',
             'entry' => [
                 [
@@ -34,16 +54,13 @@ abstract class TestCase extends BaseTestCase
                         [
                             'sender' => ['id' => 'PS_ID'],
                             'recipient' => ['id' => 'PAGE_ID'],
-                            'message' => [
-                                'text' => $message,
-                            ],
-                        ],
+                        ] + $data,
                     ],
                 ],
             ],
         ];
 
-        $response = $this->postJson('/webhook', $data);
+        $response = $this->postJson('/webhook', $payload);
 
         // Messenger expects response 200 to be returned within 20 seconds.
         return $response->assertStatus(200);
