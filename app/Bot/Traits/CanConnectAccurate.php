@@ -74,13 +74,16 @@ trait CanConnectAccurate
         $dbs = static::askAccurate($psid, 'db-list.do')['d'];
 
         // Send postback buttons so user can choose which DB to open.
-        $payload = static::makeButtonPayload(__('bot.choose_db'), array_map(function ($db) {
-            return [
-                'type' => 'postback',
-                'title' => $db['alias'],
-                'payload' => "OPEN_DB:{$db['id']}",
-            ];
-        }, $dbs));
+        $payload = static::makeButtonPayload(
+            __('bot.choose_db'),
+            array_map(function ($db) use ($psid) {
+                return [
+                    'type' => 'postback',
+                    'title' => $db['alias'],
+                    'payload' => "OPEN_DB:$psid:{$db['id']}",
+                ];
+            }, $dbs)
+        );
 
         static::sendMessage($payload, $psid);
     }

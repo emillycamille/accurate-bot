@@ -15,7 +15,7 @@ test('bot can open db', function () {
         config('accurate.api_url').'open-db.do*' => Http::response($data),
     ]);
 
-    $this->receivePostback('OPEN_DB:1');
+    $this->receivePostback('OPEN_DB:PS_ID:1');
 
     $this->assertRequestSent();
 

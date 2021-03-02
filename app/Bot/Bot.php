@@ -19,18 +19,18 @@ class Bot
      */
     public static function getPostbackHandler(array $postback): array
     {
-        // The postback payload is a string with this format: `HANDLER_METHOD:PAYLOAD`.
-        // We need to split them to `handlerMethod` and `PAYLOAD`, so the `handlerMethod`
-        // can be called (see `receivedPostback()`).
+        // The postback payload is a string with this format: `HANDLER:PSID:PAYLOAD`.
+        // We need to split them to variables, so the handler method can be called
+        // (see `receivedPostback()`).
 
         $postback = $postback['postback']['payload'];
 
         // The payload may not be always there, we use null as default.
-        [$handler, $payload] = explode(':', $postback, 2) + [1 => null];
+        [$handler, $psid, $payload] = explode(':', $postback, 3) + [2 => null];
 
         $handler = Str::camel(strtolower($handler));
 
-        return [$handler, $payload];
+        return [$handler, $psid, $payload];
     }
 
     /**
@@ -85,9 +85,9 @@ class Bot
      */
     public static function receivedPostback(array $event): void
     {
-        [$handler, $payload] = static::getPostbackHandler($event);
+        [$handler, $psid, $payload] = static::getPostbackHandler($event);
 
-        static::$handler($event['sender']['user_ref'], $payload);
+        static::$handler($psid, $payload);
     }
 
     /**
