@@ -44,6 +44,8 @@ class WebhookController
 
             if (array_key_exists('message', $messagingEvent)) {
                 Bot::receivedMessage($messagingEvent);
+            } elseif (array_key_exists('postback', $messagingEvent)) {
+                Bot::receivedPostback($messagingEvent);
             }
         }
 

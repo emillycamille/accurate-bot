@@ -12,7 +12,7 @@ test('user can store accurate access token', function () {
     ];
 
     Http::fake([
-        config('accurate.auth_token_url') => Http::response([
+        config('accurate.access_token_url') => Http::response([
             'access_token' => $data['access_token'],
             'refresh_token' => $data['refresh_token'],
             'user' => [
@@ -20,6 +20,10 @@ test('user can store accurate access token', function () {
                 'email' => $data['email'],
             ],
         ]),
+        config('accurate.api_url').'*' => Http::response(['d' => [
+            ['id' => 1, 'alias' => 'ALIAS_1'],
+            ['id' => 2, 'alias' => 'ALIAS_2'],
+        ]]),
     ]);
 
     $this->get('auth/callback?'.http_build_query([

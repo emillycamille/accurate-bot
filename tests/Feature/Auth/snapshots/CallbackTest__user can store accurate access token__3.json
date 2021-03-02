@@ -1,0 +1,16 @@
+{
+    "headers": {
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Host": [
+            "account.accurate.id"
+        ],
+        "Authorization": [
+            "Bearer ACCESS_TOKEN"
+        ]
+    },
+    "method": "GET",
+    "url": "https:\/\/account.accurate.id\/api\/db-list.do",
+    "data": []
+}
