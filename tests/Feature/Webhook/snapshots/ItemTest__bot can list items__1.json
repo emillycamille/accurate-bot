@@ -3,17 +3,16 @@
         "User-Agent": [
             "GuzzleHttp\/7"
         ],
-        "Host": [
-            "account.accurate.id"
-        ],
         "Authorization": [
             "Bearer ACCESS_TOKEN"
         ],
         "X-Session-ID": [
-            ""
+            "SESSION"
         ]
     },
     "method": "GET",
-    "url": "https:\/\/account.accurate.id\/api\/db-list.do",
-    "data": []
+    "url": "HOST\/api\/item\/list.do?fields=name%2CavailableToSell%2CunitPrice",
+    "data": {
+        "fields": "name,availableToSell,unitPrice"
+    }
 }

@@ -24,6 +24,8 @@ class UserFactory extends Factory
         return [
             'psid' => 'PS_ID',
             'access_token' => 'ACCESS_TOKEN',
+            'session' => 'SESSION',
+            'host' => 'HOST',
         ];
     }
 }

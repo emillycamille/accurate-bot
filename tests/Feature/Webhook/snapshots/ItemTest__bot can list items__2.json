@@ -1,0 +1,27 @@
+{
+    "headers": {
+        "Content-Length": [
+            "228"
+        ],
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Content-Type": [
+            "application\/json"
+        ],
+        "Host": [
+            "graph.facebook.com"
+        ]
+    },
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "recipient": {
+            "id": "PS_ID"
+        },
+        "message": {
+            "text": "List Item:\\n ---------------------\\n Nama     Harga     Stok\\n ---------------------\\n1. ITEM_1 Rp50000 Stok: 100\\n2. ITEM_2 Rp20000 Stok: 200\\n"
+        }
+    }
+}
