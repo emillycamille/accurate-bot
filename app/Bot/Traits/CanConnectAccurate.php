@@ -23,9 +23,11 @@ trait CanConnectAccurate
             return null;
         }
 
-        $url = $user->host
-            ? $user->host.'/api/'
-            : config('accurate.api_url');
+        // If we want to request basic API, use api_url in config.
+        // Else, use the user's host.
+        $url = ! Str::contains($uri, '/')
+            ? config('accurate.api_url')
+            : $user->host.'/api/';
 
         $url .= $uri;
 

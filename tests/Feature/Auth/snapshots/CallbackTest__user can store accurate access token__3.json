@@ -8,6 +8,9 @@
         ],
         "Authorization": [
             "Bearer ACCESS_TOKEN"
+        ],
+        "X-Session-ID": [
+            ""
         ]
     },
     "method": "GET",
