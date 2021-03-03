@@ -23,9 +23,15 @@ trait CanConnectAccurate
             return null;
         }
 
-        $url = config('accurate.api_url').$uri;
+        $url = $user->host
+            ? $user->host.'/api/'
+            : config('accurate.api_url');
 
-        $response = Http::withToken($user->access_token)->get($url, $query);
+        $url .= $uri;
+
+        $response = Http::withToken($user->access_token)
+            ->withHeaders(['X-Session-ID' => $user->session])
+            ->get($url, $query);
 
         return $response->json();
     }
@@ -89,6 +95,38 @@ trait CanConnectAccurate
         );
 
         static::sendMessage($payload, $psid);
+    }
+
+    public static function isAskingItemList(string $message): bool
+    {
+        return Str::contains(strtolower($message), ['barang', 'list']);
+    }
+
+    public static function listItem(string $psid): string
+    {
+        $items = static::askAccurate($psid, 'item/list.do', [
+            'fields' => 'name,availableToSell,unitPrice',
+        ])['d'];
+
+        $string = sprintf(
+            '%s:\n %s\n %s\n %s\n',
+            __('bot.list_item_title'),
+            '---------------------',
+            'Nama     Harga     Stok',
+            '---------------------',
+        );
+
+        foreach ($items as $i => $item) {
+            $string .= sprintf(
+                '%d. %s %s %s\n',
+                $i + 1,
+                $item['name'],
+                'Rp'.$item['unitPrice'],
+                'Stok: '.$item['availableToSell'],
+            );
+        }
+
+        return $string;
     }
 
     /**
