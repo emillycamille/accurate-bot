@@ -100,16 +100,16 @@ class Bot
 
         if (static::isRequestingLogin($message)) {
             static::sendLoginButton($senderId);
-        } elseif (static::isMathExpression($message)) {
-            $reply = static::calculateMathExpression($message);
-        } elseif (static::isAskingTime($message)) {
-            $reply = static::tellTime($message);
-        } elseif (static::isAskingWeather($message)) {
-            $reply = static::tellWeather($message);
-        } elseif (static::isSayingHello($message)) {
-            $reply = static::greetUser($message, $senderId);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
+        } elseif (static::isAskingWeather($message)) {
+            $reply = static::tellWeather($message);
+        } elseif (static::isAskingTime($message)) {
+            $reply = static::tellTime($message);
+        } elseif (static::isMathExpression($message)) {
+            $reply = static::calculateMathExpression($message);
+        } elseif (static::isSayingHello($message)) {
+            $reply = static::greetUser($message, $senderId);
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
