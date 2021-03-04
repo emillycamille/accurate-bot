@@ -7,6 +7,7 @@ use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
+use App\Bot\Traits\CanShowPurchase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -73,6 +74,8 @@ class Bot
             $reply = static::greetUser($message, $senderId);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
+        } elseif (static::isAskingPurchaseInvoice($message)) {
+            static::purchaseInvoice($senderId);
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
