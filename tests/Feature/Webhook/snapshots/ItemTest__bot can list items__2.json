@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "228"
+            "211"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -21,7 +21,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "List Item:\\n ---------------------\\n Nama     Harga     Stok\\n ---------------------\\n1. ITEM_1 Rp50000 Stok: 100\\n2. ITEM_2 Rp20000 Stok: 200\\n"
+            "text": "List Barang:\n---------------------\nNama     Harga     Stok\n---------------------\n1. ITEM_1 Rp50.000 100\n2. ITEM_2 Rp20.000 200\n"
         }
     }
 }

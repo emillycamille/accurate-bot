@@ -59,7 +59,7 @@ class Bot
 
         $senderId = $event['sender']['id'];
 
-        Log::debug("receivedMessage: $senderId\n$message");
+        Log::debug("receivedMessage: $senderId: $message");
 
         if (static::isRequestingLogin($message)) {
             static::sendLoginButton($senderId);
@@ -112,7 +112,7 @@ class Bot
             'message' => $payload,
         ];
 
-        Log::debug("sendMessage: $recipient", $data);
+        Log::debug("sendMessage: $recipient", $data + ["\n"]);
 
         Http::post(config('bot.fb_sendapi_url'), $data)->throw();
     }

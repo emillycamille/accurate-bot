@@ -112,7 +112,7 @@ trait CanConnectAccurate
         ])['d'];
 
         $string = sprintf(
-            '%s:\n %s\n %s\n %s\n',
+            "%s:\n%s\n%s\n%s\n",
             __('bot.list_item_title'),
             '---------------------',
             'Nama     Harga     Stok',
@@ -121,11 +121,11 @@ trait CanConnectAccurate
 
         foreach ($items as $i => $item) {
             $string .= sprintf(
-                '%d. %s %s %s\n',
+                "%d. %s %s %s\n",
                 $i + 1,
                 $item['name'],
-                'Rp'.$item['unitPrice'],
-                'Stok: '.$item['availableToSell'],
+                'Rp'.number_format($item['unitPrice'], 0, ',', '.'),
+                $item['availableToSell'],
             );
         }
 
