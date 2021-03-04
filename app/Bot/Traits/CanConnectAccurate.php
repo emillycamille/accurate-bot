@@ -5,6 +5,7 @@ namespace App\Bot\Traits;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 trait CanConnectAccurate
@@ -31,12 +32,17 @@ trait CanConnectAccurate
 
         $url .= $uri;
 
+        Log::debug("askAccurate: $psid: $url", $query ?? []);
+
         $response = Http::withToken($user->access_token)
             ->withHeaders(['X-Session-ID' => $user->session])
             ->get($url, $query)
-            ->throw();
+            ->throw()
+            ->json();
 
-        return $response->json();
+        Log::debug('fromAccurate:', ($response ?? []) + ["\n"]);
+
+        return $response;
     }
 
     /**
