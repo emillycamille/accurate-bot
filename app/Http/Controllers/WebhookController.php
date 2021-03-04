@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Bot\Bot;
+use App\Jobs\HandleWebhook;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -37,18 +37,11 @@ class WebhookController
      */
     public function handle(Request $request): Response
     {
-        $entries = $request->entry;
+        // Handle the webhook event asynchronously.
+        HandleWebhook::dispatch($request->entry);
 
-        foreach ($entries as $entry) {
-            $messagingEvent = $entry['messaging'][0];
-
-            if (array_key_exists('message', $messagingEvent)) {
-                Bot::receivedMessage($messagingEvent);
-            } elseif (array_key_exists('postback', $messagingEvent)) {
-                Bot::receivedPostback($messagingEvent);
-            }
-        }
-
+        // This OK 200 response will always be returned because webhook event is handled
+        // asynchronously.
         return response('');
     }
 }
