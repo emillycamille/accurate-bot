@@ -100,16 +100,27 @@ trait CanConnectAccurate
         static::sendMessage($payload, $psid);
     }
 
+    /**
+     * Determines whether the user is asking about item list.
+     */
     public static function isAskingItemList(string $message): bool
     {
         return Str::contains(strtolower($message), ['barang', 'list']);
     }
 
-    public static function listItem(string $psid): string
+    /**
+     * List 5 items from DB, each with name, price, and quantity.
+     */
+    public static function listItem(string $psid): void
     {
         $items = static::askAccurate($psid, 'item/list.do', [
             'fields' => 'name,availableToSell,unitPrice',
-        ])['d'];
+            'sp.pageSize' => 5,
+        ]);
+
+        if (! $items) {
+            return;
+        }
 
         $string = sprintf(
             "%s:\n%s\n%s\n%s\n",
@@ -119,7 +130,7 @@ trait CanConnectAccurate
             '---------------------',
         );
 
-        foreach ($items as $i => $item) {
+        foreach ($items['d'] as $i => $item) {
             $string .= sprintf(
                 "%d. %s %s %s\n",
                 $i + 1,
@@ -129,7 +140,7 @@ trait CanConnectAccurate
             );
         }
 
-        return $string;
+        static::sendMessage($string, $psid);
     }
 
     /**

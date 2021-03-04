@@ -11,8 +11,9 @@
         ]
     },
     "method": "GET",
-    "url": "HOST\/api\/item\/list.do?fields=name%2CavailableToSell%2CunitPrice",
+    "url": "HOST\/api\/item\/list.do?fields=name%2CavailableToSell%2CunitPrice&sp.pageSize=5",
     "data": {
-        "fields": "name,availableToSell,unitPrice"
+        "fields": "name,availableToSell,unitPrice",
+        "sp.pageSize": 5
     }
 }

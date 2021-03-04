@@ -72,7 +72,7 @@ class Bot
         } elseif (static::isSayingHello($message)) {
             $reply = static::greetUser($message, $senderId);
         } elseif (static::isAskingItemList($message)) {
-            $reply = static::listItem($senderId);
+            static::listItem($senderId);
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
