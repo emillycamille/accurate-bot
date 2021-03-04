@@ -1,0 +1,26 @@
+{
+    "headers": {
+        "Content-Length": [
+            "135"
+        ],
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Authorization": [
+            "Basic QUNDVVJBVEVfQ0xJRU5UX0lEOkFDQ1VSQVRFX0NMSUVOVF9TRUNSRVQ="
+        ],
+        "Host": [
+            "account.accurate.id"
+        ],
+        "Content-Type": [
+            "application\/x-www-form-urlencoded"
+        ]
+    },
+    "method": "POST",
+    "url": "https:\/\/account.accurate.id\/oauth\/token",
+    "data": {
+        "code": "ACCURATE_CODE",
+        "grant_type": "authorization_code",
+        "redirect_uri": "https:\/\/accurate-bot.herokuapp.com\/auth\/callback?psid=PS_ID"
+    }
+}

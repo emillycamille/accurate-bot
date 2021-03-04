@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
@@ -11,7 +12,7 @@ use Tests\Concerns\MatchesSnapshots;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, MatchesSnapshots;
+    use CreatesApplication, MatchesSnapshots, RefreshDatabase;
 
     /**
      * Create the test response instance from the given response.
@@ -27,10 +28,14 @@ abstract class TestCase extends BaseTestCase
     /**
      * Assert that a HTTP request is sent and snapshot its method, url, data.
      */
-    protected function assertRequestSent(): self
+    protected function assertRequestSent(bool $withHeaders = false): self
     {
-        Http::assertSent(function (Request $request) {
-            $snapshot = [
+        Http::assertSent(function (Request $request) use ($withHeaders) {
+            $snapshot = $withHeaders
+                ? ['headers' => $request->headers()]
+                : [];
+
+            $snapshot += [
                 'method' => $request->method(),
                 'url' => $request->url(),
                 'data' => $request->data(),

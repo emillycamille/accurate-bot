@@ -10,6 +10,7 @@ test('bot can tell weather at Jakarta', function () {
             'name' => 'CITY_NAME',
             'main' => ['temp' => 'TEMPERATURE'],
         ]),
+        '*' => Http::response(),
     ]);
 
     $this->receiveMessage('    cuaca   sekarang di kota  jakarta   ');

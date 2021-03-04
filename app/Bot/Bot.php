@@ -8,10 +8,28 @@ use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class Bot
 {
     use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate;
+
+    /**
+     * Get the handler method (camelCase string) and payload of $postback event.
+     */
+    public static function getPostbackHandler(string $postback): array
+    {
+        // The postback payload is a string with this format: `HANDLER:PSID:PAYLOAD`.
+        // We need to split them to variables, so the handler method can be called
+        // (see `receivedPostback()`). The payload may not be always there, we use null
+        // as default.
+        [$handler, $psid, $payload] = explode(':', $postback, 3) + [2 => null];
+
+        $handler = Str::camel(strtolower($handler));
+
+        return [$handler, $psid, $payload];
+    }
 
     /**
      * Return an array that can be used as button payload for `sendMessage`.
@@ -39,8 +57,12 @@ class Bot
 
         $message = $event['message']['text'];
 
+        $senderId = $event['sender']['id'];
+
+        Log::debug("receivedMessage: $senderId: $message");
+
         if (static::isRequestingLogin($message)) {
-            $reply = static::sendLoginButton();
+            static::sendLoginButton($senderId);
         } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
         } elseif (static::isAskingTime($message)) {
@@ -48,12 +70,30 @@ class Bot
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
         } elseif (static::isSayingHello($message)) {
-            $reply = static::greetUser($message, $event['sender']['id']);
+            $reply = static::greetUser($message, $senderId);
+        } elseif (static::isAskingItemList($message)) {
+            $reply = static::listItem($senderId);
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
 
-        static::sendMessage($reply, $event['sender']['id']);
+        if (isset($reply)) {
+            static::sendMessage($reply, $senderId);
+        }
+    }
+
+    /**
+     * Handle received postback event.
+     */
+    public static function receivedPostback(array $event): void
+    {
+        $postback = $event['postback']['payload'];
+
+        Log::debug("receivedPostback: $postback");
+
+        [$handler, $psid, $payload] = static::getPostbackHandler($postback);
+
+        static::$handler($psid, $payload);
     }
 
     /**
@@ -72,6 +112,8 @@ class Bot
             'message' => $payload,
         ];
 
-        Http::post(config('bot.fb_sendapi_url'), $data);
+        Log::debug("sendMessage: $recipient", $data + ["\n"]);
+
+        Http::post(config('bot.fb_sendapi_url'), $data)->throw();
     }
 }
