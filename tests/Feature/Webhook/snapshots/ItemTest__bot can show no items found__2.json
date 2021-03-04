@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "211"
+            "132"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -21,7 +21,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "List Barang:\n---------------------\nNama     Harga     Stok\n---------------------\n1. ITEM_1 Rp50.000 100\n2. ITEM_2 Rp20.000 200\n"
+            "text": "Tidak ditemukan item yang cocok dengan keyword KEYWORD"
         }
     }
 }
