@@ -2,6 +2,7 @@
 
 namespace App\Bot\Traits;
 
+use App\Bot\Traits\Accurate\CanManageItems;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
@@ -10,6 +11,8 @@ use Illuminate\Support\Str;
 
 trait CanConnectAccurate
 {
+    use CanManageItems;
+
     /**
      * Make GET request to Accurate, to retrieve information.
      */
@@ -117,49 +120,6 @@ trait CanConnectAccurate
         );
 
         static::sendMessage($payload, $psid);
-    }
-
-    /**
-     * Determines whether the user is asking about item list.
-     */
-    public static function isAskingItemList(string $message): bool
-    {
-        return Str::containsAll(strtolower($message), ['list', 'item']);
-    }
-
-    /**
-     * List 5 items from DB, each with name, price, and quantity.
-     */
-    public static function listItem(string $psid): void
-    {
-        $items = static::askAccurate($psid, 'item/list.do', [
-            'fields' => 'name,availableToSell,unitPrice',
-            'sp.pageSize' => 5,
-        ]);
-
-        if (! $items) {
-            return;
-        }
-
-        $string = sprintf(
-            "%s:\n%s\n%s\n%s\n",
-            __('bot.list_item_title'),
-            '---------------------',
-            'Nama     Harga     Stok',
-            '---------------------',
-        );
-
-        foreach ($items['d'] as $i => $item) {
-            $string .= sprintf(
-                "%d. %s %s %s\n",
-                $i + 1,
-                $item['name'],
-                'Rp'.number_format($item['unitPrice'], 0, ',', '.'),
-                $item['availableToSell'],
-            );
-        }
-
-        static::sendMessage($string, $psid);
     }
 
     /**

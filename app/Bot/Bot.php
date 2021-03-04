@@ -71,8 +71,8 @@ class Bot
             $reply = static::tellWeather($message);
         } elseif (static::isSayingHello($message)) {
             $reply = static::greetUser($message, $senderId);
-        } elseif (static::isAskingItemList($message)) {
-            static::listItem($senderId);
+        } elseif ($keyword = static::isAskingItemDetail($message)) {
+            static::listItem($senderId, $keyword);
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }

@@ -1,8 +1,16 @@
 <?php
 
 return [
+    // Common words
+    'price' => 'Harga',
+    'stock' => 'stock',
+
+    // Basic
     'choose_db' => 'Pilih database dulu ya..',
     'db_opened' => 'Database berhasil dibuka!',
-    'list_item_title' => 'List Barang',
-    'login_successful' => 'Anda berhasil terhubung ke Accurate sebagai user :name.',
+    'login_successful' => 'Anda berhasil terhubung ke Accurate sebagai user :name',
+
+    // Item
+    'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang anda maksud?',
+    'no_items_match_keyword' => 'Tidak ditemukan item yang cocok dengan keyword :keyword',
 ];
