@@ -4,7 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 test('bot can list items', function () {
-    User::factory()->create();
+    User::factory()->withSession()->create();
 
     Http::fake([
         'item/list.do*' => Http::response(['d' => [

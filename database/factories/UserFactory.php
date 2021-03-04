@@ -24,8 +24,19 @@ class UserFactory extends Factory
         return [
             'psid' => 'PS_ID',
             'access_token' => 'ACCESS_TOKEN',
-            'session' => 'SESSION',
-            'host' => 'HOST',
         ];
+    }
+
+    /**
+     * Add Accurate session and host to the user.
+     */
+    public function withSession(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'session' => 'SESSION',
+                'host' => 'HOST',
+            ];
+        });
     }
 }

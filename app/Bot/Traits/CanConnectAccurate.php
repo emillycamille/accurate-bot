@@ -28,7 +28,7 @@ trait CanConnectAccurate
         // Else, use the user's host.
         $url = (! Str::contains($uri, '/'))
             ? config('accurate.api_url')
-            : $user->host.'/api/';
+            : $user->host.'/accurate/api/';
 
         $url .= $uri;
 
