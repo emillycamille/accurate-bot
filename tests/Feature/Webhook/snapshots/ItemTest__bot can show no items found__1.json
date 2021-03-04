@@ -1,0 +1,21 @@
+{
+    "headers": {
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Authorization": [
+            "Bearer ACCESS_TOKEN"
+        ],
+        "X-Session-ID": [
+            "SESSION"
+        ]
+    },
+    "method": "GET",
+    "url": "HOST\/accurate\/api\/item\/list.do?fields=id%2Cname%2CavailableToSell%2CunitPrice&filter.keywords.op=CONTAIN&filter.keywords.val=KEYWORD&sp.pageSize=5",
+    "data": {
+        "fields": "id,name,availableToSell,unitPrice",
+        "filter.keywords.op": "CONTAIN",
+        "filter.keywords.val": "KEYWORD",
+        "sp.pageSize": 5
+    }
+}

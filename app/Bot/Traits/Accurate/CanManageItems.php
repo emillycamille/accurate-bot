@@ -10,7 +10,7 @@ trait CanManageItems
      * Determines whether the user is asking about item detail. If yes,
      * return the keyword of the item being asked.
      */
-    public static function isAskingItemDetail(string $message): bool | string
+    public static function isAskingItemDetail(string $message): false | string
     {
         if (! Str::contains($message, 'item')) {
             return false;
@@ -22,9 +22,9 @@ trait CanManageItems
     public static function itemToString(array $item): string
     {
         return sprintf(
-            "%s\n%s:%s\n%s:%s",
+            "%s\n%s: %s\n%s: %s",
             $item['name'],
-            __('bot.price'), 'Rp'.number_format($item['unitPrice'], 0, ',', '.'),
+            __('bot.price'), idr($item['unitPrice']),
             __('bot.stock'), $item['availableToSell'],
         );
     }
@@ -41,7 +41,7 @@ trait CanManageItems
             'sp.pageSize' => 5,
         ]);
 
-        if (! ($items = data_get($items, 'd'))) {
+        if (is_null($items = data_get($items, 'd'))) {
             return;
         }
 
