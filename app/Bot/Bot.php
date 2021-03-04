@@ -63,7 +63,7 @@ class Bot
         if (count($items) > 13) {
             throw new \Exception('Quick replies may not exceed 13 items.');
         }
-        
+
         $items = array_map(function ($item) {
             return [
                 'content_type' => 'text',
@@ -85,6 +85,12 @@ class Bot
     public static function receivedMessage(array $event): void
     {
         // TODO: Create MessagingEvent interface.
+
+        if ($postback = data_get($event, 'message.quick_reply.payload')) {
+            static::receivedPostback($postback);
+
+            return;
+        }
 
         $message = $event['message']['text'];
 
@@ -116,9 +122,9 @@ class Bot
     /**
      * Handle received postback event.
      */
-    public static function receivedPostback(array $event): void
+    public static function receivedPostback(array | string $event): void
     {
-        $postback = $event['postback']['payload'];
+        $postback = is_string($event) ? $event : $event['postback']['payload'];
 
         Log::debug("receivedPostback: $postback");
 
