@@ -38,7 +38,7 @@ class WebhookController
     public function handle(Request $request): Response
     {
         // Handle the webhook event asynchronously.
-        HandleWebhook::dispatch($request->entry);
+        HandleWebhook::dispatchAfterResponse($request->entry);
 
         // This OK 200 response will always be returned because webhook event is handled
         // asynchronously.
