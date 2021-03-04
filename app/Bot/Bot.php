@@ -8,6 +8,7 @@ use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class Bot
@@ -17,15 +18,12 @@ class Bot
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
      */
-    public static function getPostbackHandler(array $postback): array
+    public static function getPostbackHandler(string $postback): array
     {
         // The postback payload is a string with this format: `HANDLER:PSID:PAYLOAD`.
         // We need to split them to variables, so the handler method can be called
-        // (see `receivedPostback()`).
-
-        $postback = $postback['postback']['payload'];
-
-        // The payload may not be always there, we use null as default.
+        // (see `receivedPostback()`). The payload may not be always there, we use null
+        // as default.
         [$handler, $psid, $payload] = explode(':', $postback, 3) + [2 => null];
 
         $handler = Str::camel(strtolower($handler));
@@ -61,6 +59,8 @@ class Bot
 
         $senderId = $event['sender']['id'];
 
+        Log::debug("receivedMessage: $senderId\n$message");
+
         if (static::isRequestingLogin($message)) {
             static::sendLoginButton($senderId);
         } elseif (static::isMathExpression($message)) {
@@ -87,7 +87,11 @@ class Bot
      */
     public static function receivedPostback(array $event): void
     {
-        [$handler, $psid, $payload] = static::getPostbackHandler($event);
+        $postback = $event['postback']['payload'];
+
+        Log::debug("receivedPostback: $postback");
+
+        [$handler, $psid, $payload] = static::getPostbackHandler($postback);
 
         static::$handler($psid, $payload);
     }
@@ -108,6 +112,8 @@ class Bot
             'message' => $payload,
         ];
 
-        Http::post(config('bot.fb_sendapi_url'), $data);
+        Log::debug("sendMessage: $recipient", $data);
+
+        Http::post(config('bot.fb_sendapi_url'), $data)->throw();
     }
 }

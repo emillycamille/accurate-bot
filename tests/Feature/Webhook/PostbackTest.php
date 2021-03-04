@@ -13,6 +13,7 @@ test('bot can open db', function () {
 
     Http::fake([
         config('accurate.api_url').'open-db.do*' => Http::response($data),
+        '*' => Http::response(),
     ]);
 
     $this->receivePostback('OPEN_DB:PS_ID:1');

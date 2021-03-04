@@ -19,6 +19,7 @@ test('bot can list items', function () {
                 'availableToSell' => 200,
             ],
         ]]),
+        '*' => Http::response(),
     ]);
 
     $this->receiveMessage('List barang');

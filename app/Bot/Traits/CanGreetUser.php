@@ -22,7 +22,7 @@ trait CanGreetUser
     {
         $response = Http::get(config('bot.fb_api_url').$userID, [
             'access_token' => config('bot.fb_page_token'),
-        ]);
+        ])->throw();
 
         $name = $response['first_name'];
 

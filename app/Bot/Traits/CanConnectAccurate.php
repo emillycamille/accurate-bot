@@ -33,7 +33,8 @@ trait CanConnectAccurate
 
         $response = Http::withToken($user->access_token)
             ->withHeaders(['X-Session-ID' => $user->session])
-            ->get($url, $query);
+            ->get($url, $query)
+            ->throw();
 
         return $response->json();
     }

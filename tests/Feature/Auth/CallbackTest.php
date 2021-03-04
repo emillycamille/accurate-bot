@@ -20,10 +20,11 @@ test('user can store accurate access token', function () {
                 'email' => $data['email'],
             ],
         ]),
-        config('accurate.api_url').'*' => Http::response(['d' => [
+        'db-list.do' => Http::response(['d' => [
             ['id' => 1, 'alias' => 'ALIAS_1'],
             ['id' => 2, 'alias' => 'ALIAS_2'],
         ]]),
+        '*' => Http::response(),
     ]);
 
     $this->get('auth/callback?'.http_build_query([
