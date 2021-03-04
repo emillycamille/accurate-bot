@@ -124,7 +124,7 @@ trait CanConnectAccurate
      */
     public static function isAskingItemList(string $message): bool
     {
-        return Str::contains(strtolower($message), ['barang', 'list']);
+        return Str::containsAll(strtolower($message), ['list', 'item']);
     }
 
     /**

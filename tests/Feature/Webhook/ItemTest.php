@@ -22,7 +22,7 @@ test('bot can list items', function () {
         '*' => Http::response(),
     ]);
 
-    $this->receiveMessage('List barang');
+    $this->receiveMessage('list item');
 
     $this->assertRequestSent(true);
 });
