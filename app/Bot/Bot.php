@@ -36,6 +36,13 @@ class Bot
      */
     public static function makeButtonPayload(string $text, array $buttons): array
     {
+        $buttons = array_map(function($button) {
+            // FB forbids button title longer than 20 characters.
+            $button['title'] = Str::limit($button['title'], 20-2);
+
+            return $button;
+        }, $buttons);
+        
         return [
             'attachment' => [
                 'type' => 'template',
