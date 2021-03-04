@@ -1,0 +1,18 @@
+{
+    "headers": {
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Authorization": [
+            "Bearer ACCESS_TOKEN"
+        ],
+        "X-Session-ID": [
+            "SESSION"
+        ]
+    },
+    "method": "GET",
+    "url": "HOST\/accurate\/api\/item\/detail.do?id=1",
+    "data": {
+        "id": "1"
+    }
+}

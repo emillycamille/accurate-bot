@@ -7,6 +7,18 @@ use Illuminate\Support\Str;
 trait CanManageItems
 {
     /**
+     * Find $itemId in Accurate and reply back with the item detail.
+     */
+    public static function detailItem(string $psid, int | string $itemId): void
+    {
+        $item = static::askAccurate($psid, 'item/detail.do', [
+            'id' => $itemId,
+        ])['d'];
+
+        static::sendMessage(static::itemToString($item), $psid);
+    }
+    
+    /**
      * Determines whether the user is asking about item detail. If yes,
      * return the keyword of the item being asked.
      */
@@ -19,6 +31,9 @@ trait CanManageItems
         return trim(Str::after($message, 'item'));
     }
 
+    /**
+     * Format $item to a string containing its name, price, and stock.
+     */
     public static function itemToString(array $item): string
     {
         return sprintf(
