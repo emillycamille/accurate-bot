@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "355"
+            "299"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -21,25 +21,19 @@
             "id": "PS_ID"
         },
         "message": {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": "Ada beberapa item ditemukan, mana yang anda maksud?",
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "KEYWORD_1",
-                            "payload": "DETAIL_ITEM:PS_ID:1"
-                        },
-                        {
-                            "type": "postback",
-                            "title": "KEYWORD_2",
-                            "payload": "DETAIL_ITEM:PS_ID:2"
-                        }
-                    ]
+            "text": "Ada beberapa item ditemukan, mana yang anda maksud?",
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "KEYWORD_1",
+                    "payload": "DETAIL_ITEM:PS_ID:1"
+                },
+                {
+                    "content_type": "text",
+                    "title": "KEYWORD_2",
+                    "payload": "DETAIL_ITEM:PS_ID:2"
                 }
-            }
+            ]
         }
     }
 }

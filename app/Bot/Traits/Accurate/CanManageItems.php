@@ -50,11 +50,10 @@ trait CanManageItems
         } elseif (count($items) === 1) {
             $payload = static::itemToString($items[0]);
         } else {
-            $payload = static::makeButtonPayload(
+            $payload = static::makeQuickRepliesPayload(
                 __('bot.multiple_items_match_keyword'),
                 array_map(function ($item) use ($psid) {
                     return [
-                        'type' => 'postback',
                         'title' => $item['name'],
                         'payload' => "DETAIL_ITEM:$psid:{$item['id']}",
                     ];

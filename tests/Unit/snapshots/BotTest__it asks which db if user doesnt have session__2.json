@@ -7,20 +7,14 @@
             "id": "PS_ID"
         },
         "message": {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": "Pilih database dulu ya..",
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "ALIAS_1",
-                            "payload": "OPEN_DB:PS_ID:1"
-                        }
-                    ]
+            "text": "Pilih database dulu ya..",
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "ALIAS_1",
+                    "payload": "OPEN_DB:PS_ID:1"
                 }
-            }
+            ]
         }
     }
 }

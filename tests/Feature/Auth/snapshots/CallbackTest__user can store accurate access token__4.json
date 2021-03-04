@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "316"
+            "260"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -21,25 +21,19 @@
             "id": "PS_ID"
         },
         "message": {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": "Pilih database dulu ya..",
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "ALIAS_1",
-                            "payload": "OPEN_DB:PS_ID:1"
-                        },
-                        {
-                            "type": "postback",
-                            "title": "ALIAS_2",
-                            "payload": "OPEN_DB:PS_ID:2"
-                        }
-                    ]
+            "text": "Pilih database dulu ya..",
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "ALIAS_1",
+                    "payload": "OPEN_DB:PS_ID:1"
+                },
+                {
+                    "content_type": "text",
+                    "title": "ALIAS_2",
+                    "payload": "OPEN_DB:PS_ID:2"
                 }
-            }
+            ]
         }
     }
 }

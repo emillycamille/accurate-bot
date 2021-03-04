@@ -56,6 +56,30 @@ class Bot
     }
 
     /**
+     * Return an array that can be used as quick replies payload for `sendMessage`.
+     */
+    public static function makeQuickRepliesPayload(string $text, array $items): array
+    {
+        if (count($items) > 13) {
+            throw new \Exception('Quick replies may not exceed 13 items.');
+        }
+        
+        $items = array_map(function ($item) {
+            return [
+                'content_type' => 'text',
+                // FB forbids item title longer than 20 characters.
+                'title' => Str::limit($item['title'], 20 - 2),
+                'payload' => $item['payload'],
+            ];
+        }, $items);
+
+        return [
+            'text' => $text,
+            'quick_replies' => $items,
+        ];
+    }
+
+    /**
      * Handle received message event.
      */
     public static function receivedMessage(array $event): void
