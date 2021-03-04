@@ -15,21 +15,34 @@ trait CanConnectAccurate
      */
     public static function askAccurate(string $psid, string $uri, array $query = null): ?array
     {
+        // 1. Check that a user with this psid is found in our db.
+        // --------------------------------------------------------------------
         $user = User::firstWhere('psid', $psid);
 
-        // If the psid is unrecognized, we should ask the user to login to Accurate.
-        if (! $user) {
+        // If not found, we should ask the user to login to Accurate.
+        if ((! $user) || (! $user->access_token)) {
             static::sendLoginButton($psid);
 
             return null;
         }
 
-        // If we want to request basic API, use api_url in config.
-        // Else, use the user's host.
-        $url = (! Str::contains($uri, '/'))
-            ? config('accurate.api_url')
-            : $user->host.'/accurate/api/';
+        // 2. If the request is not basic, ensure that the user has session.
+        // --------------------------------------------------------------------
+        $isBasic = (! Str::contains($uri, '/'));
 
+        // If request is not basic, and user has no session or no host, ask which
+        // db they want to open.
+        if (! $isBasic && ((! $user->session) || (! $user->host))) {
+            static::askWhichDb($psid);
+
+            return null;
+        }
+
+        // 3. Make the request to Accurate.
+        // --------------------------------------------------------------------
+
+        // Depending on the basicness of the request, determine the host url.
+        $url = $isBasic ? config('accurate.api_url') : $user->host.'/accurate/api/';
         $url .= $uri;
 
         Log::debug("askAccurate: $psid: $url", $query ?? []);

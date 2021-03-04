@@ -1,0 +1,26 @@
+{
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "recipient": {
+            "id": "PS_ID"
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Pilih database dulu ya..",
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "ALIAS_1",
+                            "payload": "OPEN_DB:PS_ID:1"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
