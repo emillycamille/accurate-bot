@@ -18,7 +18,7 @@ trait CanGreetUser
     /**
      * Greet the user.
      */
-    public static function greetUser(string $message, string $userID): string
+    public static function greetUser(string $userID): string
     {
         $response = Http::get(config('bot.fb_api_url').$userID, [
             'access_token' => config('bot.fb_page_token'),
