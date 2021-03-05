@@ -11,7 +11,7 @@ trait CanTellTime
      */
     public static function isAskingTime(string $message): bool
     {
-        return Str::contains($message, ['hari', 'jam']);
+        return Str::contains(strtolower($message), ['hari', 'jam']);
     }
 
     /**
@@ -19,6 +19,7 @@ trait CanTellTime
      */
     public static function tellTime(string $message): string
     {
+        $message = strtolower($message);
         $reply = '';
 
         if (Str::contains($message, 'hari')) {

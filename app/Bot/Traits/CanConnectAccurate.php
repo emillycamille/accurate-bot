@@ -94,7 +94,7 @@ trait CanConnectAccurate
      */
     public static function isRequestingLogin(string $message): bool
     {
-        return Str::contains($message, ['login', 'Login']);
+        return Str::contains(strtolower($message), ['login']);
     }
 
     /**

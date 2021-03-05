@@ -12,7 +12,7 @@ trait CanTellWeather
      */
     public static function isAskingWeather(string $message): bool
     {
-        return Str::contains($message, ['cuaca', 'Cuaca']);
+        return Str::contains(strtolower($message), ['cuaca']);
     }
 
     /**

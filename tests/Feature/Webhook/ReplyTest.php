@@ -7,7 +7,7 @@ beforeEach(function () {
 });
 
 test('bot can reply message', function () {
-    $this->receiveMessage('Hello bot!');
+    $this->receiveMessage('Yooooo bot!');
 
     // Assert that correct Send API request is sent.
     $this->assertRequestSent();
