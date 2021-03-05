@@ -24,6 +24,8 @@ trait CanManageItems
      */
     public static function isAskingItemDetail(string $message): false | string
     {
+        $message = strtolower($message);
+        
         if (! Str::contains($message, 'item')) {
             return false;
         }
@@ -45,7 +47,7 @@ trait CanManageItems
     }
 
     /**
-     * List 5 items that matches the $keyword.
+     * List items that matches the $keyword.
      */
     public static function listItem(string $psid, string $keyword): void
     {
@@ -53,7 +55,8 @@ trait CanManageItems
             'fields' => 'id,name,availableToSell,unitPrice',
             'filter.keywords.op' => 'CONTAIN',
             'filter.keywords.val' => $keyword,
-            'sp.pageSize' => 5,
+            // FB allows max 13 quick replies.
+            'sp.pageSize' => 13,
         ]);
 
         if (is_null($items = data_get($items, 'd'))) {
@@ -65,15 +68,21 @@ trait CanManageItems
         } elseif (count($items) === 1) {
             $payload = static::itemToString($items[0]);
         } else {
-            $payload = static::makeQuickRepliesPayload(
-                __('bot.multiple_items_match_keyword'),
-                array_map(function ($item) use ($psid) {
-                    return [
-                        'title' => $item['name'],
-                        'payload' => "DETAIL_ITEM:$psid:{$item['id']}",
-                    ];
-                }, $items)
-            );
+            $text = __('bot.multiple_items_match_keyword')."\n\n";
+            $buttons = [];
+
+            foreach ($items as $i => $item) {
+                $i++;
+
+                $text .= "$i. {$item['name']}\n";
+
+                $buttons[] = [
+                    'title' => $i,
+                    'payload' => "DETAIL_ITEM:$psid:{$item['id']}",
+                ];
+            }
+
+            $payload = static::makeQuickRepliesPayload($text, $buttons);
         }
 
         static::sendMessage($payload, $psid);

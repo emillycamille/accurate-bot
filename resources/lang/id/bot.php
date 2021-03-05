@@ -12,5 +12,5 @@ return [
 
     // Item
     'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang anda maksud?',
-    'no_items_match_keyword' => 'Tidak ditemukan item yang cocok dengan keyword ":keyword"',
+    'no_items_match_keyword' => 'Tidak ditemukan item dengan keyword ":keyword"',
 ];
