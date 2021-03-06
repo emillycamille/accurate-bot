@@ -20,7 +20,7 @@ trait CanManageItems
 
         // If there's an image, offer to show that image.
         if ($image = data_get($item, 'detailItemImage.0.fileName')) {
-            $payload = static::makeButtonPayload('',[[
+            $payload = static::makeButtonPayload('', [[
                     'type' => 'postback',
                     'title' => __('bot.show_image'),
                     'payload' => "SHOW_IMAGE:$psid:$image",
@@ -30,7 +30,7 @@ trait CanManageItems
             static::sendMessage($payload, $psid);
         }
     }
-    
+
     /**
      * Determines whether the user is asking about item detail. If yes,
      * return the keyword of the item being asked.
@@ -38,7 +38,7 @@ trait CanManageItems
     public static function isAskingItemDetail(string $message): false | string
     {
         $message = strtolower($message);
-        
+
         if (! Str::contains($message, 'item')) {
             return false;
         }
@@ -107,7 +107,7 @@ trait CanManageItems
     public static function showImage(string $psid, string $url): void
     {
         $user = User::where('psid', $psid)->firstOrFail();
-        
+
         $url = $user->host.$url;
 
         $payload = ['attachment' => [

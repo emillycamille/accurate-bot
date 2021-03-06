@@ -23,7 +23,7 @@ const ITEMS = [
     ],
 ];
 
-beforeEach(function() {
+beforeEach(function () {
     User::factory()->withSession()->create();
 });
 
