@@ -16,6 +16,18 @@ trait CanManageItems
         ])['d'];
 
         static::sendMessage(static::itemToString($item), $psid);
+
+        // If there's an image, offer to show that image.
+        if ($image = data_get($item, 'detailItemImage.0.fileName')) {
+            $payload = static::makeButtonPayload('',[[
+                    'type' => 'postback',
+                    'title' => __('bot.show_image'),
+                    'payload' => "SHOW_IMAGE:$psid:$image",
+                ]],
+            );
+
+            static::sendMessage($payload, $psid);
+        }
     }
     
     /**

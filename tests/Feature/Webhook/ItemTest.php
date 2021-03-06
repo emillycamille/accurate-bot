@@ -11,6 +11,9 @@ const ITEMS = [
         'name' => 'KEYWORD_1',
         'unitPrice' => 50000,
         'availableToSell' => 100,
+        'detailItemImage' => [[
+            'fileName' => 'ITEM_IMAGE',
+        ]],
     ],
     [
         'id' => 2,
