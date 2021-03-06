@@ -2,6 +2,7 @@
 
 namespace App\Bot\Traits\Accurate;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 
 trait CanManageItems
@@ -16,8 +17,20 @@ trait CanManageItems
         ])['d'];
 
         static::sendMessage(static::itemToString($item), $psid);
+
+        // If there's an image, offer to show that image.
+        if ($image = data_get($item, 'detailItemImage.0.fileName')) {
+            $payload = static::makeButtonPayload('', [[
+                    'type' => 'postback',
+                    'title' => __('bot.show_image'),
+                    'payload' => "SHOW_IMAGE:$psid:$image",
+                ]],
+            );
+
+            static::sendMessage($payload, $psid);
+        }
     }
-    
+
     /**
      * Determines whether the user is asking about item detail. If yes,
      * return the keyword of the item being asked.
@@ -25,7 +38,7 @@ trait CanManageItems
     public static function isAskingItemDetail(string $message): false | string
     {
         $message = strtolower($message);
-        
+
         if (! Str::contains($message, 'item')) {
             return false;
         }
@@ -84,6 +97,23 @@ trait CanManageItems
 
             $payload = static::makeQuickRepliesPayload($text, $buttons);
         }
+
+        static::sendMessage($payload, $psid);
+    }
+
+    /**
+     * Show item image hosted in $url.
+     */
+    public static function showImage(string $psid, string $url): void
+    {
+        $user = User::where('psid', $psid)->firstOrFail();
+
+        $url = $user->host.$url;
+
+        $payload = ['attachment' => [
+            'type' => 'image',
+            'payload' => compact('url'),
+        ]];
 
         static::sendMessage($payload, $psid);
     }

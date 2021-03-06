@@ -11,6 +11,9 @@ const ITEMS = [
         'name' => 'KEYWORD_1',
         'unitPrice' => 50000,
         'availableToSell' => 100,
+        'detailItemImage' => [[
+            'fileName' => 'ITEM_IMAGE',
+        ]],
     ],
     [
         'id' => 2,
@@ -20,7 +23,7 @@ const ITEMS = [
     ],
 ];
 
-beforeEach(function() {
+beforeEach(function () {
     User::factory()->withSession()->create();
 });
 
@@ -43,6 +46,14 @@ test('bot can detail item', function () {
     ]);
 
     $this->receivePostback('DETAIL_ITEM:PS_ID:1');
+
+    test()->assertRequestSent(true);
+});
+
+test('bot can show item image', function () {
+    Http::fake();
+
+    $this->receivePostback('SHOW_IMAGE:PS_ID:/ITEM_IMAGE');
 
     test()->assertRequestSent(true);
 });
