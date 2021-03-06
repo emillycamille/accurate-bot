@@ -2,19 +2,20 @@
 
 namespace App\Bot;
 
+use App\Bot\Traits\Accurate\CanShowPurchase;
+use App\Bot\Traits\Accurate\CanShowSales;
 use App\Bot\Traits\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
-use App\Bot\Traits\CanShowPurchase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class Bot
 {
-    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate;
+    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate, CanShowPurchase, CanShowSales;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
@@ -76,6 +77,8 @@ class Bot
             static::listItem($senderId, $keyword);
         } elseif (static::isAskingPurchaseInvoice($message)) {
             static::purchaseInvoice($senderId);
+        } elseif (static::isAskingSalesInvoice($message)) {
+            static::salesInvoice($senderId);
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }

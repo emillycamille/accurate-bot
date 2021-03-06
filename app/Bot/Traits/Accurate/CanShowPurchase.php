@@ -12,7 +12,7 @@ trait CanShowPurchase
      */
     public static function isAskingPurchaseInvoice(string $message): bool
     {
-        return Str::contains(strtolower($message), ['purchase', 'penjualan']);
+        return Str::contains(strtolower($message), ['purchase', 'pembelian']);
     }
 
     /**

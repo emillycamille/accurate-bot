@@ -12,7 +12,7 @@ trait CanShowSales
      */
     public static function isAskingSalesInvoice(string $message): bool
     {
-        return Str::contains(strtolower($message), ['sales', 'pembelian']);
+        return Str::contains(strtolower($message), ['sales', 'penjualan']);
     }
 
     /**
