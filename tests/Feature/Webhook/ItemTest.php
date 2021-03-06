@@ -50,6 +50,14 @@ test('bot can detail item', function () {
     test()->assertRequestSent(true);
 });
 
+test('bot can show item image', function () {
+    Http::fake();
+
+    $this->receivePostback('SHOW_IMAGE:PS_ID:/ITEM_IMAGE');
+
+    test()->assertRequestSent(true);
+});
+
 function testFindItem(string $mode): void
 {
     switch ($mode) {

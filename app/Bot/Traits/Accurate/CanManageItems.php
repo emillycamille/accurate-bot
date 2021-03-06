@@ -2,6 +2,7 @@
 
 namespace App\Bot\Traits\Accurate;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 
 trait CanManageItems
@@ -96,6 +97,23 @@ trait CanManageItems
 
             $payload = static::makeQuickRepliesPayload($text, $buttons);
         }
+
+        static::sendMessage($payload, $psid);
+    }
+
+    /**
+     * Show item image hosted in $url.
+     */
+    public static function showImage(string $psid, string $url): void
+    {
+        $user = User::where('psid', $psid)->firstOrFail();
+        
+        $url = $user->host.$url;
+
+        $payload = ['attachment' => [
+            'type' => 'image',
+            'payload' => compact('url'),
+        ]];
 
         static::sendMessage($payload, $psid);
     }
