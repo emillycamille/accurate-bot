@@ -4,6 +4,7 @@ return [
     // Common words
     'price' => 'Harga',
     'stock' => 'Stok',
+    'yes' => 'Ya',
 
     // Basic
     'choose_db' => 'Pilih database dulu ya..',
@@ -13,5 +14,5 @@ return [
     // Item
     'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang anda maksud?',
     'no_items_match_keyword' => 'Tidak ditemukan item dengan keyword ":keyword"',
-    'show_image' => 'Tampilkan gambar',
+    'prompt_show_image' => 'Tampilkan gambar?',
 ];

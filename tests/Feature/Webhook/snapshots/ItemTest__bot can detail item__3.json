@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "247"
+            "250"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -25,11 +25,11 @@
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": "",
+                    "text": "Tampilkan gambar?",
                     "buttons": [
                         {
                             "type": "postback",
-                            "title": "Tampilkan gambar",
+                            "title": "Ya",
                             "payload": "SHOW_IMAGE:PS_ID:ITEM_IMAGE"
                         }
                     ]

@@ -20,9 +20,9 @@ trait CanManageItems
 
         // If there's an image, offer to show that image.
         if ($image = data_get($item, 'detailItemImage.0.fileName')) {
-            $payload = static::makeButtonPayload('', [[
+            $payload = static::makeButtonPayload(__('bot.prompt_show_image'), [[
                     'type' => 'postback',
-                    'title' => __('bot.show_image'),
+                    'title' => __('bot.yes'),
                     'payload' => "SHOW_IMAGE:$psid:$image",
                 ]],
             );
