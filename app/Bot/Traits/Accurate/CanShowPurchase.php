@@ -26,13 +26,14 @@ trait CanShowPurchase
 
         static::sendMessage("Tunggu sebentar ya kak :)", $psid);
 
-        $message = sprintf('%s Berikut 5 Transaksi Penjualanmu:', static::greetUser("",$psid))."\n\n";
+        $message = sprintf('%s Berikut 5 Transaksi Pembelianmu:', static::greetUser("",$psid))."\n\n";
 
-        if (is_null($items = data_get($items, 'd'))) {
+        
+        if (count($items['d']) == 0) {
             static::sendMessage("Kakak belum ada pembelian saat ini :)",$psid);
             return;
         }
-        
+
         if (count($items['d']) < 5) {
         for ($i =0 ; $i <= count($items['d'])-1 ; $i++) {
             $id = $items['d'][$i]["id"];
