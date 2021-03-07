@@ -26,8 +26,6 @@ trait CanShowPurchase
 
         static::sendMessage("Tunggu sebentar ya kak :)", $psid);
 
-        $message = sprintf('%s Berikut 5 Transaksi Pembelianmu:', static::greetUser("",$psid))."\n\n";
-
         
         if (count($items['d']) == 0) {
             static::sendMessage("Kakak belum ada pembelian saat ini :)",$psid);
@@ -35,6 +33,7 @@ trait CanShowPurchase
         }
 
         if (count($items['d']) < 5) {
+            $message = sprintf('%s Berikut %d Transaksi Pembelianmu:', static::greetUser("",$psid),count($items['d']))."\n\n";
         for ($i =0 ; $i <= count($items['d'])-1 ; $i++) {
             $id = $items['d'][$i]["id"];
             $message .= sprintf('%d. ', $i+1);
@@ -44,6 +43,7 @@ trait CanShowPurchase
         }
     }
         else {
+            $message = sprintf('%s Berikut 5 Transaksi Pembelianmu:', static::greetUser("",$psid))."\n\n";
         for ($i =0 ; $i <= 4; $i++) {
             $id = $items['d'][$i]["id"];
             $message .= sprintf('%d. ', $i+1);
