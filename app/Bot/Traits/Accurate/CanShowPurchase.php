@@ -24,6 +24,8 @@ trait CanShowPurchase
     {
         $items = static::askAccurate($psid, 'purchase-invoice/list.do');
 
+        static::sendMessage("Tunggu sebentar ya kak :)", $psid);
+
         $message = sprintf('%s Berikut 5 Transaksi Penjualanmu:', static::greetUser("",$psid))."\n\n";
 
         for ($i =0 ; $i <= 4; $i++) {
