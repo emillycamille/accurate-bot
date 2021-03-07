@@ -23,10 +23,28 @@ trait CanShowSales
     public static function salesInvoice(string $psid): void
     {
         $items = static::askAccurate($psid, 'sales-invoice/list.do');
+        if (is_null($items = data_get($items, 'd'))) {
+            return;
+        }
 
         static::sendMessage("Tunggu sebentar ya kak :)", $psid);
 
         $message = sprintf('%s Berikut 5 Transaksi Pembelianmu:', static::greetUser("",$psid))."\n\n";
+
+        if (is_null($items = data_get($items, 'd'))) {
+            static::sendMessage("Kakak belum ada penjualan. Tetap semangat ya kak :)",$psid);
+            return;
+        }
+        if (count($items['d']) < 5) {
+            for ($i =0 ; $i <= count($items['d'])-1; $i++) {
+                $id = $items['d'][$i]["id"];
+                $message .= sprintf('%d. ', $i+1);
+                $message .= static::getSalesInvoice($psid, $id);
+                $message .= "\n";
+    
+            }
+        }
+        else {
 
         for ($i =0 ; $i <= 4; $i++) {
             $id = $items['d'][$i]["id"];
@@ -36,6 +54,7 @@ trait CanShowSales
 
         }
         static::sendMessage($message, $psid);
+    }
     }
 
     public static function getSalesInvoice(string $psid, int $id): string

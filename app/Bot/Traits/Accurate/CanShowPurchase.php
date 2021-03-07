@@ -28,6 +28,21 @@ trait CanShowPurchase
 
         $message = sprintf('%s Berikut 5 Transaksi Penjualanmu:', static::greetUser("",$psid))."\n\n";
 
+        if (is_null($items = data_get($items, 'd'))) {
+            static::sendMessage("Kakak belum ada pembelian saat ini :)",$psid);
+            return;
+        }
+        
+        if (count($items['d']) < 5) {
+        for ($i =0 ; $i <= count($items['d'])-1 ; $i++) {
+            $id = $items['d'][$i]["id"];
+            $message .= sprintf('%d. ', $i+1);
+            $message .= static::getPurchaseInvoice($psid, $id);
+            $message .= "\n";
+
+        }
+    }
+        else {
         for ($i =0 ; $i <= 4; $i++) {
             $id = $items['d'][$i]["id"];
             $message .= sprintf('%d. ', $i+1);
@@ -35,7 +50,7 @@ trait CanShowPurchase
             $message .= "\n";
 
         }
-        
+    }
         static::sendMessage($message, $psid);
 
     }
