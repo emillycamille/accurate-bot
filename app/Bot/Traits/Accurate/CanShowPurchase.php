@@ -29,13 +29,13 @@ trait CanShowPurchase
         $message = sprintf('%s Berikut 5 Transaksi Penjualanmu:', static::greetUser("",$psid))."\n\n";
 
         foreach ($items['d'][0] as $id => $number) {
-            if ($count == 5) {
-                break;
+            if ($count <= 5) {
+                $message .= sprintf('%d. ', $count);
+                $string = static::getPurchaseInvoice($psid, $number);
+                $message .= $string;
+                $message .= "\n";
+                $count = $count + 1;
             }
-            $message .= sprintf('%d. ', $count);
-            $message .= static::getPurchaseInvoice($psid, $number);
-            $message .= "\n";
-            $count = $count + 1;
         }
         static::sendMessage($message, $psid);
 
