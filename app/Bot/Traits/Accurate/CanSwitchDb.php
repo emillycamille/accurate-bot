@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Bot\Traits;
+namespace App\Bot\Traits\Accurate;
 
 use Illuminate\Support\Str;
 
 trait CanSwitchDb
 {
-    use CanConnectAccurate;
     /**
      * Determine whether the $message is asking to switch db.
      */
