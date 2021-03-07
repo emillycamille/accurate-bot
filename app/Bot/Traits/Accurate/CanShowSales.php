@@ -30,14 +30,14 @@ trait CanShowSales
 
         foreach ($items['d'][0] as $id => $number) {
             if ($count == 5) {
-                static::sendMessage($message, $psid);
                 break;
             }
             $message .= sprintf('%d. ', $count);
             $message .= static::getSalesInvoice($psid, $number);
             $message .= "\n";
-            $count++;
+            $count = $count+1;
         }
+        static::sendMessage($message, $psid);
     }
 
     public static function getSalesInvoice(string $psid, int $id): string
