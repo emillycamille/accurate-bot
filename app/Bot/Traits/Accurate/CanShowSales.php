@@ -23,9 +23,6 @@ trait CanShowSales
     public static function salesInvoice(string $psid): void
     {
         $items = static::askAccurate($psid, 'sales-invoice/list.do');
-        if (is_null($items = data_get($items, 'd'))) {
-            return;
-        }
 
         static::sendMessage("Tunggu sebentar ya kak :)", $psid);
 
