@@ -3,7 +3,7 @@
 namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanShowPurchase;
-use App\Bot\Traits\CanSwitchDb;
+use App\Bot\Traits\Accurate\CanSwitchDb;
 use App\Bot\Traits\Accurate\CanShowSales;
 use App\Bot\Traits\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;

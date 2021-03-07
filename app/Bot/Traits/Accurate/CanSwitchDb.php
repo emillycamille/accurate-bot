@@ -2,7 +2,6 @@
 
 namespace App\Bot\Traits;
 
-use App\Bot\Traits\CanConnectAccurate;
 use Illuminate\Support\Str;
 
 trait CanSwitchDb
