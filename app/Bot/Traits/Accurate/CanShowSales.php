@@ -24,18 +24,14 @@ trait CanShowSales
     {
         $items = static::askAccurate($psid, 'sales-invoice/list.do');
 
-        $count = 1;
-
         $message = sprintf('%s Berikut 5 Transaksi Pembelianmu:', static::greetUser("",$psid))."\n\n";
 
-        foreach ($items['d'][0] as $id => $number) {
-            if ($count == 5) {
-                break;
-            }
-            $message .= sprintf('%d. ', $count);
-            $message .= static::getSalesInvoice($psid, $number);
+        for ($i =0 ; $i <= 4; $i++) {
+            $id = $items['d'][$i]["id"];
+            $message .= sprintf('%d. ', $i+1);
+            $message .= static::getSalesInvoice($psid, $id);
             $message .= "\n";
-            $count++;
+
         }
         static::sendMessage($message, $psid);
     }
