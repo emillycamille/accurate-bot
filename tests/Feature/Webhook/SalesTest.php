@@ -37,35 +37,17 @@ beforeEach(function () {
                     'quantity' => '100',
                     'salesAmount' => '17599000',
                 ],
-                [
-                    'detailName' => 'TestName1',
-                    'quantity' => '100',
-                    'salesAmount' => '17599000',
-                ],
-                [
-                    'detailName' => 'TestName1',
-                    'quantity' => '100',
-                    'salesAmount' => '17599000',
-                ],
-                [
-                    'detailName' => 'TestName1',
-                    'quantity' => '100',
-                    'salesAmount' => '17599000',
-                ],
-                [
-                    'detailName' => 'TestName1',
-                    'quantity' => '100',
-                    'salesAmount' => '17599000',
-                ],
             ],
         ],
     ];
 
     Http::fake([
         'purchase-invoice/list.do*' => Http::response(['d' => $listResponse]),
+        '*' => Http::response(),
     ]);
     Http::fake([
         'purchase-invoice/detail.do*' => Http::response(['d' => $detailResponse]),
+        '*' => Http::response(),
     ]);
 });
 

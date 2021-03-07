@@ -3,9 +3,11 @@
 namespace App\Bot\Traits\Accurate;
 
 use Illuminate\Support\Str;
+use App\Bot\Traits\CanGreetUser;
 
 trait CanShowPurchase
 {
+    use CanGreetUser;
     /**
      * Determines whether the user is asking about purchase invoice. If yes,
      * return the keyword of the item being asked.
@@ -24,7 +26,7 @@ trait CanShowPurchase
 
         $count = 1;
 
-        $message = sprintf('{%s} Berikut 5 Transaksi Penjualanmu:\n', static::greetUser($psid));
+        $message = sprintf('Berikut 5 Transaksi Penjualanmu:\n', static::greetUser($psid));
 
         foreach ($items['d'] as $id => $number) {
             if ($count == 5) {

@@ -37,26 +37,6 @@ beforeEach(function () {
                     'quantity' => '100',
                     'itemCost' => '17599000',
                 ],
-                [
-                    'detailName' => 'TestName1',
-                    'quantity' => '100',
-                    'itemCost' => '17599000',
-                ],
-                [
-                    'detailName' => 'TestName1',
-                    'quantity' => '100',
-                    'itemCost' => '17599000',
-                ],
-                [
-                    'detailName' => 'TestName1',
-                    'quantity' => '100',
-                    'itemCost' => '17599000',
-                ],
-                [
-                    'detailName' => 'TestName1',
-                    'quantity' => '100',
-                    'itemCost' => '17599000',
-                ],
             ],
         ],
     ];

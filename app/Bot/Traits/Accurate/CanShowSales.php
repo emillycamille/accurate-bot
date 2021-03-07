@@ -3,9 +3,11 @@
 namespace App\Bot\Traits\Accurate;
 
 use Illuminate\Support\Str;
+use App\Bot\Traits\CanGreetUser;
 
 trait CanShowSales
 {
+    use CanGreetUser;
     /**
      * Determines whether the user is asking about sales invoice. If yes,
      * return the keyword of the item being asked.
