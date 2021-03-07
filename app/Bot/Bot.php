@@ -3,6 +3,7 @@
 namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanShowPurchase;
+use App\Bot\Traits\CanSwitchDb;
 use App\Bot\Traits\Accurate\CanShowSales;
 use App\Bot\Traits\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
 
 class Bot
 {
-    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate, CanShowPurchase, CanShowSales;
+    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate, CanShowSales, CanShowPurchase, CanSwitchDb;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
@@ -106,6 +107,8 @@ class Bot
             static::listItem($senderId, $keyword);
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
+        } elseif (static::isAskingSwitchingDb($message)) {
+            $reply = static::sendSwitchDb($senderId);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
         } elseif (static::isMathExpression($message)) {
