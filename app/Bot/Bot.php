@@ -2,7 +2,6 @@
 
 namespace App\Bot;
 
-
 use App\Bot\Traits\Accurate\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGreetUser;

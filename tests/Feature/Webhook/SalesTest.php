@@ -1,11 +1,8 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
-    
-
     $listResponse = [
         [
             'id' => 1,
