@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
+use App\Models\User;
 
 beforeEach(function () {
     $listResponse = [
@@ -20,10 +21,6 @@ beforeEach(function () {
             'id' => 5,
         ],
     ];
-    /* $date = $items['d']['transDateView'];
-        $name = $items['d']['detailItem'][0]['detailName'];
-        $quantity = $items['d']['detailItem'][0]['quantity'];
-        $price = $items['d']['detailItem'][0]['salesAmount']; */
 
     $detailResponse = [
         [
@@ -59,15 +56,16 @@ beforeEach(function () {
     ];
 
     Http::fake([
-        'purchase-invoice/list.do*' => Http::response(['d' => $listResponse]),
-    ]);
-    Http::fake([
-        'purchase-invoice/detail.do*' => Http::response(['d' => $detailResponse]),
+        'sales-invoice/list.do*' => Http::response(['d' => $listResponse]),
+        'sales-invoice/detail.do*' => Http::response(['d' => $detailResponse]),
+        '*' => Http::response(),
     ]);
 });
 
 test('bot can show sales invoice', function () {
-    test()->receiveMessage('penjualan');
+    User::factory()->withSession()->create();
+    
+    $this->receiveMessage('penjualan');
 
-    test()->assertRequestSent();
+    $this->assertRequestSent();
 });

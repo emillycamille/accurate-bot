@@ -34,6 +34,7 @@ trait CanShowSales
         static::sendMessage('Tunggu sebentar ya kak :)', $psid);
 
         if (count($items['d']) < 5) {
+            // CHANGE: g usa greet user deh
             $message = sprintf('%s Berikut %d Transaksi Penjualanmu:', static::greetUser('', $psid), count($items['d']))."\n\n";
             for ($i = 0; $i <= count($items['d']) - 1; $i++) {
                 $id = $items['d'][$i]['id'];

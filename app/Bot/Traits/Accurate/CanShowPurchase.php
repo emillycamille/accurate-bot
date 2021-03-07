@@ -23,10 +23,14 @@ trait CanShowPurchase
      */
     public static function purchaseInvoice(string $psid): void
     {
+        // CHANGE: 
+        // - Use these fields: transDate,statusName,totalAmount,vendor
+        // - Remove getPurchaseInvoice
+        // - Rename this trait to CanManagePurchases
         $items = static::askAccurate($psid, 'purchase-invoice/list.do');
 
         if (count($items['d']) == 0) {
-            // CHANGE: Use __().
+            // CHANGE: Use __(). Everywhere!
             static::sendMessage('Kakak belum ada pembelian saat ini :)', $psid);
 
             return;
@@ -59,10 +63,12 @@ trait CanShowPurchase
         $items = static::askAccurate($psid, 'purchase-invoice/detail.do', [
             'id' => $id,
         ]);
+
         $date = $items['d']['transDateView'];
         $name = $items['d']['detailItem'][0]['detailName'];
         $quantity = $items['d']['detailItem'][0]['quantity'];
         $price = $items['d']['detailItem'][0]['itemCost'];
+        
         $message = sprintf('(%s) %d %s Rp%d', $date, $quantity, $name, $price);
 
         return $message;

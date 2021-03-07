@@ -42,3 +42,6 @@ it('asks basic accurate even if user doesnt have session', function () {
 
     $this->assertRequestSent();
 });
+
+// TODO
+it('refresh session if user session expired');
