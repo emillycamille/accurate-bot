@@ -26,7 +26,7 @@ trait CanShowPurchase
 
         $count = 1;
 
-        $message = sprintf('{%s} Berikut 5 Transaksi Penjualanmu:\n', static::greetUser($psid));
+        $message = sprintf('{%s} Berikut 5 Transaksi Penjualanmu:\n', static::greetUser("",$psid));
 
         foreach ($items['d'] as $id => $number) {
             if ($count == 5) {
