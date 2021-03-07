@@ -24,13 +24,13 @@ trait CanShowSales
     {
         $items = static::askAccurate($psid, 'sales-invoice/list.do');
 
-        static::sendMessage("Tunggu sebentar ya kak :)", $psid);
-
         if (count($items['d']) == 0) {
             static::sendMessage("Kakak belum ada penjualan. Tetap semangat ya kak :)",$psid);
             return;
         }
-
+        
+        static::sendMessage("Tunggu sebentar ya kak :)", $psid);
+        
         if (count($items['d']) < 5) {
             $message = sprintf('%s Berikut %d Transaksi Penjualanmu:', static::greetUser("",$psid),count($items['d']))."\n\n";
             for ($i =0 ; $i <= count($items['d'])-1; $i++) {
@@ -38,7 +38,7 @@ trait CanShowSales
                 $message .= sprintf('%d. ', $i+1);
                 $message .= static::getSalesInvoice($psid, $id);
                 $message .= "\n";
-    
+                
             }
         }
         else {

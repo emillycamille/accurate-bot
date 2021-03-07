@@ -23,15 +23,14 @@ trait CanShowPurchase
     public static function purchaseInvoice(string $psid): void
     {
         $items = static::askAccurate($psid, 'purchase-invoice/list.do');
-
-        static::sendMessage("Tunggu sebentar ya kak :)", $psid);
-
         
         if (count($items['d']) == 0) {
             static::sendMessage("Kakak belum ada pembelian saat ini :)",$psid);
             return;
         }
 
+        static::sendMessage("Tunggu sebentar ya kak :)", $psid);
+        
         if (count($items['d']) < 5) {
             $message = sprintf('%s Berikut %d Transaksi Pembelianmu:', static::greetUser("",$psid),count($items['d']))."\n\n";
         for ($i =0 ; $i <= count($items['d'])-1 ; $i++) {
