@@ -26,19 +26,19 @@ trait CanShowPurchase
 
         $count = 1;
 
-        $message = sprintf('{%s} Berikut 5 Transaksi Penjualanmu:\n', static::greetUser("",$psid));
+        $message = sprintf('%s Berikut 5 Transaksi Penjualanmu:', static::greetUser("",$psid))."\n\n";
 
         foreach ($items['d'][0] as $id => $number) {
             if ($count == 5) {
+                static::sendMessage($message, $psid);
                 break;
             }
-            $message .= sprintf('{%d}. ', $count);
+            $message .= sprintf('%d. ', $count);
             $message .= static::getPurchaseInvoice($psid, $number);
             $message .= "\n";
-            $count += 1;
+            $count++;
         }
 
-        static::sendMessage($message, $psid);
     }
 
     public static function getPurchaseInvoice(string $psid, int $id): string
@@ -50,7 +50,7 @@ trait CanShowPurchase
         $name = $items['d']['detailItem'][0]['detailName'];
         $quantity = $items['d']['detailItem'][0]['quantity'];
         $price = $items['d']['detailItem'][0]['itemCost'];
-        $message = sprintf('({%s}) {%d} {%s} Rp{%d}', $date, $quantity, $name, $price);
+        $message = sprintf('(%s) %d %s Rp%d', $date, $quantity, $name, $price);
 
         return $message;
     }

@@ -32,6 +32,6 @@ return [
     'login_url' => 'https://accurate.id/oauth/authorize?'.http_build_query([
         'client_id' => $clientId,
         'response_type' => 'code',
-        'scope' => 'item_view item_save sales_invoice_view',
+        'scope' => 'item_view item_save sales_invoice_view purchase_invoice_view',
     ]),
 ];
