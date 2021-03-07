@@ -24,21 +24,17 @@ trait CanShowPurchase
     {
         $items = static::askAccurate($psid, 'purchase-invoice/list.do');
 
-        $count = 1;
-
         $message = sprintf('%s Berikut 5 Transaksi Penjualanmu:', static::greetUser("",$psid))."\n\n";
 
-        foreach ($items['d'][0] as $id => $number) {
-            // if ($count <= 5) {
-            //     $message .= sprintf('%d. ', $count);
-            //     $string = static::getPurchaseInvoice($psid, $number);
-            //     $message .= $string;
-            //     $message .= "\n";
-            //     $count = $count + 1;
-            // }
-            static::sendMessage((string)$number, $psid);
+        for ($i =0 ; $i <= 4; $i++) {
+            $id = $items['d'][$i]["id"];
+            $message .= sprintf('%d. ', $i+1);
+            $message .= static::getPurchaseInvoice($psid, $id);
+            $message .= "\n";
+
         }
         
+        static::sendMessage($message, $psid);
 
     }
 
