@@ -35,9 +35,9 @@ trait CanShowPurchase
                 $message .= $string;
                 $message .= "\n";
                 $count = $count + 1;
+                static::sendMessage($message, $psid);
             }
         }
-        static::sendMessage($message, $psid);
 
     }
 
