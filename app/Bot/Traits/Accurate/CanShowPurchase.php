@@ -25,6 +25,7 @@ trait CanShowPurchase
         $items = static::askAccurate($psid, 'purchase-invoice/list.do');
         
         if (count($items['d']) == 0) {
+            // CHANGE: Use __().
             static::sendMessage("Kakak belum ada pembelian saat ini :)",$psid);
             return;
         }

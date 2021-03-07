@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Bot\Traits;
+namespace App\Bot\Traits\Accurate;
 
-use App\Bot\Traits\Accurate\CanManageItems;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
@@ -11,7 +10,7 @@ use Illuminate\Support\Str;
 
 trait CanConnectAccurate
 {
-    use CanManageItems;
+    use CanManageItems, CanShowSales, CanShowPurchase, CanSwitchDb;
 
     /**
      * Make GET request to Accurate, to retrieve information.

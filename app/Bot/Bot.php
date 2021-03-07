@@ -2,10 +2,8 @@
 
 namespace App\Bot;
 
-use App\Bot\Traits\Accurate\CanShowPurchase;
-use App\Bot\Traits\Accurate\CanSwitchDb;
-use App\Bot\Traits\Accurate\CanShowSales;
-use App\Bot\Traits\CanConnectAccurate;
+
+use App\Bot\Traits\Accurate\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanTellTime;
@@ -16,7 +14,7 @@ use Illuminate\Support\Str;
 
 class Bot
 {
-    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate, CanShowSales, CanShowPurchase, CanSwitchDb;
+    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
