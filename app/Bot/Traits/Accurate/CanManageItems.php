@@ -109,7 +109,9 @@ trait CanManageItems
     {
         $user = User::where('psid', $psid)->firstOrFail();
 
-        $url = $user->host.$url;
+        $url = $user->host.$url.'?'.http_build_query(
+            $user->only('access_token', 'session')
+        );
 
         $payload = ['attachment' => [
             'type' => 'image',
