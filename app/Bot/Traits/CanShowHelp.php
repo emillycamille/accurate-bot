@@ -19,8 +19,12 @@ trait CanShowHelp
      */
     public static function tellHelp(string $message): string
     {
-
-        $reply = __('bot.available_functions');
+        $reply = __('bot.available_functions')."\n\n";
+        //gimana iki nambahinnya wkwkwk
+        for ($i=1; $i <= 7; $i++) { 
+            $reply .= "$i. "
+        }
+            
         return $reply;
     }
 }
