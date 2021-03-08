@@ -6,6 +6,9 @@ return [
     'stock' => 'Stok',
     'yes' => 'Ya',
 
+    // Available Functions
+    'available_functions' => 'Untuk saat ini, Emily bisa:',
+
     // Basic
     'choose_db' => 'Pilih database dulu ya..',
     'db_opened' => 'Database berhasil dibuka!',
