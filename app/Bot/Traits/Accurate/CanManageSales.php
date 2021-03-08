@@ -29,8 +29,6 @@ trait CanManageSales
             return;
         }
 
-        static::sendMessage('Tunggu sebentar ya kak :)', $psid);
-
         if (count($items['d']) < 5) {
             $count = count($items['d']);
             
@@ -38,9 +36,9 @@ trait CanManageSales
             $count = 5;
             
         }
-        $message = sprintf('Berikut $d Transaksi Penjualanmu:', $count )."\n\n";
+
+        $message = sprintf('Berikut %d Transaksi Penjualanmu:', $count )."\n\n";
             for ($i = 0; $i <= $count-1; $i++) {
-                $id = $items['d'][$i]['id'];
                 $message .= sprintf('%d. ', $i + 1);
                 $message .= sprintf('%s - %s %s (%s)',
                 $items['d'][$i]['transDate'],
