@@ -17,7 +17,8 @@ use Illuminate\Support\Str;
 
 class Bot
 {
-    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate, CanShowSales, CanShowPurchase, CanSwitchDb, CanShowHelp;
+    use CanDoMath, CanTellTime, CanTellWeather, CanGreetUser, CanConnectAccurate,
+    CanShowSales, CanShowPurchase, CanSwitchDb, CanShowHelp;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
