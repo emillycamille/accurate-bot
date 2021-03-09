@@ -121,7 +121,7 @@ class Bot
         } elseif (static::isAskingSalesInvoice($message)) {
             static::salesInvoice($senderId);
         } elseif (static::isAskingHelp($message)) {
-            static::tellHelp();
+            $reply = static::tellHelp();
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }
