@@ -71,15 +71,3 @@ test('bot can show purchase invoice (less than 5 invoices)', function () {
 
     $this->assertRequestSent();
 });
-
-// test('bot can show purchase invoice (no invoice)', function () {
-
-//     Http::fake([
-//         'purchase-invoice/list.do*' => Http::response(['s' => true, 'd' => array()]),
-//         '*' => Http::response(),
-//     ]);
-    
-//     $this->receiveMessage('Pembelian terakhir');
-
-//     $this->assertRequestSent();
-// });
