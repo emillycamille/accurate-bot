@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "135"
+            "177"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -24,7 +24,7 @@
             "attachment": {
                 "type": "image",
                 "payload": {
-                    "url": "HOST\/ITEM_IMAGE"
+                    "url": "HOST\/ITEM_IMAGE?access_token=ACCESS_TOKEN&session=SESSION"
                 }
             }
         }
