@@ -11,7 +11,7 @@ trait CanShowHelp
      */
     public static function isAskingHelp(string $message): bool
     {
-        return Str::contains(strtolower($message), ['help']);
+        return $message == 'help';
     }
 
     /**
