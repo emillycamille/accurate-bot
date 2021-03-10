@@ -2,8 +2,6 @@
 
 namespace App\Bot\Traits;
 
-use Illuminate\Support\Str;
-
 trait CanShowHelp
 {
     /**
@@ -20,14 +18,15 @@ trait CanShowHelp
     public static function tellHelp(): string
     {
         $reply = __('bot.available_functions')."\n\n";
-        $function_list = array_values(__('bot.function_list'));
+        $count = 1;
 
-        for ($i=0; $i < count($function_list); $i++) { 
-            $reply .= sprintf("%d. ",$i+1);
-            $reply .= $function_list[$i];
+        foreach (__('bot.abilities') as $key => $value) {
+            $reply .= sprintf('%d. ', $count);
+            $reply .= $value;
             $reply .= "\n";
+            $count++;
         }
-            
+
         return $reply;
     }
 }

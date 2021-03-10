@@ -3,12 +3,12 @@
 namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanShowPurchase;
-use App\Bot\Traits\CanShowHelp;
-use App\Bot\Traits\Accurate\CanSwitchDb;
 use App\Bot\Traits\Accurate\CanShowSales;
+use App\Bot\Traits\Accurate\CanSwitchDb;
 use App\Bot\Traits\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGreetUser;
+use App\Bot\Traits\CanShowHelp;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
 use Illuminate\Support\Facades\Http;

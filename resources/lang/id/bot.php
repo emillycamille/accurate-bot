@@ -9,7 +9,7 @@ return [
     // Available Functions
     'available_functions' => 'Untuk saat ini, Emily bisa:',
 
-'function_list' => [
+'abilities' => [
     'can_manage_items' => 'Cek stok dan harga barang pada Accurate',
     'can_show_purchases' => 'Menampilkan histori pembelian',
     'can_show_sales' => 'Menampilkan histori penjualan',
