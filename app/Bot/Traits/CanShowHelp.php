@@ -9,7 +9,7 @@ trait CanShowHelp
      */
     public static function isAskingHelp(string $message): bool
     {
-        return $message == 'help';
+        return strtolower($message) == 'help';
     }
 
     /**
