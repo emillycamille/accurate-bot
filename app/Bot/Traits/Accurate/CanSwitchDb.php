@@ -11,7 +11,7 @@ trait CanSwitchDb
      */
     public static function isAskingSwitchingDb(string $message): bool
     {
-        return Str::contains(strtolower($message), ['ganti db','ganti database','switch db','switch database']);
+        return Str::contains(strtolower($message), ['ganti db', 'ganti database', 'switch db', 'switch database']);
     }
 
     public static function sendSwitchDb(string $psid): void

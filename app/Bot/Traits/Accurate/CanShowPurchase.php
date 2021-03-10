@@ -2,12 +2,13 @@
 
 namespace App\Bot\Traits\Accurate;
 
-use Illuminate\Support\Str;
 use App\Bot\Traits\CanGreetUser;
+use Illuminate\Support\Str;
 
 trait CanShowPurchase
 {
     use CanGreetUser;
+
     /**
      * Determines whether the user is asking about purchase invoice. If yes,
      * return the keyword of the item being asked.
@@ -23,36 +24,33 @@ trait CanShowPurchase
     public static function purchaseInvoice(string $psid): void
     {
         $items = static::askAccurate($psid, 'purchase-invoice/list.do');
-        
+
         if (count($items['d']) == 0) {
-            static::sendMessage("Kakak belum ada pembelian saat ini :)",$psid);
+            static::sendMessage('Kakak belum ada pembelian saat ini :)', $psid);
+
             return;
         }
 
-        static::sendMessage("Tunggu sebentar ya kak :)", $psid);
-        
+        static::sendMessage('Tunggu sebentar ya kak :)', $psid);
+
         if (count($items['d']) < 5) {
-            $message = sprintf('%s Berikut %d Transaksi Pembelianmu:', static::greetUser("",$psid),count($items['d']))."\n\n";
-        for ($i =0 ; $i <= count($items['d'])-1 ; $i++) {
-            $id = $items['d'][$i]["id"];
-            $message .= sprintf('%d. ', $i+1);
-            $message .= static::getPurchaseInvoice($psid, $id);
-            $message .= "\n";
-
+            $message = sprintf('%s Berikut %d Transaksi Pembelianmu:', static::greetUser('', $psid), count($items['d']))."\n\n";
+            for ($i = 0; $i <= count($items['d']) - 1; $i++) {
+                $id = $items['d'][$i]['id'];
+                $message .= sprintf('%d. ', $i + 1);
+                $message .= static::getPurchaseInvoice($psid, $id);
+                $message .= "\n";
+            }
+        } else {
+            $message = sprintf('%s Berikut 5 Transaksi Pembelianmu:', static::greetUser('', $psid))."\n\n";
+            for ($i = 0; $i <= 4; $i++) {
+                $id = $items['d'][$i]['id'];
+                $message .= sprintf('%d. ', $i + 1);
+                $message .= static::getPurchaseInvoice($psid, $id);
+                $message .= "\n";
+            }
         }
-    }
-        else {
-            $message = sprintf('%s Berikut 5 Transaksi Pembelianmu:', static::greetUser("",$psid))."\n\n";
-        for ($i =0 ; $i <= 4; $i++) {
-            $id = $items['d'][$i]["id"];
-            $message .= sprintf('%d. ', $i+1);
-            $message .= static::getPurchaseInvoice($psid, $id);
-            $message .= "\n";
-
-        }
-    }
         static::sendMessage($message, $psid);
-
     }
 
     public static function getPurchaseInvoice(string $psid, int $id): string

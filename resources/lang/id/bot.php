@@ -6,6 +6,18 @@ return [
     'stock' => 'Stok',
     'yes' => 'Ya',
 
+    // Available Functions
+    'available_functions' => 'Untuk saat ini, Emily bisa:',
+
+'abilities' => [
+    'can_manage_items' => 'Cek stok dan harga barang pada Accurate',
+    'can_show_purchases' => 'Menampilkan histori pembelian',
+    'can_show_sales' => 'Menampilkan histori penjualan',
+    'can_switch_db' => 'Mengganti database yang sedang aktif',
+    'can_do_math' => 'Menjalankan operasi matematika',
+    'can_tell_time' => 'Menampilkan waktu saat ini',
+    'can_tell_weather' => 'Menampilkan kondisi cuaca',
+],
     // Basic
     'choose_db' => 'Pilih database dulu ya..',
     'db_opened' => 'Database berhasil dibuka!',
