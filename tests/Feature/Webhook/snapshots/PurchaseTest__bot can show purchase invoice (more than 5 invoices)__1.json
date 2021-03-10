@@ -1,0 +1,5 @@
+{
+    "method": "GET",
+    "url": "HOST\/accurate\/api\/purchase-invoice\/list.do",
+    "data": []
+}
