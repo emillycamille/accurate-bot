@@ -12,7 +12,7 @@ trait CanGreetUser
      */
     public static function isSayingHello(string $message): bool
     {
-        return Str::contains(strtolower($message), ['halo', 'hello', 'hi']);
+        return Str::contains(strtolower($message), ['halo', 'hello']);
     }
 
     /**
