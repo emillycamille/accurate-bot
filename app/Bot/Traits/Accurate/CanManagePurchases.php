@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 
 trait CanManagePurchases
 {
-
     /**
      * Determines whether the user is asking about purchase invoice. If yes,
      * return the keyword of the item being asked.
@@ -32,23 +31,21 @@ trait CanManagePurchases
 
         if (count($items['d']) < 5) {
             $count = count($items['d']);
-        
         } else {
             $count = 5;
         }
 
         $message = sprintf('Berikut %d Transaksi Pembelianmu:', $count)."\n\n";
-            for ($i = 0; $i <= $count-1; $i++) {
-                $message .= sprintf('%d. ', $i + 1);
-                $message .= sprintf('%s - %s %s (%s)',
+        for ($i = 0; $i <= $count - 1; $i++) {
+            $message .= sprintf('%d. ', $i + 1);
+            $message .= sprintf('%s - %s %s (%s)',
                 $items['d'][$i]['transDate'],
                 $items['d'][$i]['vendor']['name'],
                 idr($items['d'][$i]['totalAmount']),
                 $items['d'][$i]['statusName']);
-                $message .= "\n";
-            }
+            $message .= "\n";
+        }
 
         static::sendMessage($message, $psid);
     }
-
 }

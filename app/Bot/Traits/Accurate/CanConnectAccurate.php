@@ -20,7 +20,7 @@ trait CanConnectAccurate
         // 1. Check that a user with this psid is found in our db.
         // --------------------------------------------------------------------
         $user = User::firstWhere('psid', $psid);
-        
+
         // If not found, we should ask the user to login to Accurate.
         if ((! $user) || (! $user->access_token)) {
             static::sendLoginButton($psid);
@@ -56,6 +56,7 @@ trait CanConnectAccurate
             ->json();
 
         Log::debug('fromAccurate:', ($response ?? []) + ["\n"]);
+
         return $response;
     }
 

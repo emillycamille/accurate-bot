@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 trait CanManageDb
 {
-
     /**
      * Ask user to choose which DB they want to open, by sending postbacks.
      */
@@ -50,14 +49,14 @@ trait CanManageDb
             static::sendMessage(__('bot.db_opened'), $psid);
         }
     }
+
     /**
      * Determine whether the $message is asking to switch db.
      */
     public static function isAskingSwitchingDb(string $message): bool
     {
         return Str::contains(strtolower($message), [
-            'ganti db', 'ganti database', 'switch db', 'switch database'
+            'ganti db', 'ganti database', 'switch db', 'switch database',
         ]);
     }
-
 }
