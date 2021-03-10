@@ -9,6 +9,7 @@ use App\Bot\Traits\Accurate\CanManagePurchases;
 use App\Bot\Traits\Accurate\CanManageSales;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGreetUser;
+use App\Bot\Traits\CanShowHelp;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
 use Illuminate\Support\Facades\Http;
@@ -17,7 +18,7 @@ use Illuminate\Support\Str;
 
 class Bot
 {
-    use CanDoMath, CanTellTime, CanManageItems, CanTellWeather, CanGreetUser, CanConnectAccurate, CanManageSales, CanManagePurchases, CanManageDb;
+    use CanDoMath, CanTellTime, CanManageItems, CanTellWeather, CanGreetUser, CanConnectAccurate, CanManageSales, CanManagePurchases, CanManageDb, CanShowHelp;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
@@ -120,6 +121,8 @@ class Bot
             static::purchaseInvoice($senderId);
         } elseif (static::isAskingSalesInvoice($message)) {
             static::salesInvoice($senderId);
+        } elseif (static::isAskingHelp($message)) {
+            $reply = static::tellHelp();
         } else {
             $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
         }

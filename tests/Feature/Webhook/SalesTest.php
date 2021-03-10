@@ -1,11 +1,12 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Http;
+use App\Models\User;
+
 
 const SALES_ITEMS =
-        [
-            ['totalAmount' => 2059200000,
+
+            [['totalAmount' => 2059200000,
             'transDate' => 'TEST_DATE1',
             'statusName' => 'TEST_STATUS1',
             'customer'=> [
