@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Http;
 
 const SALES_ITEMS =
 
