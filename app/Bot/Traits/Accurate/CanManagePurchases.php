@@ -20,7 +20,9 @@ trait CanManagePurchases
      */
     public static function purchaseInvoice(string $psid): void
     {
-        $items = static::askAccurate($psid, 'purchase-invoice/list.do');
+        $items = static::askAccurate($psid, 'purchase-invoice/list.do', [
+            'fields' => 'transDate,totalAmount,statusName,vendor',
+        ]);
 
         if (count($items['d']) == 0) {
             // CHANGE: Use __(). Everywhere!

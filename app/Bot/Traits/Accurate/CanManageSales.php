@@ -20,7 +20,9 @@ trait CanManageSales
      */
     public static function salesInvoice(string $psid): void
     {
-        $items = static::askAccurate($psid, 'sales-invoice/list.do');
+        $items = static::askAccurate($psid, 'sales-invoice/list.do', [
+            'fields' => 'transDate,totalAmount,statusName,customer',
+        ]);
 
         if (count($items['d']) == 0) {
             static::sendMessage('Kakak belum ada penjualan. Tetap semangat ya kak :)', $psid);
