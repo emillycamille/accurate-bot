@@ -1,5 +1,7 @@
 {
     "method": "GET",
-    "url": "HOST\/accurate\/api\/sales-invoice\/list.do",
-    "data": []
+    "url": "HOST\/accurate\/api\/sales-invoice\/list.do?fields=transDate%2CtotalAmount%2CstatusName%2Ccustomer",
+    "data": {
+        "fields": "transDate,totalAmount,statusName,customer"
+    }
 }
