@@ -30,10 +30,14 @@ trait CanTellWeather
             'appid' => config('bot.weather_api_key'),
         ])->throw();
 
+        $cityName = $response['name'];
+        $weatherDescription = $response['weather'][0]['description'];
+        $temp = $response['main']['temp'];
+
         if ($response['cod'] === 200) {
-            return "Cuaca di kota {$response['name']} adalah {$response['weather'][0]['description']} dengan suhu {$response['main']['temp']} ºC";
+            return __('bot.weather_reply', compact('cityName', 'weatherDescription', 'temp'));
         }
 
-        return 'Cuaca tidak ditemukan.';
+        return __('bot.city_not_found');
     }
 }
