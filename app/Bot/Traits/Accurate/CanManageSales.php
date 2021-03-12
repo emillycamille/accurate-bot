@@ -45,7 +45,7 @@ trait CanManageSales
             );
             $message .= "\n";
         }
-        $message .= sprintf('(Halaman %d)', $page);
+        $message .= sprintf(__('bot.page'), $page);
         static::sendMessage($message, $psid);
 
         if ($items['sp']['pageCount'] > (int) $page) {
