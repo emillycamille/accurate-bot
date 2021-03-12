@@ -35,7 +35,7 @@ trait CanManageSales
 
         $message = sprintf(__('bot.show_sales_title'), count($items['d']))."\n\n";
         for ($i = 0; $i < count($items['d']); $i++) {
-            $message .= sprintf('%d. ', $i + 1);
+            $message .= sprintf('%d. ', (5 * (int) $page - 4) + $i);
             $message .= sprintf(
                 '%s - %s %s (%s)',
                 $items['d'][$i]['transDate'],
