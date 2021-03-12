@@ -41,6 +41,7 @@ return [
     'ask_next_page' => 'Halaman berikutnya?',
     'show_purchases_title' => 'Berikut %d Transaksi Pembelianmu:',
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
+    'page' => '(Halaman %d)',
 
     // Sales
     'show_sales_title' => 'Berikut %d Transaksi Penjualanmu:',
