@@ -4,7 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 const PURCHASE_ITEMS =
-        [
+    ['d' => [
             ['totalAmount' => 2059200000,
             'transDate' => 'TEST_DATE1',
             'statusName' => 'TEST_STATUS1',
@@ -35,14 +35,15 @@ const PURCHASE_ITEMS =
             'vendor'=> [
                 'name' => 'TEST_NAME5',
             ], ],
-            ['totalAmount' => 95000,
-            'transDate' => 'TEST_DATE6',
-            'statusName' => 'TEST_STATUS6',
-            'vendor'=> [
-                'name' => 'TEST_NAME6',
-            ], ],
 
-        ];
+        ],
+        'sp' => [
+            'page' => 1,
+        'pageCount' => 12,
+        'pageSize' => 5,
+        ],
+
+    ];
 
 beforeEach(function () {
     User::factory()->withSession()->create();
@@ -50,7 +51,7 @@ beforeEach(function () {
 
 test('bot can show purchase invoice (more than 5 invoices)', function () {
     Http::fake([
-        'purchase-invoice/list.do*' => Http::response(['d'=> PURCHASE_ITEMS]),
+        'purchase-invoice/list.do*' => Http::response(PURCHASE_ITEMS),
         '*' => Http::response(),
     ]);
 
@@ -61,7 +62,7 @@ test('bot can show purchase invoice (more than 5 invoices)', function () {
 
 test('bot can show purchase invoice (less than 5 invoices)', function () {
     Http::fake([
-        'purchase-invoice/list.do*' => Http::response(['d'=> array_slice(PURCHASE_ITEMS, 0, 3)]),
+        'purchase-invoice/list.do*' => Http::response(['d'=>array_slice(PURCHASE_ITEMS['d'], 0, 3), 'sp'=>PURCHASE_ITEMS['sp']]),
         '*' => Http::response(),
     ]);
 

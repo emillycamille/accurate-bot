@@ -4,8 +4,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 const SALES_ITEMS =
-
-            [['totalAmount' => 2059200000,
+['d' => [
+            ['totalAmount' => 2059200000,
             'transDate' => 'TEST_DATE1',
             'statusName' => 'TEST_STATUS1',
             'customer'=> [
@@ -35,14 +35,15 @@ const SALES_ITEMS =
             'customer'=> [
                 'name' => 'TEST_NAME5',
             ], ],
-            ['totalAmount' => 95000,
-            'transDate' => 'TEST_DATE6',
-            'statusName' => 'TEST_STATUS6',
-            'customer'=> [
-                'name' => 'TEST_NAME6',
-            ], ],
 
-        ];
+        ],
+        'sp' => [
+            'page' => 1,
+        'pageCount' => 12,
+        'pageSize' => 5,
+        ],
+
+    ];
 
 beforeEach(function () {
     User::factory()->withSession()->create();
@@ -50,7 +51,7 @@ beforeEach(function () {
 
 test('bot can show sales invoice (more than 5 invoices)', function () {
     Http::fake([
-        'sales-invoice/list.do*' => Http::response(['d'=> SALES_ITEMS]),
+        'sales-invoice/list.do*' => Http::response(SALES_ITEMS),
         '*' => Http::response(),
     ]);
 
@@ -61,7 +62,7 @@ test('bot can show sales invoice (more than 5 invoices)', function () {
 
 test('bot can show sales invoice (less than 5 invoices)', function () {
     Http::fake([
-        'sales-invoice/list.do*' => Http::response(['d'=> array_slice(SALES_ITEMS, 0, 3)]),
+        'sales-invoice/list.do*' => Http::response(['d'=> array_slice(SALES_ITEMS['d'], 0, 3), 'sp'=> SALES_ITEMS['sp']]),
         '*' => Http::response(),
     ]);
 
