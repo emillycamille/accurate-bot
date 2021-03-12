@@ -44,7 +44,7 @@ trait CanManagePurchases
             );
             $message .= "\n";
         }
-
+        $message .= sprintf(__('bot.page'), $page);
         static::sendMessage($message, $psid);
 
         if ($items['sp']['pageCount'] > $page) {

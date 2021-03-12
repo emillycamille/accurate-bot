@@ -7,7 +7,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "Berikut 3 Transaksi Pembelianmu:\n\n1. TEST_DATE1 - TEST_NAME1 Rp2.059.200.000 (TEST_STATUS1)\n2. TEST_DATE2 - TEST_NAME2 Rp15.999.000 (TEST_STATUS2)\n3. TEST_DATE3 - TEST_NAME3 Rp215.000 (TEST_STATUS3)\n"
+            "text": "Berikut 3 Transaksi Pembelianmu:\n\n1. TEST_DATE1 - TEST_NAME1 Rp2.059.200.000 (TEST_STATUS1)\n2. TEST_DATE2 - TEST_NAME2 Rp15.999.000 (TEST_STATUS2)\n3. TEST_DATE3 - TEST_NAME3 Rp215.000 (TEST_STATUS3)\n(Halaman 1)"
         }
     }
 }
