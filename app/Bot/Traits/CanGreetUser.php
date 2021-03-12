@@ -26,6 +26,7 @@ trait CanGreetUser
 
         $name = $response['first_name'];
 
-        return "Halo {$name}!";
+        //return "Halo {$name}!";
+        return __('bot.greet_user', compact('name'));
     }
 }

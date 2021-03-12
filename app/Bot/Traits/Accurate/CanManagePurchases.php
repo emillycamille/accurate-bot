@@ -25,8 +25,7 @@ trait CanManagePurchases
         ]);
 
         if (count($items['d']) == 0) {
-            // CHANGE: Use __(). Everywhere!
-            static::sendMessage('Kakak belum ada pembelian saat ini :)', $psid);
+            static::sendMessage(__('bot.no_purchases'), $psid);
 
             return;
         }
@@ -37,14 +36,16 @@ trait CanManagePurchases
             $count = 5;
         }
 
-        $message = sprintf('Berikut %d Transaksi Pembelianmu:', $count)."\n\n";
+        $message = sprintf(__('bot.show_purchases_title'), $count)."\n\n";
         for ($i = 0; $i <= $count - 1; $i++) {
             $message .= sprintf('%d. ', $i + 1);
-            $message .= sprintf('%s - %s %s (%s)',
+            $message .= sprintf(
+                '%s - %s %s (%s)',
                 $items['d'][$i]['transDate'],
                 $items['d'][$i]['vendor']['name'],
                 idr($items['d'][$i]['totalAmount']),
-                $items['d'][$i]['statusName']);
+                $items['d'][$i]['statusName']
+            );
             $message .= "\n";
         }
 

@@ -25,7 +25,7 @@ trait CanManageSales
         ]);
 
         if (count($items['d']) == 0) {
-            static::sendMessage('Kakak belum ada penjualan. Tetap semangat ya kak :)', $psid);
+            static::sendMessage(__('bot.no_sales'), $psid);
 
             return;
         }
@@ -36,14 +36,16 @@ trait CanManageSales
             $count = 5;
         }
 
-        $message = sprintf('Berikut %d Transaksi Penjualanmu:', $count)."\n\n";
+        $message = sprintf(__('bot.show_sales_title'), $count)."\n\n";
         for ($i = 0; $i <= $count - 1; $i++) {
             $message .= sprintf('%d. ', $i + 1);
-            $message .= sprintf('%s - %s %s (%s)',
+            $message .= sprintf(
+                '%s - %s %s (%s)',
                 $items['d'][$i]['transDate'],
                 $items['d'][$i]['customer']['name'],
                 idr($items['d'][$i]['totalAmount']),
-                $items['d'][$i]['statusName']);
+                $items['d'][$i]['statusName']
+            );
             $message .= "\n";
         }
         static::sendMessage($message, $psid);
