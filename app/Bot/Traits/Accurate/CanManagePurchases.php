@@ -47,7 +47,7 @@ trait CanManagePurchases
         $message .= sprintf(__('bot.page'), $page);
         static::sendMessage($message, $psid);
 
-        if ($items['sp']['pageCount'] > (int)$page) {
+        if ($items['sp']['pageCount'] > (int) $page) {
             $page += 1;
             $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
                 'type' => 'postback',
