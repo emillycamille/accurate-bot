@@ -18,10 +18,13 @@ trait CanManageSales
     /**
      * List last 5 sales invoices.
      */
-    public static function salesInvoice(string $psid): void
+    public static function salesInvoice(string $psid, string $page): void
     {
         $items = static::askAccurate($psid, 'sales-invoice/list.do', [
             'fields' => 'transDate,totalAmount,statusName,customer',
+            'sp.page' => $page,
+            'sp.pageSize' => '5',
+
         ]);
 
         if (count($items['d']) == 0) {
@@ -30,14 +33,8 @@ trait CanManageSales
             return;
         }
 
-        if (count($items['d']) < 5) {
-            $count = count($items['d']);
-        } else {
-            $count = 5;
-        }
-
-        $message = sprintf(__('bot.show_sales_title'), $count)."\n\n";
-        for ($i = 0; $i <= $count - 1; $i++) {
+        $message = sprintf(__('bot.show_sales_title'), count($items['d']))."\n\n";
+        for ($i = 0; $i < count($items['d']); $i++) {
             $message .= sprintf('%d. ', $i + 1);
             $message .= sprintf(
                 '%s - %s %s (%s)',
@@ -49,5 +46,16 @@ trait CanManageSales
             $message .= "\n";
         }
         static::sendMessage($message, $psid);
+
+        if ($items['sp']['pageCount'] > $page) {
+            $page += 1;
+            $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
+                'type' => 'postback',
+                'title' => __('bot.yes'),
+                'payload' => "SALES_INVOICE:$psid:$page",
+            ]]);
+
+            static::sendMessage($payload, $psid);
+        }
     }
 }

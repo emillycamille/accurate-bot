@@ -38,6 +38,7 @@ return [
     'prompt_show_image' => 'Tampilkan gambar?',
 
     // Purchases
+    'ask_next_page' => 'Halaman berikutnya?',
     'show_purchases_title' => 'Berikut %d Transaksi Pembelianmu:',
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
 
