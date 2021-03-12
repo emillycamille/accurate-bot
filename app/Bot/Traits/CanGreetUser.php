@@ -32,8 +32,8 @@ trait CanGreetUser
         User::updateOrCreate(['psid' => $userID], $data);
 
         // Send the greeting response
-
-        $name = $response['first_name'];;
+        $user = User::firstWhere('psid', $userID);
+        $name = $user->fb_firstname;
 
         return __('bot.greet_user', compact('name'));
     }
