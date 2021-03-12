@@ -36,7 +36,7 @@ trait CanManageSales
             $count = 5;
         }
 
-        $message = sprintf(__('bot.show_sales_title'), $count) . "\n\n";
+        $message = sprintf(__('bot.show_sales_title'), $count)."\n\n";
         for ($i = 0; $i <= $count - 1; $i++) {
             $message .= sprintf('%d. ', $i + 1);
             $message .= sprintf(

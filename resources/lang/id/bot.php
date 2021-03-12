@@ -26,9 +26,6 @@ return [
     'city_not_found' => 'Cuaca tidak ditemukan.',
     'weather_reply' => 'Cuaca di kota :cityName adalah :weatherDescription dengan suhu :temp ºC',
 
-
-
-
     // Accurate Related Replies
     // Basic
     'choose_db' => 'Pilih database dulu ya..',
