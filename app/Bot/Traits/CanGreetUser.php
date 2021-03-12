@@ -31,7 +31,7 @@ trait CanGreetUser
         $data['fb_firstname'] = $response->json('first_name');
         $data['fb_lastname'] = $response->json('last_name');
 
-        User::where('psid', $userID)->update([
+        User::updateOrCreate(['psid' => $userID], [
             'fb_firstname' => $data['fb_firstname'],
             'fb_lastname' => $data['fb_lastname'],
         ]);
