@@ -3,6 +3,7 @@
 namespace App\Bot\Traits;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -26,10 +27,14 @@ trait CanGreetUser
         ])->throw();
 
         // Save user's first name and last name
+        $data = Arr::only($response->json(), []);
         $data['fb_firstname'] = $response->json('first_name');
         $data['fb_lastname'] = $response->json('last_name');
 
-        User::updateOrCreate(['psid' => $userID], $data);
+        User::where('psid', $userID)->update([
+            'fb_firstname' => $data['fb_firstname'],
+            'fb_lastname' => $data['fb_lastname'],
+        ]);
 
         // Send the greeting response
         $user = User::firstWhere('psid', $userID);
