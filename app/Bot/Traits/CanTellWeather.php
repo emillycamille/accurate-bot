@@ -35,7 +35,10 @@ trait CanTellWeather
         $temp = $response['main']['temp'];
 
         if ($response['cod'] === 200) {
-            return __('bot.weather_reply', compact('cityName', 'weatherDescription', 'temp'));
+            return __(
+                'bot.weather_reply',
+                compact('cityName', 'weatherDescription', 'temp')
+            );
         }
 
         return __('bot.city_not_found');
