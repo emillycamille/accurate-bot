@@ -3,9 +3,6 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
-beforeEach(function () {
-});
-
 test('bot can greet user', function () {
     $user = User::factory()->create();
 
