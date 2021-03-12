@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('psid')->unique();
             $table->string('fb_firstname')->nullable();
             $table->string('fb_lastname')->nullable();
-            $table->string('accurate_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('host')->nullable();
             $table->string('access_token');
