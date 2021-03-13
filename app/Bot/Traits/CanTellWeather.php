@@ -30,17 +30,17 @@ trait CanTellWeather
             'appid' => config('bot.weather_api_key'),
         ])->throw();
 
-        $cityName = $response['name'];
-        $weatherDescription = $response['weather'][0]['description'];
-        $temp = $response['main']['temp'];
-
         if ($response['cod'] === 200) {
+            $cityName = $response['name'];
+            $weatherDescription = $response['weather'][0]['description'];
+            $temp = $response['main']['temp'];
+
             return __(
                 'bot.weather_reply',
                 compact('cityName', 'weatherDescription', 'temp')
             );
+        } else {
+            return __('bot.city_not_found');
         }
-
-        return __('bot.city_not_found');
     }
 }

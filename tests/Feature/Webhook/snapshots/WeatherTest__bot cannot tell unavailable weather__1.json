@@ -1,0 +1,10 @@
+{
+    "method": "GET",
+    "url": "http:\/\/api.openweathermap.org\/data\/2.5\/weather?q=jumanji&units=metric&lang=id&appid=TEST_WEATHER_KEY",
+    "data": {
+        "q": "jumanji",
+        "units": "metric",
+        "lang": "id",
+        "appid": "TEST_WEATHER_KEY"
+    }
+}

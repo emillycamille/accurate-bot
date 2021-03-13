@@ -22,7 +22,7 @@ return [
     ],
 
     // Greet User
-    'greet_user' => 'Hai, :name! 🤗 Apa kabar? Have a nice day ya ☺️. Kalau kamu butuh bantuan, bisa ketik "help" 🤩',
+    'greet_user' => 'Hai, :name! 🤗 Apa kabar? Have a nice day ya ☺️. Kalau kamu butuh bantuan, bisa ketik "help"',
 
     // Weather
     'city_not_found' => 'Waduhh, Emily gak bisa ketemu kota yang kamu cari nih.. Coba isi kota lain 😉.',
