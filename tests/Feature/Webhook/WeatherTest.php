@@ -17,3 +17,16 @@ test('bot can tell weather at Jakarta', function () {
 
     $this->assertRequestSent();
 });
+
+test('bot cannot tell unavailable weather', function () {
+    Http::fake([
+        config('bot.weather_api_url').'*' => Http::response([
+            'cod' => 404,
+        ]),
+        '*' => Http::response(),
+    ]);
+
+    $this->receiveMessage('cuaca di jumanji');
+
+    $this->assertRequestSent();
+});
