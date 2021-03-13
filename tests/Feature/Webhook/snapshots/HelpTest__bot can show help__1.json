@@ -7,7 +7,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "Untuk saat ini, Emily bisa:\n\n1. Cek stok dan harga barang pada Accurate\n2. Menampilkan histori pembelian\n3. Menampilkan histori penjualan\n4. Mengganti database yang sedang aktif\n5. Menjalankan operasi matematika\n6. Menampilkan waktu saat ini\n7. Menampilkan kondisi cuaca\n"
+            "text": "Untuk saat ini, Emily bisa:\n\n1. Cek stok dan harga barang pada Accurate (\"Item <nama item>\")\n2. Menampilkan histori pembelian (\"Pembelian\"\/\"Purchase\")\n3. Menampilkan histori penjualan (\"Penjualan\"\/\"Sales\")\n4. Mengganti database yang sedang aktif (\"Ganti db\")\n5. Menjalankan operasi matematika\n6. Menampilkan waktu saat ini (\"Jam\"\/\"Hari\"\/\"Hari jam\")\n7. Menampilkan kondisi cuaca (\"Cuaca di <nama kota>\")\n"
         }
     }
 }
