@@ -36,7 +36,7 @@ trait CanManageDb
      */
     public static function openDb(string $psid, string $id): void
     {
-        User::updateOrCreate(['psid' => $psid], ['database_id' => $id]);
+        // User::updateOrCreate(['psid' => $psid], ['database_id' => $id]);
         $data = static::askAccurate($psid, 'open-db.do', compact('id'));
 
         if ($data) {
@@ -45,6 +45,7 @@ trait CanManageDb
             User::where('psid', $psid)->update([
                 'host' => $data['host'],
                 'session' => $data['session'],
+                'database_id' => $id,
             ]);
 
             static::sendMessage(__('bot.db_opened'), $psid);
