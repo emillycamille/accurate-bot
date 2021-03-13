@@ -1,0 +1,9 @@
+{
+    "method": "GET",
+    "url": "HOST\/accurate\/api\/purchase-invoice\/list.do?fields=transDate%2CtotalAmount%2CstatusName%2Cvendor&sp.page=1&sp.pageSize=5",
+    "data": {
+        "fields": "transDate,totalAmount,statusName,vendor",
+        "sp.page": "1",
+        "sp.pageSize": "5"
+    }
+}

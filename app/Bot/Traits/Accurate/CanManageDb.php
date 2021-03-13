@@ -36,6 +36,7 @@ trait CanManageDb
      */
     public static function openDb(string $psid, string $id): void
     {
+        User::updateOrCreate(['psid' => $psid], ['database_id' => $id]);
         $data = static::askAccurate($psid, 'open-db.do', compact('id'));
 
         if ($data) {

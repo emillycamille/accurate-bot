@@ -34,6 +34,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
+                'database_id' => 'DATABASE_ID',
                 'session' => 'SESSION',
                 'host' => 'HOST',
             ];

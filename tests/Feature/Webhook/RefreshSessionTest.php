@@ -3,7 +3,7 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
-const PURCHASE_ITEMS =
+const SESSION_ITEMS =
     ['s' => true,
     'd' => [
             ['totalAmount' => 2059200000,
@@ -46,28 +46,19 @@ const PURCHASE_ITEMS =
 
     ];
 
-beforeEach(function () {
+test('bot can refresh session', function () {
     User::factory()->withSession()->create();
-});
 
-test('bot can show purchase invoice (more than 5 invoices)', function () {
+    // $data = [
+    //     'database_id' => 'TEST_DATABASE_ID'
+    // ];
+
     Http::fake([
-        'purchase-invoice/list.do*' => Http::response(PURCHASE_ITEMS),
+        'purchase-invoice/list.do*' => Http::response(SESSION_ITEMS),
         '*' => Http::response(),
     ]);
 
     $this->receiveMessage('pembelian sebelumnya');
-
-    $this->assertRequestSent();
-});
-
-test('bot can show purchase invoice (less than 5 invoices)', function () {
-    Http::fake([
-        'purchase-invoice/list.do*' => Http::response(['s' => true, 'd'=>array_slice(PURCHASE_ITEMS['d'], 0, 3), 'sp'=>PURCHASE_ITEMS['sp']]),
-        '*' => Http::response(),
-    ]);
-
-    $this->receiveMessage('purchase masa lalu');
 
     $this->assertRequestSent();
 });

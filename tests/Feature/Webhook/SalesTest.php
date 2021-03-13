@@ -4,7 +4,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 const SALES_ITEMS =
-['d' => [
+['s' => true,
+    'd' => [
             ['totalAmount' => 2059200000,
             'transDate' => 'TEST_DATE1',
             'statusName' => 'TEST_STATUS1',
@@ -62,7 +63,7 @@ test('bot can show sales invoice (more than 5 invoices)', function () {
 
 test('bot can show sales invoice (less than 5 invoices)', function () {
     Http::fake([
-        'sales-invoice/list.do*' => Http::response(['d'=> array_slice(SALES_ITEMS['d'], 0, 3), 'sp'=> SALES_ITEMS['sp']]),
+        'sales-invoice/list.do*' => Http::response(['s' => true, 'd'=> array_slice(SALES_ITEMS['d'], 0, 3), 'sp'=> SALES_ITEMS['sp']]),
         '*' => Http::response(),
     ]);
 
