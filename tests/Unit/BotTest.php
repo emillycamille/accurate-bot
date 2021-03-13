@@ -6,10 +6,13 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     Http::fake([
-        'db-list.do' => Http::response(['d' => [
+        'db-list.do' => Http::response([
+            's' => true,
+        'd' => [
             ['id' => 1, 'alias' => 'ALIAS_1'],
         ]]),
-        '*' => Http::response(),
+        '*' => Http::response([
+            's' => true,]),
     ]);
 });
 

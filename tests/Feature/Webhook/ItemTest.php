@@ -41,7 +41,7 @@ test('bot can show no items found', function () {
 
 test('bot can detail item', function () {
     Http::fake([
-        'item/detail.do*' => Http::response(['d' => ITEMS[0]]),
+        'item/detail.do*' => Http::response(['s'=>true,'d' => ITEMS[0]]),
         '*' => Http::response(),
     ]);
 
@@ -70,7 +70,7 @@ function testFindItem(string $mode): void
     }
 
     Http::fake([
-        'item/list.do*' => Http::response(['d' => $data]),
+        'item/list.do*' => Http::response(['s' => true,'d' => $data]),
         '*' => Http::response(),
     ]);
 
