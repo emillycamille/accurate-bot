@@ -56,10 +56,9 @@ trait CanConnectAccurate
             ->json();
 
         if ($response['s'] == false) {
-
             $dbId = User::firstWhere('psid', $psid);
-            static::openDb($psid,$dbId->database_id);
-            static::askAccurate($psid,$uri,$query);
+            static::openDb($psid, $dbId->database_id);
+            static::askAccurate($psid, $uri, $query);
         }
 
         Log::debug('fromAccurate:', ($response ?? []) + ["\n"]);

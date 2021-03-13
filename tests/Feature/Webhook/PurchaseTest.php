@@ -63,7 +63,7 @@ test('bot can show purchase invoice (more than 5 invoices)', function () {
 
 test('bot can show purchase invoice (less than 5 invoices)', function () {
     Http::fake([
-        'purchase-invoice/list.do*' => Http::response(['s' => true,'d'=>array_slice(PURCHASE_ITEMS['d'], 0, 3), 'sp'=>PURCHASE_ITEMS['sp']]),
+        'purchase-invoice/list.do*' => Http::response(['s' => true, 'd'=>array_slice(PURCHASE_ITEMS['d'], 0, 3), 'sp'=>PURCHASE_ITEMS['sp']]),
         '*' => Http::response(),
     ]);
 

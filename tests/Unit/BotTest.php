@@ -10,9 +10,9 @@ beforeEach(function () {
             's' => true,
         'd' => [
             ['id' => 1, 'alias' => 'ALIAS_1'],
-        ]]),
+        ], ]),
         '*' => Http::response([
-            's' => true,]),
+            's' => true, ]),
     ]);
 });
 

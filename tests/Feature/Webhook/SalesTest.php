@@ -63,7 +63,7 @@ test('bot can show sales invoice (more than 5 invoices)', function () {
 
 test('bot can show sales invoice (less than 5 invoices)', function () {
     Http::fake([
-        'sales-invoice/list.do*' => Http::response(['s' => true,'d'=> array_slice(SALES_ITEMS['d'], 0, 3), 'sp'=> SALES_ITEMS['sp']]),
+        'sales-invoice/list.do*' => Http::response(['s' => true, 'd'=> array_slice(SALES_ITEMS['d'], 0, 3), 'sp'=> SALES_ITEMS['sp']]),
         '*' => Http::response(),
     ]);
 

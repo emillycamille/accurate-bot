@@ -46,7 +46,6 @@ const SESSION_ITEMS =
 
     ];
 
-
 test('bot can refresh session', function () {
     User::factory()->withSession()->create();
 
@@ -62,7 +61,4 @@ test('bot can refresh session', function () {
     $this->receiveMessage('pembelian sebelumnya');
 
     $this->assertRequestSent();
-
-
 });
-
