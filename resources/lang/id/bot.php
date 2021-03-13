@@ -22,16 +22,16 @@ return [
     ],
 
     // Greet User
-    'greet_user' => 'Hai, salam kenal, :name! 🤗 Emily seneng deh bisa ngobrol bareng kamu ☺️',
+    'greet_user' => 'Hai, :name! 🤗 Apa kabar? Have a nice day ya ☺️. Kalau kamu butuh bantuan, bisa ketik "help" 🤩',
 
     // Weather
-    'city_not_found' => 'Cuaca tidak ditemukan.',
-    'weather_reply' => 'Cuaca di kota :cityName adalah :weatherDescription dengan suhu :temp ºC',
+    'city_not_found' => 'Waduhh, Emily gak bisa ketemu kota yang kamu cari nih.. Coba isi kota lain 😉.',
+    'weather_reply' => 'Cuaca di kota :cityName adalah :weatherDescription dengan suhu :temp ºC.',
 
     // Accurate Related Replies
     // Basic
     'choose_db' => 'Pilih database dulu ya..',
-    'db_opened' => 'Database berhasil dibuka! Silakan lanjut :D',
+    'db_opened' => 'Database berhasil dibuka! Silakan lanjut 😊',
     'login_successful' => 'Anda berhasil terhubung ke Accurate sebagai user :name',
 
     // Item
@@ -47,5 +47,5 @@ return [
 
     // Sales
     'show_sales_title' => 'Berikut %d Transaksi Penjualanmu:',
-    'no_sales' => 'Kakak belum ada penjualan. Tetap semangat ya kak :)',
+    'no_sales' => 'Kakak belum ada penjualan. Tetap semangat ya kak 🤗',
 ];
