@@ -3,7 +3,6 @@
 return [
     // Emoji Unicode
 
-
     // Common words
     'price' => 'Harga',
     'stock' => 'Stok',
