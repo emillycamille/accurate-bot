@@ -1,6 +1,8 @@
 <?php
 
 return [
+    // Emoji Unicode
+
     // Common words
     'price' => 'Harga',
     'stock' => 'Stok',
@@ -10,17 +12,17 @@ return [
     'available_functions' => 'Untuk saat ini, Emily bisa:',
 
     'abilities' => [
-        'can_manage_items' => 'Cek stok dan harga barang pada Accurate',
-        'can_show_purchases' => 'Menampilkan histori pembelian',
-        'can_show_sales' => 'Menampilkan histori penjualan',
-        'can_switch_db' => 'Mengganti database yang sedang aktif',
+        'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>")',
+        'can_show_purchases' => 'Menampilkan histori pembelian ("Pembelian"/"Purchase")',
+        'can_show_sales' => 'Menampilkan histori penjualan ("Penjualan"/"Sales")',
+        'can_switch_db' => 'Mengganti database yang sedang aktif ("Ganti db")',
         'can_do_math' => 'Menjalankan operasi matematika',
-        'can_tell_time' => 'Menampilkan waktu saat ini',
-        'can_tell_weather' => 'Menampilkan kondisi cuaca',
+        'can_tell_time' => 'Menampilkan waktu saat ini ("Jam"/"Hari"/"Hari jam")',
+        'can_tell_weather' => 'Menampilkan kondisi cuaca ("Cuaca di <nama kota>")',
     ],
 
     // Greet User
-    'greet_user' => 'Halo :name!',
+    'greet_user' => 'Hai, salam kenal, :name! 🤗 Emily seneng deh bisa ngobrol bareng kamu ☺️',
 
     // Weather
     'city_not_found' => 'Cuaca tidak ditemukan.',
@@ -29,7 +31,7 @@ return [
     // Accurate Related Replies
     // Basic
     'choose_db' => 'Pilih database dulu ya..',
-    'db_opened' => 'Database berhasil dibuka!',
+    'db_opened' => 'Database berhasil dibuka! Silakan lanjut :D',
     'login_successful' => 'Anda berhasil terhubung ke Accurate sebagai user :name',
 
     // Item
