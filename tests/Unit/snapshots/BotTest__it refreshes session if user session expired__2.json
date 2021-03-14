@@ -1,0 +1,7 @@
+{
+    "method": "GET",
+    "url": "https:\/\/account.accurate.id\/api\/open-db.do?id=DATABASE_ID",
+    "data": {
+        "id": "DATABASE_ID"
+    }
+}

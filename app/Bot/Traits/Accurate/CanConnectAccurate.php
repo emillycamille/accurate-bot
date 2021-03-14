@@ -55,10 +55,12 @@ trait CanConnectAccurate
             ->throw()
             ->json();
 
-        if ($response['s'] == false) {
-            $dbId = User::firstWhere('psid', $psid);
-            static::openDb($psid, $dbId->database_id);
-            static::askAccurate($psid, $uri, $query);
+        // If `s` is false, this means the user's session is expired. Open DB
+        // again to refresh the user's session, then reask Accurate.
+        if (data_get($response, 's', true) === false) {
+            static::openDb($psid, $user->database_id);
+
+            return static::askAccurate($psid, $uri, $query);
         }
 
         Log::debug('fromAccurate:', ($response ?? []) + ["\n"]);

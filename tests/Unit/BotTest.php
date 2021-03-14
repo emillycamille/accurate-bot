@@ -6,13 +6,24 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     Http::fake([
+        'DOMAIN/URL' => Http::sequence()
+            ->push(['s' => false])
+            ->push(['s' => true]),
+
         'db-list.do' => Http::response([
+            // CHANGE: remove, pake data_get di canConnectAccurate.
             's' => true,
-        'd' => [
-            ['id' => 1, 'alias' => 'ALIAS_1'],
-        ], ]),
-        '*' => Http::response([
-            's' => true, ]),
+            'd' => [
+                ['id' => 1, 'alias' => 'ALIAS_1'],
+            ],
+        ]),
+
+        'open-db.do*' => Http::response([
+            'host' => 'DB_HOST',
+            'session' => 'DB_SESSION',
+        ]),
+
+        '*' => Http::response(['s' => true]),
     ]);
 });
 
@@ -46,5 +57,10 @@ it('asks basic accurate even if user doesnt have session', function () {
     $this->assertRequestSent();
 });
 
-// TODO
-it('refresh session if user session expired');
+it('refreshes session if user session expired', function() {
+    User::factory()->withSession()->create();
+
+    Bot::askAccurate('PS_ID', 'DOMAIN/URL');
+
+    $this->assertRequestSent();
+})->only();
