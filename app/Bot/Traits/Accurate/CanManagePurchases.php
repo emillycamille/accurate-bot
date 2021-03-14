@@ -33,6 +33,7 @@ trait CanManagePurchases
         }
 
         $message = sprintf(__('bot.show_purchases_title'), count($items['d']))."\n\n";
+        // CHANGE: pake foreach bro
         for ($i = 0; $i < count($items['d']); $i++) {
             $message .= sprintf('%d. ', (5 * (int) $page - 4) + $i);
             $message .= sprintf(

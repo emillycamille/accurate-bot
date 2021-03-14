@@ -22,5 +22,6 @@ test('bot can open db', function () {
 
     $this->assertDatabaseHas('users', $data + [
         'id' => $user->id,
+        'database_id' => '1',
     ]);
 });
