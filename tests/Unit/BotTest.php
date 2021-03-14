@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     Http::fake([
-        'DOMAIN/URL' => Http::sequence()
+        'EXPIRED/SESSION' => Http::sequence()
             ->push(['s' => false])
             ->push(['s' => true]),
 
@@ -19,8 +19,8 @@ beforeEach(function () {
         ]),
 
         'open-db.do*' => Http::response([
-            'host' => 'DB_HOST',
-            'session' => 'DB_SESSION',
+            'host' => 'NEW_HOST',
+            'session' => 'NEW_SESSION',
         ]),
 
         '*' => Http::response(['s' => true]),
@@ -60,7 +60,7 @@ it('asks basic accurate even if user doesnt have session', function () {
 it('refreshes session if user session expired', function() {
     User::factory()->withSession()->create();
 
-    Bot::askAccurate('PS_ID', 'DOMAIN/URL');
+    Bot::askAccurate('PS_ID', 'EXPIRED/SESSION');
 
-    $this->assertRequestSent();
-})->only();
+    $this->assertRequestSent(true);
+});

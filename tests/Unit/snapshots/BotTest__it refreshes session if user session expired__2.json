@@ -1,4 +1,18 @@
 {
+    "headers": {
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Host": [
+            "account.accurate.id"
+        ],
+        "Authorization": [
+            "Bearer ACCESS_TOKEN"
+        ],
+        "X-Session-ID": [
+            "SESSION"
+        ]
+    },
     "method": "GET",
     "url": "https:\/\/account.accurate.id\/api\/open-db.do?id=DATABASE_ID",
     "data": {

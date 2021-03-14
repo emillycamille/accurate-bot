@@ -1,5 +1,16 @@
 {
+    "headers": {
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Authorization": [
+            "Bearer ACCESS_TOKEN"
+        ],
+        "X-Session-ID": [
+            "NEW_SESSION"
+        ]
+    },
     "method": "GET",
-    "url": "DB_HOST\/accurate\/api\/DOMAIN\/URL",
+    "url": "NEW_HOST\/accurate\/api\/EXPIRED\/SESSION",
     "data": []
 }
