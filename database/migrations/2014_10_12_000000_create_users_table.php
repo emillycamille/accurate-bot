@@ -16,10 +16,8 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('psid')->unique();
-            // CHANGE: first_name
             $table->string('fb_firstname')->nullable();
             $table->string('fb_lastname')->nullable();
-            // CHANGE: remove name
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('host')->nullable();
