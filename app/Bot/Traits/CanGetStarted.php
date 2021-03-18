@@ -3,14 +3,14 @@
 namespace App\Bot\Traits;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Http;
 
 trait CanGetStarted
 {
     public static function getStarted(string $userID): void
     {
-        $response = Http::get(config('bot.fb_api_url') . $userID, [
+        $response = Http::get(config('bot.fb_api_url').$userID, [
             'access_token' => config('bot.fb_page_token'),
         ])->throw();
 
