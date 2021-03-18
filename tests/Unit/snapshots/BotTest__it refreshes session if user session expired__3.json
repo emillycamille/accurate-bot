@@ -1,0 +1,27 @@
+{
+    "headers": {
+        "Content-Length": [
+            "131"
+        ],
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Content-Type": [
+            "application\/json"
+        ],
+        "Host": [
+            "graph.facebook.com"
+        ]
+    },
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "recipient": {
+            "id": "PS_ID"
+        },
+        "message": {
+            "text": "Database berhasil dibuka! Silakan lanjut \ud83d\ude0a"
+        }
+    }
+}

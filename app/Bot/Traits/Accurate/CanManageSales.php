@@ -18,13 +18,29 @@ trait CanManageSales
     /**
      * List last 5 sales invoices.
      */
+    // CHANGE: $page pastikan int
     public static function salesInvoice(string $psid, string $page): void
     {
+        // CHANGE: try to make this function more DRY.
+        // $transactions = [
+        //     'salesInvoice' => [
+        //         'api_url' => 'something',
+        //         'title' => __('bot.titleForSalesInvoice'),
+        //     ],
+        //     'purchaseInvoice' => [
+        //         'api_url' => 'purchase',
+        //         'title' => __('bot.titleForSalesInvoice'),
+        //     ],
+        // ];
+
+        // $type -> salesInvoice / purchaseInvoice.
+
+        // $data = $transactions[$type];
+
         $items = static::askAccurate($psid, 'sales-invoice/list.do', [
             'fields' => 'transDate,totalAmount,statusName,customer',
             'sp.page' => $page,
             'sp.pageSize' => '5',
-
         ]);
 
         if (count($items['d']) == 0) {
@@ -48,6 +64,7 @@ trait CanManageSales
         $message .= sprintf(__('bot.page'), $page);
         static::sendMessage($message, $psid);
 
+        // CHANGE: Kasi comment ya.
         if ($items['sp']['pageCount'] > (int) $page) {
             $page += 1;
             $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
