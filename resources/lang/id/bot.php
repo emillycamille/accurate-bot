@@ -22,6 +22,7 @@ return [
     ],
 
     // Greet User
+    'get_started_message' => 'Salam kenal, :name! Aku Emily, kalau kamu butuh bantuan, bisa ketik "help"',
     'greet_user' => 'Hai, :name! 🤗 Apa kabar? Have a nice day ya ☺️. Kalau kamu butuh bantuan, bisa ketik "help"',
 
     // Weather

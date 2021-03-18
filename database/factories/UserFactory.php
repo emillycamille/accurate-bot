@@ -40,4 +40,14 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function withFbName(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'fb_firstname' => 'TEST_FIRST_NAME',
+                'fb_lastname' => 'TEST_LAST_NAME',
+            ];
+        });
+    }
 }

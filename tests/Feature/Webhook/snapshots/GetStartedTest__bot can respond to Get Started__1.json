@@ -1,0 +1,7 @@
+{
+    "method": "GET",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/PS_ID?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "access_token": "TEST_PAGE_TOKEN"
+    }
+}
