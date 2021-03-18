@@ -57,7 +57,7 @@ it('asks basic accurate even if user doesnt have session', function () {
     $this->assertRequestSent();
 });
 
-it('refreshes session if user session expired', function() {
+it('refreshes session if user session expired', function () {
     User::factory()->withSession()->create();
 
     Bot::askAccurate('PS_ID', 'EXPIRED/SESSION');
