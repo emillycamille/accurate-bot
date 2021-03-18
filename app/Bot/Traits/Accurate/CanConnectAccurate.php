@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Http\Client\RequestException;
 
 trait CanConnectAccurate
 {
@@ -49,19 +50,27 @@ trait CanConnectAccurate
 
         Log::debug("askAccurate: $psid: $url", $query ?? []);
 
-        $response = Http::withToken($user->access_token)
-            ->withHeaders(['X-Session-ID' => $user->session])
-            ->get($url, $query)
-            ->throw()
-            ->json();
+        try {
+            
+            $response = Http::withToken($user->access_token)
+                ->withHeaders(['X-Session-ID' => $user->session])
+                ->get($url, $query)
+                ->throw()
+                ->json();
+        } catch (RequestException $e) {
+            // 401 means the user's session is expired. Open DB
+            // again to refresh the user's session, then reask Accurate.
+            if ($e->getCode() === 401) {
+                static::openDb($psid, $user->database_id);
+    
+                return static::askAccurate($psid, $uri, $query);
+            }
 
-        // If `s` is false, this means the user's session is expired. Open DB
-        // again to refresh the user's session, then reask Accurate.
-        if (data_get($response, 's', true) === false) {
-            static::openDb($psid, $user->database_id);
-
-            return static::askAccurate($psid, $uri, $query);
+            throw $e;
         }
+        
+
+        
 
         Log::debug('fromAccurate:', ($response ?? []) + ["\n"]);
 

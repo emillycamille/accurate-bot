@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 beforeEach(function () {
     Http::fake([
         'EXPIRED/SESSION' => Http::sequence()
-            ->push(['s' => false])
+            ->push(['s' => false], 401)
             ->push(['s' => true]),
 
         'db-list.do' => Http::response([
