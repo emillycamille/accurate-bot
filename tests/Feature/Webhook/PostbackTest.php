@@ -6,15 +6,14 @@ use Illuminate\Support\Facades\Http;
 test('bot can open db', function () {
     $user = User::factory()->create();
 
-    $data = ['s' => true,
+    $data = [
         'host' => 'DB_HOST',
         'session' => 'DB_SESSION',
     ];
 
     Http::fake([
         config('accurate.api_url').'open-db.do*' => Http::response($data),
-        '*' => Http::response([
-            's' => true, ]),
+        '*' => Http::response(),
     ]);
 
     $this->receivePostback('OPEN_DB:PS_ID:1');
@@ -23,5 +22,6 @@ test('bot can open db', function () {
 
     $this->assertDatabaseHas('users', $data + [
         'id' => $user->id,
+        'database_id' => '1',
     ]);
 });

@@ -1,7 +1,13 @@
 {
-    "method": "GET",
-    "url": "https:\/\/graph.facebook.com\/v9.0\/PS_ID?access_token=TEST_PAGE_TOKEN",
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
-        "access_token": "TEST_PAGE_TOKEN"
+        "messaging_type": "RESPONSE",
+        "recipient": {
+            "id": "PS_ID"
+        },
+        "message": {
+            "text": "Hai, TEST_FIRST_NAME! \ud83e\udd17 Apa kabar? Have a nice day ya \u263a\ufe0f. Kalau kamu butuh bantuan, bisa ketik \"help\""
+        }
     }
 }
