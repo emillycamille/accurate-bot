@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 test('bot can respond to Get Started', function () {
@@ -10,7 +9,7 @@ test('bot can respond to Get Started', function () {
     ];
 
     Http::fake([
-        config('bot.fb_api_url') . '*' => Http::response([
+        config('bot.fb_api_url').'*' => Http::response([
             'first_name' => $data['fb_firstname'],
             'last_name' => $data['fb_lastname'],
         ]),

@@ -32,7 +32,7 @@ trait CanManageSales
         //         'title' => __('bot.titleForSalesInvoice'),
         //     ],
         // ];
-        
+
         // $type -> salesInvoice / purchaseInvoice.
 
         // $data = $transactions[$type];

@@ -3,16 +3,13 @@
 namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanConnectAccurate;
-use App\Bot\Traits\Accurate\CanManageDb;
 use App\Bot\Traits\Accurate\CanManageItems;
-use App\Bot\Traits\Accurate\CanManagePurchases;
-use App\Bot\Traits\Accurate\CanManageSales;
 use App\Bot\Traits\CanDoMath;
+use App\Bot\Traits\CanGetStarted;
 use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanShowHelp;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
-use App\Bot\Traits\CanGetStarted;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -25,9 +22,6 @@ class Bot
         CanTellWeather,
         CanGreetUser,
         CanConnectAccurate,
-        CanManageSales,
-        CanManagePurchases,
-        CanManageDb,
         CanShowHelp,
         CanGetStarted;
 
@@ -152,7 +146,7 @@ class Bot
         $postback = is_string($event) ? $event : $event['postback']['payload'];
         Log::debug("receivedPostback: $postback");
 
-        if ($postback == "FACEBOOK_WELCOME") {
+        if ($postback == 'FACEBOOK_WELCOME') {
             $psid = $event['sender']['id'];
             [$handler, $psid] = ['getStarted', $psid];
             $payload = null;

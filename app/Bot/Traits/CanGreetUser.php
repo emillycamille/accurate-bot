@@ -3,8 +3,6 @@
 namespace App\Bot\Traits;
 
 use App\Models\User;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 trait CanGreetUser
