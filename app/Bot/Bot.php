@@ -3,10 +3,6 @@
 namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanConnectAccurate;
-use App\Bot\Traits\Accurate\CanManageDb;
-use App\Bot\Traits\Accurate\CanManageItems;
-use App\Bot\Traits\Accurate\CanManagePurchases;
-use App\Bot\Traits\Accurate\CanManageSales;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanShowHelp;
@@ -20,13 +16,9 @@ class Bot
 {
     use CanDoMath,
         CanTellTime,
-        CanManageItems,
         CanTellWeather,
         CanGreetUser,
         CanConnectAccurate,
-        CanManageSales,
-        CanManagePurchases,
-        CanManageDb,
         CanShowHelp;
 
     /**
@@ -114,6 +106,8 @@ class Bot
 
         if (static::isRequestingLogin($message)) {
             static::sendLoginButton($senderId);
+        } elseif ($keyword = static::isAskingCustomerDetail($message)) {
+            static::listCustomer($senderId, $keyword);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
         } elseif (static::isAskingWeather($message)) {

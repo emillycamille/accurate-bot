@@ -1,0 +1,39 @@
+{
+    "headers": {
+        "Content-Length": [
+            "324"
+        ],
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Content-Type": [
+            "application\/json"
+        ],
+        "Host": [
+            "graph.facebook.com"
+        ]
+    },
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "recipient": {
+            "id": "PS_ID"
+        },
+        "message": {
+            "text": "Ada beberapa customer ditemukan, siapa yang anda maksud?\n\n1. KEYWORD_1\n2. KEYWORD_2\n",
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": 1,
+                    "payload": "DETAIL_CUSTOMER:PS_ID:1"
+                },
+                {
+                    "content_type": "text",
+                    "title": 2,
+                    "payload": "DETAIL_CUSTOMER:PS_ID:2"
+                }
+            ]
+        }
+    }
+}
