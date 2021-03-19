@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Webhook\Verify\Item;
+namespace Tests\Feature\Webhook\Item;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Http;

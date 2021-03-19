@@ -4,7 +4,9 @@ return [
     // Emoji Unicode
 
     // Common words
+    'balance' => 'Saldo',
     'price' => 'Harga',
+    'registered_since' => 'Terdaftar sejak',
     'stock' => 'Stok',
     'yes' => 'Ya',
 
@@ -34,6 +36,10 @@ return [
     'db_opened' => 'Database berhasil dibuka! Silakan lanjut 😊',
     'login_successful' => 'Anda berhasil terhubung ke Accurate sebagai user :name',
     'no_db' => 'Tidak ada database yang ditemukan untuk akun Accurate ini. Coba ganti akun?',
+
+    // Customer
+    'multiple_customers_match_keyword' => 'Ada beberapa customer ditemukan, siapa yang anda maksud?',
+    'no_customers_match_keyword' => 'Tidak ditemukan customer dengan keyword ":keyword"',
 
     // Item
     'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang anda maksud?',

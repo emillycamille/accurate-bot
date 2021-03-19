@@ -11,7 +11,8 @@ use Illuminate\Support\Str;
 
 trait CanConnectAccurate
 {
-    use CanManageItems, CanManageSales, CanManagePurchases, CanManageDb;
+    use CanManageCustomers, CanManageItems, CanManageSales, CanManagePurchases,
+        CanManageDb;
 
     /**
      * Make GET request to Accurate, to retrieve information.
