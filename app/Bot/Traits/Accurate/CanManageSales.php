@@ -50,14 +50,15 @@ trait CanManageSales
         }
 
         $message = sprintf(__('bot.show_sales_title'), count($items['d']))."\n\n";
-        for ($i = 0; $i < count($items['d']); $i++) {
-            $message .= sprintf('%d. ', (5 * (int) $page - 4) + $i);
+
+        foreach ($items['d'] as $key => $value) {
+            $message .= sprintf('%d. ', (5 * (int) $page - 4) + $key);
             $message .= sprintf(
                 '%s - %s %s (%s)',
-                $items['d'][$i]['transDate'],
-                $items['d'][$i]['customer']['name'],
-                idr($items['d'][$i]['totalAmount']),
-                $items['d'][$i]['statusName']
+                $items['d'][$key]['transDate'],
+                $items['d'][$key]['customer']['name'],
+                idr($items['d'][$key]['totalAmount']),
+                $items['d'][$key]['statusName']
             );
             $message .= "\n";
         }
