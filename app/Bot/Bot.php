@@ -3,10 +3,7 @@
 namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanConnectAccurate;
-use App\Bot\Traits\Accurate\CanManageDb;
 use App\Bot\Traits\Accurate\CanManageItems;
-use App\Bot\Traits\Accurate\CanManagePurchases;
-use App\Bot\Traits\Accurate\CanManageSales;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGetStarted;
 use App\Bot\Traits\CanGreetUser;
@@ -25,9 +22,6 @@ class Bot
         CanTellWeather,
         CanGreetUser,
         CanConnectAccurate,
-        CanManageSales,
-        CanManagePurchases,
-        CanManageDb,
         CanShowHelp,
         CanGetStarted;
 
