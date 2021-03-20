@@ -48,7 +48,7 @@ return [
 
     // Purchases
     'ask_next_page' => 'Halaman berikutnya?',
-    'purchases_date_title' => 'Pembelian tanggal :date sebesar ', 
+    'purchases_date_title' => 'Pembelian tanggal :date sebesar ',
     'show_purchases_title' => 'Berikut %d Transaksi Pembelianmu:',
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
     'no_purchases_date' => 'Tidak ada pembelian pada tanggal :date',
@@ -57,4 +57,6 @@ return [
     // Sales
     'show_sales_title' => 'Berikut %d Transaksi Penjualanmu:',
     'no_sales' => 'Kakak belum ada penjualan. Tetap semangat ya kak 🤗',
+    'sales_date_title' => 'Penjualan tanggal :date sebesar ',
+    'no_sales_date' => 'Tidak ada penjualan pada tanggal :date',
 ];

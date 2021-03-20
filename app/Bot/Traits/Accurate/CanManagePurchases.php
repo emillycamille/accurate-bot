@@ -17,7 +17,7 @@ trait CanManagePurchases
 
     public static function isAskingPurchaseInvoiceWithDate(string $message): bool
     {
-        return (Str::contains($message, ['purchase', 'pembelian']) && Str::contains($message, '/'));
+        return Str::contains($message, ['purchase', 'pembelian']) && Str::contains($message, '/');
     }
 
     /**
@@ -70,7 +70,7 @@ trait CanManagePurchases
         $messageSplit = preg_split('/\s+/', $message);
         $date = end($messageSplit);
         $message = sprintf(__('bot.purchases_date_title', compact('date')));
-        $amount = 0;       
+        $amount = 0;
 
         do {
             $page = 1;
@@ -82,17 +82,16 @@ trait CanManagePurchases
 
             if (count($items['d']) == 0) {
                 static::sendMessage(__('bot.no_purchases_date', compact('date')), $psid);
-    
+
                 return;
             }
 
             foreach ($items['d'] as $key => $value) {
-                $amount += $items['d'][$key]['totalAmount'];          
+                $amount += $items['d'][$key]['totalAmount'];
             }
 
             $page += 1;
             $pageCount = $items['sp']['pageCount'];
-
         } while ($page <= $pageCount);
 
         $amount = idr($amount);

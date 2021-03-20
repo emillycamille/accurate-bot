@@ -118,6 +118,8 @@ class Bot
             $reply = static::tellTime($message);
         } elseif (static::isAskingPurchaseInvoiceWithDate($message)) {
             static::purchaseInvoiceWithDate($message, $senderId);
+        } elseif (static::isAskingSalesInvoiceWithDate($message)) {
+            static::salesInvoiceWithDate($message, $senderId);
         } elseif (static::isAskingPurchaseInvoice($message)) {
             static::purchaseInvoice($senderId, 1);
         } elseif (static::isAskingSalesInvoice($message)) {
