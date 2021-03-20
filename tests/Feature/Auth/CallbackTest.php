@@ -27,7 +27,7 @@ test('user can store accurate access token', function () {
         '*' => Http::response(),
     ]);
 
-    $this->get('auth/callback?' . http_build_query([
+    $this->get('auth/callback?'.http_build_query([
         'code' => 'ACCURATE_CODE',
         'psid' => $data['psid'],
     ]));
