@@ -15,6 +15,11 @@ trait CanManageSales
         return Str::contains(strtolower($message), ['sales', 'penjualan']);
     }
 
+    public static function isAskingSalesInvoiceWithDate(string $message): bool
+    {
+        return Str::contains($message, ['sales', 'penjualan']) && Str::contains($message, '/');
+    }
+
     /**
      * List last 5 sales invoices.
      */
@@ -50,18 +55,19 @@ trait CanManageSales
         }
 
         $message = sprintf(__('bot.show_sales_title'), count($items['d']))."\n\n";
-        for ($i = 0; $i < count($items['d']); $i++) {
-            $message .= sprintf('%d. ', (5 * (int) $page - 4) + $i);
+
+        foreach ($items['d'] as $key => $value) {
+            $message .= sprintf('%d. ', (5 * (int) $page - 4) + $key);
             $message .= sprintf(
                 '%s - %s %s (%s)',
-                $items['d'][$i]['transDate'],
-                $items['d'][$i]['customer']['name'],
-                idr($items['d'][$i]['totalAmount']),
-                $items['d'][$i]['statusName']
+                $items['d'][$key]['transDate'],
+                $items['d'][$key]['customer']['name'],
+                idr($items['d'][$key]['totalAmount']),
+                $items['d'][$key]['statusName']
             );
             $message .= "\n";
         }
-        $message .= sprintf(__('bot.page'), $page);
+        $message .= sprintf(__('bot.page'), compact('page'));
         static::sendMessage($message, $psid);
 
         // CHANGE: Kasi comment ya.
@@ -75,5 +81,40 @@ trait CanManageSales
 
             static::sendMessage($payload, $psid);
         }
+    }
+
+    public static function salesInvoiceWithDate(string $message, string $psid): void
+    {
+        $messageSplit = preg_split('/\s+/', $message);
+        $date = end($messageSplit);
+        $message = sprintf(__('bot.sales_date_title', compact('date')));
+        $amount = 0;
+
+        do {
+            $page = 1;
+            $items = static::askAccurate($psid, 'sales-invoice/list.do', [
+                'fields' => 'totalAmount',
+                'filter.dueDate.val' => $date,
+                'page' => $page,
+                ]);
+
+            if (count($items['d']) == 0) {
+                static::sendMessage(__('bot.no_sales_date', compact('date')), $psid);
+
+                return;
+            }
+
+            foreach ($items['d'] as $key => $value) {
+                $amount += $items['d'][$key]['totalAmount'];
+            }
+
+            $page += 1;
+            $pageCount = $items['sp']['pageCount'];
+        } while ($page <= $pageCount);
+
+        $amount = idr($amount);
+        $message .= $amount;
+
+        static::sendMessage($message, $psid);
     }
 }
