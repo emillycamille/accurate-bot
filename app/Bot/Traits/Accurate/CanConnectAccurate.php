@@ -11,7 +11,10 @@ use Illuminate\Support\Str;
 
 trait CanConnectAccurate
 {
-    use CanManageCustomers, CanManageItems, CanManageSales, CanManagePurchases,
+    use CanManageCustomers,
+        CanManageItems,
+        CanManageSales,
+        CanManagePurchases,
         CanManageDb;
 
     /**
@@ -24,7 +27,7 @@ trait CanConnectAccurate
         $user = User::firstWhere('psid', $psid);
 
         // If not found, we should ask the user to login to Accurate.
-        if ((! $user) || (! $user->access_token)) {
+        if ((!$user) || (!$user->access_token)) {
             static::sendLoginButton($psid);
 
             return null;
@@ -32,11 +35,11 @@ trait CanConnectAccurate
 
         // 2. If the request is not basic, ensure that the user has session.
         // --------------------------------------------------------------------
-        $isBasic = (! Str::contains($uri, '/'));
+        $isBasic = (!Str::contains($uri, '/'));
 
         // If request is not basic, and user has no session or no host, ask which
         // db they want to open.
-        if (! $isBasic && ((! $user->session) || (! $user->host))) {
+        if (!$isBasic && ((!$user->session) || (!$user->host))) {
             static::askWhichDb($psid);
 
             return null;
@@ -46,7 +49,7 @@ trait CanConnectAccurate
         // --------------------------------------------------------------------
 
         // Depending on the basicness of the request, determine the host url.
-        $url = $isBasic ? config('accurate.api_url') : $user->host.'/accurate/api/';
+        $url = $isBasic ? config('accurate.api_url') : $user->host . '/accurate/api/';
         $url .= $uri;
 
         Log::debug("askAccurate: $psid: $url", $query ?? []);
@@ -86,7 +89,7 @@ trait CanConnectAccurate
         )->asForm()->post(config('accurate.access_token_url'), [
             'code' => $code,
             'grant_type' => 'authorization_code',
-            'redirect_uri' => config('accurate.redirect_url').'?'.http_build_query(compact('psid')),
+            'redirect_uri' => config('accurate.redirect_url') . '?' . http_build_query(compact('psid')),
         ])->throw();
 
         // Get access token and user data from the response.
@@ -94,7 +97,7 @@ trait CanConnectAccurate
         $data = Arr::only($response->json(), ['access_token', 'refresh_token']);
         $data['email'] = $response->json('user.email');
         // CHANGE: name from accurate jangan disimpan lagi
-        $data['name'] = $name;
+        $data['accurate_name'] = $name;
 
         // Save the data to the `users` table.
         User::updateOrCreate(['psid' => $psid], $data);
@@ -119,10 +122,10 @@ trait CanConnectAccurate
         // Accurate should redirect back to this app carrying the PSID, so we can
         // associate the PSID with the Accurate access token.
         $redirect_uri = config('accurate.redirect_url')
-            .'?'.http_build_query(compact('psid'));
+            . '?' . http_build_query(compact('psid'));
 
         $url = config('accurate.login_url')
-            .'&'.http_build_query(compact('redirect_uri'));
+            . '&' . http_build_query(compact('redirect_uri'));
 
         $payload = static::makeButtonPayload('Login to Accurate', [
             [

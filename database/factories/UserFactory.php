@@ -45,8 +45,8 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'fb_firstname' => 'TEST_FIRST_NAME',
-                'fb_lastname' => 'TEST_LAST_NAME',
+                'first_name' => 'TEST_FIRST_NAME',
+                'last_name' => 'TEST_LAST_NAME',
             ];
         });
     }

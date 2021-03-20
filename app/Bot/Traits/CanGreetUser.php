@@ -22,7 +22,7 @@ trait CanGreetUser
     {
         // Send the greeting response
         $user = User::firstWhere('psid', $userID);
-        $name = $user->fb_firstname;
+        $name = $user->first_name;
 
         return __('bot.greet_user', compact('name'));
     }
