@@ -67,7 +67,7 @@ trait CanManageSales
             );
             $message .= "\n";
         }
-        $message .= sprintf(__('bot.page'), compact($page));
+        $message .= sprintf(__('bot.page'), compact('page'));
         static::sendMessage($message, $psid);
 
         // CHANGE: Kasi comment ya.

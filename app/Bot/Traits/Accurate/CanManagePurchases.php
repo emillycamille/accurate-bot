@@ -44,7 +44,7 @@ trait CanManagePurchases
             $message .= sprintf(
                 '%s - %s %s (%s)',
                 $items['d'][$key]['transDate'],
-                $items['d'][$key]['customer']['name'],
+                $items['d'][$key]['vendor']['name'],
                 idr($items['d'][$key]['totalAmount']),
                 $items['d'][$key]['statusName']
             );
