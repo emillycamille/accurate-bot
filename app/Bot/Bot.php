@@ -20,7 +20,7 @@ class Bot
         CanTellWeather,
         CanGreetUser,
         CanConnectAccurate,
-        CanShowHelp;
+        CanShowHelp,
         CanGetStarted;
 
     /**
