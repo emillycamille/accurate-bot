@@ -50,7 +50,7 @@ trait CanManageSales
         }
 
         $message = sprintf(__('bot.show_sales_title'), count($items['d']))."\n\n";
-        
+
         foreach ($items['d'] as $key => $value) {
             $message .= sprintf('%d. ', (5 * (int) $page - 4) + $key);
             $message .= sprintf(
@@ -62,7 +62,7 @@ trait CanManageSales
             );
             $message .= "\n";
         }
-        $message .= sprintf(__('bot.page'), $page);
+        $message .= sprintf(__('bot.page'), compact($page));
         static::sendMessage($message, $psid);
 
         // CHANGE: Kasi comment ya.

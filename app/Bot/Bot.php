@@ -116,14 +116,16 @@ class Bot
             static::askWhichDb($senderId);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
-        } elseif (static::isMathExpression($message)) {
-            $reply = static::calculateMathExpression($message);
-        } elseif (static::isSayingHello($message)) {
-            $reply = static::greetUser($message, $senderId);
+        } elseif (static::isAskingPurchaseInvoiceWithDate($message)) {
+            static::purchaseInvoiceWithDate($message, $senderId);
         } elseif (static::isAskingPurchaseInvoice($message)) {
             static::purchaseInvoice($senderId, 1);
         } elseif (static::isAskingSalesInvoice($message)) {
             static::salesInvoice($senderId, 1);
+        } elseif (static::isMathExpression($message)) {
+            $reply = static::calculateMathExpression($message);
+        } elseif (static::isSayingHello($message)) {
+            $reply = static::greetUser($message, $senderId);
         } elseif (static::isAskingHelp($message)) {
             $reply = static::tellHelp();
         } else {
