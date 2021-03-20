@@ -72,8 +72,8 @@ trait CanManagePurchases
         $message = sprintf(__('bot.purchases_date_title', compact('date')));
         $amount = 0;
 
+        $page = 1;
         do {
-            $page = 1;
             $items = static::askAccurate($psid, 'purchase-invoice/list.do', [
                 'fields' => 'totalAmount',
                 'filter.dueDate.val' => $date,

@@ -90,8 +90,8 @@ trait CanManageSales
         $message = sprintf(__('bot.sales_date_title', compact('date')));
         $amount = 0;
 
+        $page = 1;
         do {
-            $page = 1;
             $items = static::askAccurate($psid, 'sales-invoice/list.do', [
                 'fields' => 'totalAmount',
                 'filter.dueDate.val' => $date,
