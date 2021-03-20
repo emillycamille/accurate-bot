@@ -76,7 +76,7 @@ trait CanManagePurchases
         do {
             $items = static::askAccurate($psid, 'purchase-invoice/list.do', [
                 'fields' => 'totalAmount',
-                'filter.dueDate.val' => $date,
+                'filter.transDate.val' => $date,
                 'page' => $page,
                 ]);
 
