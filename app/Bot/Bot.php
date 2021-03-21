@@ -26,16 +26,25 @@ class Bot
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
      */
-    public static function getPostbackHandler(string $postback): array
+    public static function getPostbackHandler(string $postback, string $forcePsid = null): array
     {
-        // The postback payload is a string with this format: `HANDLER:PSID:PAYLOAD`.
-        // We need to split them to variables, so the handler method can be called
-        // (see `receivedPostback()`). The payload may not be always there, we use null
-        // as default.
+        if (Str::contains($postback, ':')) {
+            // The postback payload is a string with this format: `HANDLER:PSID:PAYLOAD`.
+            // We need to split them to variables, so the handler method can be called
+            // (see `receivedPostback()`). The payload may not be always there, we use null
+            // as default.
 
-        [$handler, $psid, $payload] = explode(':', $postback, 3) + [2 => null];
+            [$handler, $psid, $payload] = explode(':', $postback, 3) + [2 => null];
+        } else {
+            $handler = $postback;
+            $payload = null;
+        }
 
         $handler = Str::camel(strtolower($handler));
+
+        if ($forcePsid) {
+            $psid = $forcePsid;
+        }
 
         return [$handler, $psid, $payload];
     }
@@ -148,13 +157,10 @@ class Bot
         $postback = is_string($event) ? $event : $event['postback']['payload'];
         Log::debug("receivedPostback: $postback");
 
-        if ($postback == 'FACEBOOK_WELCOME') {
-            $psid = $event['sender']['id'];
-            [$handler, $psid] = ['getStarted', $psid];
-            $payload = null;
-        } else {
-            [$handler, $psid, $payload] = static::getPostbackHandler($postback);
-        }
+        [$handler, $psid, $payload] = static::getPostbackHandler(
+            $postback,
+            data_get($event, 'sender.id'),
+        );
 
         static::$handler($psid, $payload);
     }
