@@ -7,25 +7,27 @@ use Illuminate\Support\Str;
 trait CanManagePurchases
 {
     /**
-     * Determines whether the user is asking about purchase invoice. If yes,
-     * return the keyword of the item being asked.
+     * Determines whether the user is asking about purchase invoice.
      */
     public static function isAskingPurchaseInvoice(string $message): bool
     {
-        return Str::contains($message, ['purchase', 'pembelian']);
-    }
+        $message = strtolower($message);
 
-    public static function isAskingPurchaseInvoiceWithDate(string $message): bool
-    {
-        return Str::contains($message, ['purchase', 'pembelian'])
-            && Str::contains($message, '/');
+        return Str::contains($message, ['purchase', 'pembelian']);
     }
 
     /**
      * List last 5 purchase invoices.
      */
-    public static function purchaseInvoice(string $psid, string $page): void
+    public static function purchaseInvoice(string $psid, string $page, string $message): void
     {
+        // If $message contains a date, show total purchase of that date.
+        if ($date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/')) {
+            static::showTotalPurchase($psid, $date);
+            
+            return;
+        }
+
         $items = static::askAccurate($psid, 'purchase-invoice/list.do', [
             'fields' => 'transDate,totalAmount,statusName,vendor',
             'sp.page' => $page,
@@ -67,20 +69,17 @@ trait CanManagePurchases
         }
     }
 
-    public static function purchaseInvoiceWithDate(string $message, string $psid): void
+    public static function showTotalPurchase(string $psid, string $date): void
     {
-        $messageSplit = preg_split('/\s+/', $message);
-        $date = end($messageSplit);
-        $message = sprintf(__('bot.purchases_date_title', compact('date')));
         $amount = 0;
-
         $page = 1;
+
         do {
             $items = static::askAccurate($psid, 'purchase-invoice/list.do', [
                 'fields' => 'totalAmount',
                 'filter.transDate.val' => $date,
                 'page' => $page,
-                ]);
+            ]);
 
             if (count($items['d']) == 0) {
                 static::sendMessage(__('bot.no_purchases_date', compact('date')), $psid);
@@ -92,12 +91,12 @@ trait CanManagePurchases
                 $amount += $items['d'][$key]['totalAmount'];
             }
 
-            $page += 1;
-            $pageCount = $items['sp']['pageCount'];
-        } while ($page <= $pageCount);
+            $page++;
+        } while ($page <= $items['sp']['pageCount']);
 
         $amount = idr($amount);
-        $message .= $amount;
+
+        $message = __('bot.total_purchase_at', compact('date', 'amount'));
 
         static::sendMessage($message, $psid);
     }

@@ -119,12 +119,10 @@ class Bot
             static::askWhichDb($senderId);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
-        } elseif (static::isAskingPurchaseInvoiceWithDate($message)) {
-            static::purchaseInvoiceWithDate($message, $senderId);
         } elseif (static::isAskingSalesInvoiceWithDate($message)) {
             static::salesInvoiceWithDate($message, $senderId);
         } elseif (static::isAskingPurchaseInvoice($message)) {
-            static::purchaseInvoice($senderId, 1);
+            static::purchaseInvoice($senderId, 1, $message);
         } elseif (static::isAskingSalesInvoice($message)) {
             static::salesInvoice($senderId, 1);
         } elseif (static::isMathExpression($message)) {
