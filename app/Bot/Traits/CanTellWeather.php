@@ -2,6 +2,7 @@
 
 namespace App\Bot\Traits;
 
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -23,24 +24,26 @@ trait CanTellWeather
         $messageSplit = preg_split("/\s+/", $message);
         $city = end($messageSplit);
 
-        $response = Http::get(config('bot.weather_api_url'), [
-            'q' => $city,
-            'units' => 'metric',
-            'lang' => 'id',
-            'appid' => config('bot.weather_api_key'),
-        ])->throw();
-
-        if ($response['cod'] === 200) {
-            $cityName = $response['name'];
-            $weatherDescription = $response['weather'][0]['description'];
-            $temp = $response['main']['temp'];
-
-            return __(
-                'bot.weather_reply',
-                compact('cityName', 'weatherDescription', 'temp')
-            );
-        } else {
-            return __('bot.city_not_found');
+        try {
+            $response = Http::get(config('bot.weather_api_url'), [
+                'q' => $city,
+                'units' => 'metric',
+                'lang' => 'id',
+                'appid' => config('bot.weather_api_key'),
+            ])->throw();
+        } catch (RequestException $e) {
+            if ($e->getCode() === 404) {
+                return __('bot.city_not_found');
+            }
         }
+
+        $city = $response['name'];
+        $description = $response['weather'][0]['description'];
+        $temp = $response['main']['temp'];
+
+        return __(
+            'bot.weather_reply',
+            compact('city', 'description', 'temp'),
+        );
     }
 }

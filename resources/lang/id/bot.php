@@ -29,7 +29,7 @@ return [
 
     // Weather
     'city_not_found' => 'Waduhh, Emily gak bisa ketemu kota yang kamu cari nih.. Coba isi kota lain 😉.',
-    'weather_reply' => 'Cuaca di kota :cityName adalah :weatherDescription dengan suhu :temp ºC.',
+    'weather_reply' => 'Cuaca di kota :city adalah :description dengan suhu :temp ºC.',
 
     // Accurate Related Replies
     // Basic

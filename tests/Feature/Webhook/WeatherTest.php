@@ -20,9 +20,7 @@ test('bot can tell weather at Jakarta', function () {
 
 test('bot cannot tell unavailable weather', function () {
     Http::fake([
-        config('bot.weather_api_url').'*' => Http::response([
-            'cod' => 404,
-        ]),
+        config('bot.weather_api_url').'*' => Http::response(null, 404),
         '*' => Http::response(),
     ]);
 
