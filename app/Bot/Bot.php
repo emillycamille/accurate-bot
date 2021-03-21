@@ -4,6 +4,7 @@ namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
+use App\Bot\Traits\CanGetStarted;
 use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanShowHelp;
 use App\Bot\Traits\CanTellTime;
@@ -19,7 +20,8 @@ class Bot
         CanTellWeather,
         CanGreetUser,
         CanConnectAccurate,
-        CanShowHelp;
+        CanShowHelp,
+        CanGetStarted;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
@@ -30,6 +32,7 @@ class Bot
         // We need to split them to variables, so the handler method can be called
         // (see `receivedPostback()`). The payload may not be always there, we use null
         // as default.
+
         [$handler, $psid, $payload] = explode(':', $postback, 3) + [2 => null];
 
         $handler = Str::camel(strtolower($handler));
@@ -145,10 +148,15 @@ class Bot
     public static function receivedPostback(array | string $event): void
     {
         $postback = is_string($event) ? $event : $event['postback']['payload'];
-
         Log::debug("receivedPostback: $postback");
 
-        [$handler, $psid, $payload] = static::getPostbackHandler($postback);
+        if ($postback == 'FACEBOOK_WELCOME') {
+            $psid = $event['sender']['id'];
+            [$handler, $psid] = ['getStarted', $psid];
+            $payload = null;
+        } else {
+            [$handler, $psid, $payload] = static::getPostbackHandler($postback);
+        }
 
         static::$handler($psid, $payload);
     }

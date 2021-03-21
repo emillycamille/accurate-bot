@@ -11,7 +11,10 @@ use Illuminate\Support\Str;
 
 trait CanConnectAccurate
 {
-    use CanManageCustomers, CanManageItems, CanManageSales, CanManagePurchases,
+    use CanManageCustomers,
+        CanManageItems,
+        CanManageSales,
+        CanManagePurchases,
         CanManageDb;
 
     /**
@@ -94,7 +97,7 @@ trait CanConnectAccurate
         $data = Arr::only($response->json(), ['access_token', 'refresh_token']);
         $data['email'] = $response->json('user.email');
         // CHANGE: name from accurate jangan disimpan lagi
-        $data['name'] = $name;
+        $data['accurate_name'] = $name;
 
         // Save the data to the `users` table.
         User::updateOrCreate(['psid' => $psid], $data);
