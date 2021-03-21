@@ -22,9 +22,11 @@ trait CanManagePurchases
     public static function purchaseInvoice(string $psid, string $page, string $message): void
     {
         // If $message contains a date, show total purchase of that date.
-        if ($date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/')) {
+        $date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/');
+
+        if ($date->isNotEmpty()) {
             static::showTotalPurchase($psid, $date);
-            
+
             return;
         }
 
