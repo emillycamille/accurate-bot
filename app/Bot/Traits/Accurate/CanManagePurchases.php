@@ -17,7 +17,8 @@ trait CanManagePurchases
 
     public static function isAskingPurchaseInvoiceWithDate(string $message): bool
     {
-        return Str::contains($message, ['purchase', 'pembelian']) && Str::contains($message, '/');
+        return Str::contains($message, ['purchase', 'pembelian'])
+            && Str::contains($message, '/');
     }
 
     /**
