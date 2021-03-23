@@ -6,31 +6,31 @@ use Illuminate\Support\Facades\Http;
 const SALES_ITEMS =
 ['s' => true,
     'd' => [
-            ['totalAmount' => 2059200000,
+            ['totalAmount' => 1,
             'transDate' => 'TEST_DATE1',
             'statusName' => 'TEST_STATUS1',
             'customer'=> [
                 'name' => 'TEST_NAME1',
             ], ],
-            ['totalAmount' => 15999000,
+            ['totalAmount' => 1,
             'transDate' => 'TEST_DATE2',
             'statusName' => 'TEST_STATUS2',
             'customer'=> [
                 'name' => 'TEST_NAME2',
             ], ],
-            ['totalAmount' => 215000,
+            ['totalAmount' => 1,
             'transDate' => 'TEST_DATE3',
             'statusName' => 'TEST_STATUS3',
             'customer'=> [
                 'name' => 'TEST_NAME3',
             ], ],
-            ['totalAmount' => 35499000,
+            ['totalAmount' => 1,
             'transDate' => 'TEST_DATE4',
             'statusName' => 'TEST_STATUS4',
             'customer'=> [
                 'name' => 'TEST_NAME4',
             ], ],
-            ['totalAmount' => 11799000,
+            ['totalAmount' => 1,
             'transDate' => 'TEST_DATE5',
             'statusName' => 'TEST_STATUS5',
             'customer'=> [
@@ -68,6 +68,28 @@ test('bot can show sales invoice (less than 5 invoices)', function () {
     ]);
 
     $this->receiveMessage('sales masa lalu');
+
+    $this->assertRequestSent();
+});
+
+test('bot can show sales invoice at selected date', function () {
+    Http::fake([
+        'sales-invoice/list.do*' => Http::response(['s' => true, 'd'=>SALES_ITEMS['d'], 'sp'=>['pageCount'=>1]]),
+        '*' => Http::response(),
+    ]);
+
+    $this->receiveMessage('penjualan 3/7/2021');
+
+    $this->assertRequestSent();
+});
+
+test('bot can\'t show sales invoice at selected date', function () {
+    Http::fake([
+        'sales-invoice/list.do*' => Http::response(['d' => []]),
+        '*' => Http::response(),
+    ]);
+
+    $this->receiveMessage('penjualan 3/7/2021');
 
     $this->assertRequestSent();
 });
