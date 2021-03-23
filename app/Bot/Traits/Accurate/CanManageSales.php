@@ -19,7 +19,7 @@ trait CanManageSales
      * List last 5 sales invoices.
      */
     // CHANGE: $page pastikan int
-    public static function salesInvoice(string $psid, string $page, string $message): void
+    public static function showSalesInvoice(string $psid, string $page, string $message): void
     {
         // CHANGE: try to make this function more DRY.
         // $transactions = [
@@ -89,7 +89,7 @@ trait CanManageSales
     {
         $amount = 0;
         $page = 1;
-        
+
         do {
             $items = static::askAccurate($psid, 'sales-invoice/list.do', [
                 'fields' => 'totalAmount',
@@ -112,7 +112,7 @@ trait CanManageSales
 
         $amount = idr($amount);
 
-        $message = __('bot.total_sales_at', compact('date','amount'));
+        $message = __('bot.total_sales_at', compact('date', 'amount'));
 
         static::sendMessage($message, $psid);
     }

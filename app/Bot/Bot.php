@@ -129,9 +129,9 @@ class Bot
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
         } elseif (static::isAskingPurchaseInvoice($message)) {
-            static::purchaseInvoice($senderId, 1, $message);
+            static::showPurchaseInvoice($senderId, 1, $message);
         } elseif (static::isAskingSalesInvoice($message)) {
-            static::salesInvoice($senderId, 1, $message);
+            static::showSalesInvoice($senderId, 1, $message);
         } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
         } elseif (static::isSayingHello($message)) {
