@@ -11,9 +11,7 @@ trait CanManagePurchases
      */
     public static function isAskingPurchaseInvoice(string $message): bool
     {
-        $message = strtolower($message);
-
-        return Str::contains($message, ['purchase', 'pembelian']);
+        return Str::contains(strtolower($message), ['purchase', 'pembelian']);
     }
 
     /**
