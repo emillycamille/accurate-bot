@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 test('bot can greet user', function () {
     Http::fake();
 
-    User::factory()->withFbName()->create();
+    User::factory()->create();
 
     $this->receiveMessage('Halo bot!');
 
