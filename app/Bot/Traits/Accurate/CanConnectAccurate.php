@@ -96,14 +96,12 @@ trait CanConnectAccurate
         $name = $response->json('user.name');
         $data = Arr::only($response->json(), ['access_token', 'refresh_token']);
         $data['email'] = $response->json('user.email');
-        // CHANGE: name from accurate jangan disimpan lagi
-        $data['accurate_name'] = $name;
 
         // Save the data to the `users` table.
         User::updateOrCreate(['psid' => $psid], $data);
 
         // Send message to user that the login is successful.
-        static::sendMessage(__('bot.login_successful', compact('name')), $psid);
+        static::sendMessage(__('bot.login_successful'), $psid);
     }
 
     /**
