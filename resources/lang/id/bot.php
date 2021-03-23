@@ -57,7 +57,8 @@ return [
 
     // Sales
     'no_sales' => 'Kakak belum ada penjualan. Tetap semangat ya kak 🤗',
-    'no_sales_date' => 'Tidak ada penjualan pada tanggal :date',
+    'no_sales_at' => 'Tidak ada penjualan pada tanggal :date',
     'sales_date_title' => 'Penjualan tanggal :date sebesar ',
     'show_sales_title' => 'Berikut %d Transaksi Penjualanmu:',
+    'total_sales_at' => 'Total penjualan tanggal :date sebesar :amount',
 ];

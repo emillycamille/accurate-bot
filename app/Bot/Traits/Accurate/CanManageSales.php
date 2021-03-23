@@ -15,16 +15,11 @@ trait CanManageSales
         return Str::contains(strtolower($message), ['sales', 'penjualan']);
     }
 
-    public static function isAskingSalesInvoiceWithDate(string $message): bool
-    {
-        return Str::contains($message, ['sales', 'penjualan']) && Str::contains($message, '/');
-    }
-
     /**
      * List last 5 sales invoices.
      */
     // CHANGE: $page pastikan int
-    public static function salesInvoice(string $psid, string $page): void
+    public static function salesInvoice(string $psid, string $page, string $message): void
     {
         // CHANGE: try to make this function more DRY.
         // $transactions = [
@@ -41,6 +36,13 @@ trait CanManageSales
         // $type -> salesInvoice / purchaseInvoice.
 
         // $data = $transactions[$type];
+        $date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/');
+
+        if ($date->isNotEmpty()) {
+            static::showTotalSales($psid, $date);
+
+            return;
+        }
 
         $items = static::askAccurate($psid, 'sales-invoice/list.do', [
             'fields' => 'transDate,totalAmount,statusName,customer',
@@ -83,14 +85,11 @@ trait CanManageSales
         }
     }
 
-    public static function salesInvoiceWithDate(string $message, string $psid): void
+    public static function showTotalSales(string $psid, string $date): void
     {
-        $messageSplit = preg_split('/\s+/', $message);
-        $date = end($messageSplit);
-        $message = sprintf(__('bot.sales_date_title', compact('date')));
         $amount = 0;
-
         $page = 1;
+        
         do {
             $items = static::askAccurate($psid, 'sales-invoice/list.do', [
                 'fields' => 'totalAmount',
@@ -99,7 +98,7 @@ trait CanManageSales
                 ]);
 
             if (count($items['d']) == 0) {
-                static::sendMessage(__('bot.no_sales_date', compact('date')), $psid);
+                static::sendMessage(__('bot.no_sales_at', compact('date')), $psid);
 
                 return;
             }
@@ -108,12 +107,12 @@ trait CanManageSales
                 $amount += $items['d'][$key]['totalAmount'];
             }
 
-            $page += 1;
-            $pageCount = $items['sp']['pageCount'];
-        } while ($page <= $pageCount);
+            $page++;
+        } while ($page <= $items['sp']['pageCount']);
 
         $amount = idr($amount);
-        $message .= $amount;
+
+        $message = __('bot.total_sales_at', compact('date','amount'));
 
         static::sendMessage($message, $psid);
     }
