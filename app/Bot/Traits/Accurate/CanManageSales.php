@@ -72,7 +72,7 @@ trait CanManageSales
         $message .= sprintf(__('bot.page'), compact('page'));
         static::sendMessage($message, $psid);
 
-        // CHANGE: Kasi comment ya.
+        // Send a "Ya" button if the next page is still available.
         if ($items['sp']['pageCount'] > (int) $page) {
             $page += 1;
             $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
@@ -95,7 +95,7 @@ trait CanManageSales
                 'fields' => 'totalAmount',
                 'filter.dueDate.val' => $date,
                 'page' => $page,
-                ]);
+            ]);
 
             if (count($items['d']) == 0) {
                 static::sendMessage(__('bot.no_sales_at', compact('date')), $psid);
