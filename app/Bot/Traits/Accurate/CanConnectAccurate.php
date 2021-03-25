@@ -96,7 +96,6 @@ trait CanConnectAccurate
         $name = $response->json('user.name');
         $data = Arr::only($response->json(), ['access_token', 'refresh_token']);
         $data['email'] = $response->json('user.email');
-
         $data['accurate_name'] = $name;
 
         // Save the data to the `users` table.
