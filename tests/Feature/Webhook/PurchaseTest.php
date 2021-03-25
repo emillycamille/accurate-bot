@@ -106,7 +106,7 @@ test('bot can show purchase invoice at selected date', function () {
     $this->assertRequestSent();
 });
 
-test('bot can\'t show purchase invoice at selected date', function () {
+test('bot can show empty purchase invoice at selected date', function () {
     Http::fake([
         'purchase-invoice/list.do*' => Http::response(['d' => []]),
         '*' => Http::response(),
