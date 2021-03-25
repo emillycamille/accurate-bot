@@ -72,7 +72,7 @@ trait CanManageSales
         $message .= sprintf(__('bot.page'), compact('page'));
         static::sendMessage($message, $psid);
 
-        // Send a "Ya" button if the next page is still available.
+        // Offer to show next page.
         if ($items['sp']['pageCount'] > (int) $page) {
             $page += 1;
             $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
