@@ -56,13 +56,13 @@ return [
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
     'no_purchases_date' => 'Tidak ada pembelian pada tanggal :date',
     'page' => '(Halaman %d)',
-    'show_purchases_title' => 'Berikut %d Transaksi Pembelianmu:',
+    'show_purchases_title' => 'Berikut %d Histori Transaksi Pembelian terakhirmu:',
     'total_purchase_at' => 'Total pembelian tanggal :date sebesar :amount',
 
     // Sales
     'no_sales' => 'Kakak belum ada penjualan. Tetap semangat ya kak 🤗',
     'no_sales_at' => 'Tidak ada penjualan pada tanggal :date',
     'sales_date_title' => 'Penjualan tanggal :date sebesar ',
-    'show_sales_title' => 'Berikut %d Transaksi Penjualanmu:',
+    'show_sales_title' => 'Berikut %d Histori Transaksi Penjualan terakhirmu:',
     'total_sales_at' => 'Total penjualan tanggal :date sebesar :amount',
 ];
