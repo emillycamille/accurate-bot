@@ -102,7 +102,7 @@ trait CanConnectAccurate
         User::updateOrCreate(['psid' => $psid], $data);
 
         // Send message to user that the login is successful.
-        static::sendMessage(__('bot.login_successful'), $psid);
+        static::sendMessage(__('bot.login_successful', compact('name')), $psid);
     }
 
     /**

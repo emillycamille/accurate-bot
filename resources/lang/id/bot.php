@@ -35,7 +35,7 @@ return [
     // Basic
     'choose_db' => 'Pilih database dulu ya..',
     'db_opened' => 'Database berhasil dibuka! Silakan lanjut 😊',
-    'login_successful' => 'Anda berhasil terhubung ke Accurate!',
+    'login_successful' => 'Anda berhasil terhubung ke Accurate sebagai user :name!',
     'no_db' => 'Tidak ada database yang ditemukan untuk akun Accurate ini. Coba ganti akun?',
 
     // Customer
