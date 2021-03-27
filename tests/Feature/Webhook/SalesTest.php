@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
 const SALES_ITEMS =
@@ -59,6 +60,10 @@ const SALES_ITEMS =
 
 beforeEach(function () {
     User::factory()->withSession()->create();
+
+    $time = new Carbon('06-02-2021 10:00');
+
+    $this->travelTo($time);
 });
 
 test('bot can show sales invoice at that day', function () {
@@ -117,7 +122,7 @@ test('bot can show sales invoice at selected date', function () {
     $this->assertRequestSent();
 });
 
-test('bot can\'t show sales invoice at selected date', function () {
+test('bot can show empty sales invoice at selected date', function () {
     Http::fake([
         'sales-invoice/list.do*' => Http::response(['d' => []]),
         '*' => Http::response(),
