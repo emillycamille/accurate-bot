@@ -51,7 +51,7 @@ const PURCHASE_ITEMS =
     ],
     'sp' => [
         'page' => 1,
-        'pageCount' => 12,
+        'pageCount' => 2,
         'pageSize' => 5,
     ],
 
@@ -61,13 +61,24 @@ beforeEach(function () {
     User::factory()->withSession()->create();
 });
 
+test('bot can show purchase invoice at that day', function () {
+    Http::fake([
+        'purchase-invoice/list.do*' => Http::response(PURCHASE_ITEMS),
+        '*' => Http::response(),
+    ]);
+
+    $this->receiveMessage('pembelian');
+
+    $this->assertRequestSent();
+});
+
 test('bot can show purchase invoice (more than 5 invoices)', function () {
     Http::fake([
         'purchase-invoice/list.do*' => Http::response(PURCHASE_ITEMS),
         '*' => Http::response(),
     ]);
 
-    $this->receiveMessage('pembelian sebelumnya');
+    $this->receiveMessage('histori pembelian sebelumnya');
 
     $this->assertRequestSent();
 });
@@ -84,7 +95,7 @@ test('bot can show purchase invoice (less than 5 invoices)', function () {
         '*' => Http::response(),
     ]);
 
-    $this->receiveMessage('purchase masa lalu');
+    $this->receiveMessage('history purchase masa lalu');
 
     $this->assertRequestSent();
 });

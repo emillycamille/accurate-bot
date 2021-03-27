@@ -41,6 +41,10 @@ trait CanManageSales
             static::showTotalSales($psid, $date);
 
             return;
+        } elseif (! Str::contains($message, ['history', 'histori'])) {
+            static::showTotalSales($psid, now()->format('d/m/Y'));
+
+            return;
         }
 
         $items = static::askAccurate($psid, 'sales-invoice/list.do', [

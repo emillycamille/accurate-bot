@@ -26,6 +26,10 @@ trait CanManagePurchases
             static::showTotalPurchase($psid, $date);
 
             return;
+        } elseif (! Str::contains($message, ['history', 'histori'])) {
+            static::showTotalPurchase($psid, now()->format('d/m/Y'));
+
+            return;
         }
 
         $items = static::askAccurate($psid, 'purchase-invoice/list.do', [

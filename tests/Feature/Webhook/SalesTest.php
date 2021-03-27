@@ -51,7 +51,7 @@ const SALES_ITEMS =
     ],
     'sp' => [
         'page' => 1,
-        'pageCount' => 12,
+        'pageCount' => 2,
         'pageSize' => 5,
     ],
 
@@ -61,13 +61,24 @@ beforeEach(function () {
     User::factory()->withSession()->create();
 });
 
+test('bot can show sales invoice at that day', function () {
+    Http::fake([
+        'sales-invoice/list.do*' => Http::response(SALES_ITEMS),
+        '*' => Http::response(),
+    ]);
+
+    $this->receiveMessage('penjualan');
+
+    $this->assertRequestSent();
+});
+
 test('bot can show sales invoice (more than 5 invoices)', function () {
     Http::fake([
         'sales-invoice/list.do*' => Http::response(SALES_ITEMS),
         '*' => Http::response(),
     ]);
 
-    $this->receiveMessage('penjualan sebelumnya');
+    $this->receiveMessage('histori penjualan sebelumnya');
 
     $this->assertRequestSent();
 });
@@ -84,7 +95,7 @@ test('bot can show sales invoice (less than 5 invoices)', function () {
         '*' => Http::response(),
     ]);
 
-    $this->receiveMessage('sales masa lalu');
+    $this->receiveMessage('history sales masa lalu');
 
     $this->assertRequestSent();
 });
