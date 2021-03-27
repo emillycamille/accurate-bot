@@ -37,10 +37,13 @@ trait CanManageSales
         // $data = $transactions[$type];
         $date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/');
 
+        // If $message contains a date, show TOTAL sales of that date.
         if ($date->isNotEmpty()) {
             static::showTotalSales($psid, $date);
 
             return;
+
+        // If $message does not contain "history", return the TOTAL sales at that moment.
         } elseif (! Str::contains(strtolower($message), ['history', 'histori'])) {
             static::showTotalSales($psid, now()->format('d/m/Y'));
 
@@ -59,6 +62,7 @@ trait CanManageSales
             return;
         }
 
+        // Show sales HISTORY.
         $message = sprintf(__('bot.show_sales_title'), count($items['d']))."\n\n";
 
         foreach ($items['d'] as $key => $value) {

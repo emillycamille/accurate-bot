@@ -19,13 +19,15 @@ trait CanManagePurchases
      */
     public static function showPurchaseInvoice(string $psid, int $page, string $message): void
     {
-        // If $message contains a date, show total purchase of that date.
+        // If $message contains a date, show TOTAL purchase of that date.
         $date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/');
 
         if ($date->isNotEmpty()) {
             static::showTotalPurchase($psid, $date);
 
             return;
+
+        // If $message does not contain "history", return the TOTAL purchase at that moment.
         } elseif (! Str::contains(strtolower($message), ['history', 'histori'])) {
             static::showTotalPurchase($psid, now()->format('d/m/Y'));
 
@@ -44,6 +46,7 @@ trait CanManagePurchases
             return;
         }
 
+        // Show purchase HISTORY.
         $message = sprintf(__('bot.show_purchases_title'), count($items['d']))."\n\n";
 
         foreach ($items['d'] as $key => $value) {
