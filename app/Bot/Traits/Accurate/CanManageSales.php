@@ -41,7 +41,7 @@ trait CanManageSales
             static::showTotalSales($psid, $date);
 
             return;
-        } elseif (! Str::contains($message, ['history', 'histori'])) {
+        } elseif (! Str::contains(strtolower($message), ['history', 'histori'])) {
             static::showTotalSales($psid, now()->format('d/m/Y'));
 
             return;

@@ -26,7 +26,7 @@ trait CanManagePurchases
             static::showTotalPurchase($psid, $date);
 
             return;
-        } elseif (! Str::contains($message, ['history', 'histori'])) {
+        } elseif (! Str::contains(strtolower($message), ['history', 'histori'])) {
             static::showTotalPurchase($psid, now()->format('d/m/Y'));
 
             return;
