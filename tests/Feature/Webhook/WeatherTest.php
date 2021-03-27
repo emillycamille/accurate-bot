@@ -18,7 +18,7 @@ test('bot can tell weather at Jakarta', function () {
     $this->assertRequestSent();
 });
 
-test('bot cannot tell unavailable weather', function () {
+test('bot can return fallback for unavailable city', function () {
     Http::fake([
         config('bot.weather_api_url').'*' => Http::response(null, 404),
         '*' => Http::response(),
