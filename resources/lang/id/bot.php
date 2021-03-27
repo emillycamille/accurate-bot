@@ -15,8 +15,12 @@ return [
 
     'abilities' => [
         'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>")',
-        'can_show_purchases' => 'Menampilkan histori pembelian ("Histori pembelian"/"Purchase history")',
-        'can_show_sales' => 'Menampilkan histori penjualan ("Histori penjualan"/"Sales history")',
+        'can_show_purchases_history' => 'Menampilkan histori pembelian ("Histori pembelian"/"Purchase history")',
+        'can_show_purchases_today' => 'Menampilkan total pembelian hari ini("Pembelian"/"Purchase")',
+        'can_show_purchases' => 'Menampilkan pembelian pada tanggal tertentu("Pembelian 1/1/2021")',
+        'can_show_sales_history' => 'Menampilkan histori penjualan ("Histori penjualan"/"Sales history")',
+        'can_show_sales_today' => 'Menampilkan total penjualan hari ini("Penjualan"/"Sales")',
+        'can_show_sales' => 'Menampilkan penjualan pada tanggal tertentu("Penjualan 1/1/2021")',
         'can_switch_db' => 'Mengganti database yang sedang aktif ("Ganti db")',
         'can_do_math' => 'Menjalankan operasi matematika',
         'can_tell_time' => 'Menampilkan waktu saat ini ("Jam"/"Hari"/"Hari jam")',
