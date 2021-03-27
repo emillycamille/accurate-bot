@@ -57,6 +57,7 @@ trait CanManagePurchases
         $message .= sprintf(__('bot.page'), $page);
         static::sendMessage($message, $psid);
 
+        // Offer to show next page
         if ($items['sp']['pageCount'] > (int) $page) {
             $page += 1;
             $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
@@ -69,6 +70,9 @@ trait CanManagePurchases
         }
     }
 
+    /**
+     * Show total purchase at the requested date.
+     */
     public static function showTotalPurchase(string $psid, string $date): void
     {
         $amount = 0;

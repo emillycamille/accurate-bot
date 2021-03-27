@@ -84,6 +84,9 @@ trait CanManageSales
         }
     }
 
+    /**
+     * Show total sales at the requested date.
+     */
     public static function showTotalSales(string $psid, string $date): void
     {
         $amount = 0;
