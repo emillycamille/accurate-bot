@@ -17,7 +17,7 @@ trait CanManagePurchases
     /**
      * List last 5 purchase invoices.
      */
-    public static function showPurchaseInvoice(string $psid, int $page, string $message): void
+    public static function showPurchaseInvoice(string $psid, int $page, string $message = null): void
     {
         // If $message contains a date, show TOTAL purchase of that date.
         $date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/');

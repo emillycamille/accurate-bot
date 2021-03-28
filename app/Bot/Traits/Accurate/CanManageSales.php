@@ -18,7 +18,7 @@ trait CanManageSales
     /**
      * List last 5 sales invoices.
      */
-    public static function showSalesInvoice(string $psid, int $page, string $message): void
+    public static function showSalesInvoice(string $psid, int $page, string $message = null): void
     {
         // CHANGE: try to make this function more DRY.
         // $transactions = [

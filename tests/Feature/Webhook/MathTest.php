@@ -42,7 +42,7 @@ test('bot can calculate "3^2"', function () {
     $this->assertRequestSent();
 });
 
-test('bot can return fallback for unvalid math expression', function () {
+test('bot can return fallback for invalid math expression', function () {
     $this->receiveMessage('64 /+8');
 
     $this->assertRequestSent();
