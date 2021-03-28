@@ -15,7 +15,7 @@ return [
 
     'abilities' => [
         'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>")',
-        'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer")',
+        'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer>")',
         'can_show_purchases_history' => 'Menampilkan histori pembelian ("Histori pembelian"/"Purchase history")',
         'can_show_purchases_today' => 'Menampilkan total pembelian hari ini("Pembelian"/"Purchase")',
         'can_show_purchases' => 'Menampilkan pembelian pada tanggal tertentu("Pembelian 1/1/2021")',
