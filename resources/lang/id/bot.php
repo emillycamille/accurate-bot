@@ -11,7 +11,7 @@ return [
     'yes' => 'Ya',
 
     // Available Functions
-    'available_functions' => 'Untuk saat ini, Emily bisa:',
+    'available_functions' => 'Untuk saat ini, Naya bisa:',
 
     'abilities' => [
         'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>")',
@@ -28,11 +28,11 @@ return [
     ],
 
     // Greet User
-    'get_started_message' => 'Salam kenal, :name! 👋🏻 Aku Emily, kalau kamu butuh bantuan, bisa ketik "help"',
+    'get_started_message' => 'Salam kenal, :name! 👋🏻 Aku Naya, kalau kamu butuh bantuan, bisa ketik "help"',
     'greet_user' => 'Hai, :name! 🤗 Apa kabar? Have a nice day ya ☺️. Kalau kamu butuh bantuan, bisa ketik "help"',
 
     // Weather
-    'city_not_found' => 'Waduhh, Emily gak bisa ketemu kota yang kamu cari nih.. Coba isi kota lain 😉.',
+    'city_not_found' => 'Waduhh, Naya gak bisa ketemu kota yang kamu cari nih.. Coba isi kota lain 😉.',
     'weather_reply' => 'Cuaca di kota :city adalah :description dengan suhu :temp ºC.',
 
     // Accurate Related Replies
