@@ -17,7 +17,7 @@ trait CanManagePurchases
     /**
      * List last 5 purchase invoices.
      */
-    public static function showPurchaseInvoice(string $psid, int $page, string $message = "histori pembelian"): void
+    public static function showPurchaseInvoice(string $psid, int $page, string $message = 'histori pembelian'): void
     {
         // If $message contains a date, show TOTAL purchase of that date.
         $date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/');
@@ -27,8 +27,8 @@ trait CanManagePurchases
 
             return;
 
-            // If $message does not contain "history", return the TOTAL purchase at that moment.
-        } elseif (!Str::contains(strtolower($message), ['history', 'histori'])) {
+        // If $message does not contain "history", return the TOTAL purchase at that moment.
+        } elseif (! Str::contains(strtolower($message), ['history', 'histori'])) {
             static::showTotalPurchase($psid, now()->format('d/m/Y'));
 
             return;
@@ -47,21 +47,21 @@ trait CanManagePurchases
         }
 
         // Show purchase HISTORY.
-        $message = sprintf(__('bot.show_purchases_title'), count($items['d'])) . "\n\n";
+        $message = sprintf(__('bot.show_purchases_title'), count($items['d']))."\n\n";
 
         foreach ($items['d'] as $key => $value) {
             $message .= sprintf('%d. ', (5 * (int) $page - 4) + $key);
             $message .= sprintf(
-                '%s %s %s (%s)' . "\n",
-                $items['d'][$key]['transDate'] . "\n",
-                $items['d'][$key]['vendor']['name'] . "\n",
-                idr($items['d'][$key]['totalAmount']) . "\n",
+                '%s %s %s (%s)'."\n",
+                $items['d'][$key]['transDate']."\n",
+                $items['d'][$key]['vendor']['name']."\n",
+                idr($items['d'][$key]['totalAmount'])."\n",
                 $items['d'][$key]['statusName']
             );
             $message .= "\n";
         }
 
-        $message .= sprintf(__('bot.page'), $page);
+        $message .= sprintf(__('bot.page', compact('page')));
         static::sendMessage($message, $psid);
 
         // Offer to show next page
