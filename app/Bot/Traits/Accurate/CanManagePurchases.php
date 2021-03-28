@@ -52,10 +52,10 @@ trait CanManagePurchases
         foreach ($items['d'] as $key => $value) {
             $message .= sprintf('%d. ', (5 * (int) $page - 4) + $key);
             $message .= sprintf(
-                '%s - %s %s (%s)',
-                $items['d'][$key]['transDate'],
-                $items['d'][$key]['vendor']['name'],
-                idr($items['d'][$key]['totalAmount']),
+                '%s %s %s (%s)'."\n",
+                $items['d'][$key]['transDate']."\n",
+                $items['d'][$key]['vendor']['name']."\n",
+                idr($items['d'][$key]['totalAmount'])."\n",
                 $items['d'][$key]['statusName']
             );
             $message .= "\n";
@@ -70,7 +70,7 @@ trait CanManagePurchases
             $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
                 'type' => 'postback',
                 'title' => __('bot.yes'),
-                'payload' => "PURCHASE_INVOICE:$psid:$page",
+                'payload' => "SHOW_PURCHASE_INVOICE:$psid:$page",
             ]]);
 
             static::sendMessage($payload, $psid);
