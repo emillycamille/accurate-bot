@@ -55,7 +55,7 @@ return [
     'ask_next_page' => 'Halaman berikutnya?',
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
     'no_purchases_date' => 'Tidak ada pembelian pada tanggal :date',
-    'page' => '(Halaman %d)',
+    'page' => '--- Halaman %d ---',
     'show_purchases_title' => 'Berikut %d Histori Transaksi Pembelian terakhirmu:',
     'total_purchase_at' => 'Total pembelian tanggal :date sebesar :amount',
 

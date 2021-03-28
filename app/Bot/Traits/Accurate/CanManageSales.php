@@ -18,7 +18,7 @@ trait CanManageSales
     /**
      * List last 5 sales invoices.
      */
-    public static function showSalesInvoice(string $psid, int $page, string $message = null): void
+    public static function showSalesInvoice(string $psid, int $page, string $message = "histori penjualan"): void
     {
         // CHANGE: try to make this function more DRY.
         // $transactions = [
@@ -43,8 +43,8 @@ trait CanManageSales
 
             return;
 
-        // If $message does not contain "history", return the TOTAL sales at that moment.
-        } elseif (! Str::contains(strtolower($message), ['history', 'histori'])) {
+            // If $message does not contain "history", return the TOTAL sales at that moment.
+        } elseif (!Str::contains(strtolower($message), ['history', 'histori'])) {
             static::showTotalSales($psid, now()->format('d/m/Y'));
 
             return;
@@ -63,15 +63,15 @@ trait CanManageSales
         }
 
         // Show sales HISTORY.
-        $message = sprintf(__('bot.show_sales_title'), count($items['d']))."\n\n";
+        $message = sprintf(__('bot.show_sales_title'), count($items['d'])) . "\n\n";
 
         foreach ($items['d'] as $key => $value) {
             $message .= sprintf('%d. ', (5 * (int) $page - 4) + $key);
             $message .= sprintf(
-                '%s %s %s (%s)'."\n",
-                $items['d'][$key]['transDate']."\n",
-                $items['d'][$key]['customer']['name']."\n",
-                idr($items['d'][$key]['totalAmount'])."\n",
+                '%s %s %s (%s)' . "\n",
+                $items['d'][$key]['transDate'] . "\n",
+                $items['d'][$key]['customer']['name'] . "\n",
+                idr($items['d'][$key]['totalAmount']) . "\n",
                 $items['d'][$key]['statusName']
             );
             $message .= "\n";
@@ -81,7 +81,7 @@ trait CanManageSales
 
         // Offer to show next page.
         if ($items['sp']['pageCount'] > (int) $page) {
-            $page += 1;
+            $page++;
             $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
                 'type' => 'postback',
                 'title' => __('bot.yes'),

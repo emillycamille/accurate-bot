@@ -7,7 +7,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "Berikut 3 Histori Transaksi Penjualan terakhirmu:\n\n1. TEST_DATE1\n TEST_NAME1\n Rp1\n (TEST_STATUS1)\n\n2. TEST_DATE2\n TEST_NAME2\n Rp1\n (TEST_STATUS2)\n\n3. TEST_DATE3\n TEST_NAME3\n Rp1\n (TEST_STATUS3)\n\n(Halaman 1)"
+            "text": "Berikut 3 Histori Transaksi Penjualan terakhirmu:\n\n1. TEST_DATE1\n TEST_NAME1\n Rp1\n (TEST_STATUS1)\n\n2. TEST_DATE2\n TEST_NAME2\n Rp1\n (TEST_STATUS2)\n\n3. TEST_DATE3\n TEST_NAME3\n Rp1\n (TEST_STATUS3)\n\n--- Halaman 1 ---"
         }
     }
 }
