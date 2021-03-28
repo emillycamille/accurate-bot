@@ -23,7 +23,7 @@ trait CanShowHelp
         foreach (__('bot.abilities') as $key => $value) {
             $reply .= sprintf('%d. ', $count);
             $reply .= $value;
-            $reply .= "\n";
+            $reply .= "\n\n";
             $count++;
         }
 
