@@ -28,8 +28,9 @@ trait CanManageCustomers
 
         if (! Str::contains($message, 'customer')) {
             return false;
+        } else if ($message == 'customer') {
+            return ' ';
         }
-
         return trim(Str::after($message, 'customer'));
     }
 
@@ -52,6 +53,12 @@ trait CanManageCustomers
      */
     public static function listCustomer(string $psid, string $keyword): void
     {
+        if ($keyword == ' ') {
+            static::sendMessage(__('bot.unknown_customer'), $psid);
+
+            return;
+        }
+
         $customers = static::askAccurate($psid, 'customer/list.do', [
             'fields' => 'id,name,balanceList,createDate,customerBranchName',
             'filter.keywords.op' => 'CONTAIN',

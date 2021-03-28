@@ -47,6 +47,7 @@ return [
     // Customer
     'multiple_customers_match_keyword' => 'Ada beberapa customer ditemukan, siapa yang anda maksud?',
     'no_customers_match_keyword' => 'Tidak ditemukan customer dengan keyword ":keyword"',
+    'unknown_customer' => 'Hmm bisa lebih spesifik? Coba ketik "Customer <nama customer>"',
 
     // Item
     'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang anda maksud?',

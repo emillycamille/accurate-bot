@@ -53,6 +53,16 @@ test('bot can detail customer', function () {
     test()->assertRequestSent(true);
 });
 
+test('bot can handle unknown customer', function () {
+    Http::fake();
+
+    $this->receiveMessage('customer');
+
+    // Assert that correct Send API request is sent.
+    $this->assertRequestSent();
+});
+
+
 function testFindCustomer(string $mode): void
 {
     switch ($mode) {
