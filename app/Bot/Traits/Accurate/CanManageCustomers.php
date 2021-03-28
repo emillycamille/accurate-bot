@@ -28,9 +28,10 @@ trait CanManageCustomers
 
         if (! Str::contains($message, 'customer')) {
             return false;
-        } else if ($message == 'customer') {
+        } elseif ($message == 'customer') {
             return ' ';
         }
+
         return trim(Str::after($message, 'customer'));
     }
 

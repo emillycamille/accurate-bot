@@ -62,7 +62,6 @@ test('bot can handle unknown customer', function () {
     $this->assertRequestSent();
 });
 
-
 function testFindCustomer(string $mode): void
 {
     switch ($mode) {
