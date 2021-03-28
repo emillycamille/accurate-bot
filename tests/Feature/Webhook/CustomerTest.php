@@ -13,6 +13,7 @@ const CUSTOMERS = [
             'balance' => 250000,
         ]],
         'createDate' => '19/04/2018 14:29:29',
+        'customerBranchName' => 'SURABAYA',
     ],
     [
         'id' => 2,
@@ -21,6 +22,7 @@ const CUSTOMERS = [
             'balance' => 200000,
         ]],
         'createDate' => '21/04/2018 20:00:29',
+        'customerBranchName' => 'JAKARTA',
     ],
 ];
 

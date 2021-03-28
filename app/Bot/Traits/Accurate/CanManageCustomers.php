@@ -39,9 +39,10 @@ trait CanManageCustomers
     public static function customerToString(array $customer): string
     {
         return sprintf(
-            "%s\n%s: %s\n%s: %s",
+            "%s\n%s: %s\n%s: %s\n%s: %s",
             $customer['name'],
             __('bot.balance'), idr(data_get($customer, 'balanceList.0.balance', 0)),
+            __('bot.city'), data_get($customer, 'customerBranchName', 'Tidak terdaftar'),
             __('bot.registered_since'), Str::before($customer['createDate'], ' '),
         );
     }
@@ -52,7 +53,7 @@ trait CanManageCustomers
     public static function listCustomer(string $psid, string $keyword): void
     {
         $customers = static::askAccurate($psid, 'customer/list.do', [
-            'fields' => 'id,name,balanceList,createDate',
+            'fields' => 'id,name,balanceList,createDate,customerBranchName',
             'filter.keywords.op' => 'CONTAIN',
             'filter.keywords.val' => $keyword,
             // FB allows max 13 quick replies.

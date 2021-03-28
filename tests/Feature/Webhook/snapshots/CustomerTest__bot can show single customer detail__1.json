@@ -11,9 +11,9 @@
         ]
     },
     "method": "GET",
-    "url": "HOST\/accurate\/api\/customer\/list.do?fields=id%2Cname%2CbalanceList%2CcreateDate&filter.keywords.op=CONTAIN&filter.keywords.val=keyword&sp.pageSize=13",
+    "url": "HOST\/accurate\/api\/customer\/list.do?fields=id%2Cname%2CbalanceList%2CcreateDate%2CcustomerBranchName&filter.keywords.op=CONTAIN&filter.keywords.val=keyword&sp.pageSize=13",
     "data": {
-        "fields": "id,name,balanceList,createDate",
+        "fields": "id,name,balanceList,createDate,customerBranchName",
         "filter.keywords.op": "CONTAIN",
         "filter.keywords.val": "keyword",
         "sp.pageSize": 13
