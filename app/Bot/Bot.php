@@ -139,7 +139,7 @@ class Bot
         } elseif (static::isAskingHelp($message)) {
             $reply = static::tellHelp();
         } else {
-            $reply = __('bot.still_learning',compact('message'));
+            $reply = __('bot.still_learning', compact('message'));
         }
 
         if (isset($reply)) {
