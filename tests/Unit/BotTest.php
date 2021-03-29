@@ -10,6 +10,10 @@ beforeEach(function () {
             ->push(['s' => false], 401)
             ->push(['s' => true]),
 
+        'INVALID/TOKEN' => Http::response([
+            'error' => 'invalid_token',
+        ], 401),
+
         'db-list.do' => Http::response([
             // CHANGE: remove, pake data_get di canConnectAccurate.
             's' => true,
@@ -29,6 +33,14 @@ beforeEach(function () {
 
 it('sends login button if psid is unrecognized', function () {
     Bot::askAccurate('PS_ID', 'ANY_URL');
+
+    $this->assertRequestSent();
+});
+
+it('sends login button if access token is invalid', function () {
+    User::factory()->withSession()->create();
+
+    Bot::askAccurate('PS_ID', 'INVALID/TOKEN');
 
     $this->assertRequestSent();
 });
