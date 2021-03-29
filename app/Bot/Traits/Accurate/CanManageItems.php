@@ -41,7 +41,7 @@ trait CanManageItems
     {
         $message = strtolower($message);
 
-        if (!Str::contains($message, 'item')) {
+        if (! Str::contains($message, 'item')) {
             return false;
         } elseif ($message == 'item') {
             return ' ';
@@ -93,7 +93,7 @@ trait CanManageItems
         } elseif (count($items) === 1) {
             $payload = static::itemToString($items[0]);
         } else {
-            $text = __('bot.multiple_items_match_keyword') . "\n\n";
+            $text = __('bot.multiple_items_match_keyword')."\n\n";
             $buttons = [];
 
             foreach ($items as $i => $item) {
@@ -120,7 +120,7 @@ trait CanManageItems
     {
         $user = User::where('psid', $psid)->firstOrFail();
 
-        $url = $user->host . $url . '?' . http_build_query(
+        $url = $user->host.$url.'?'.http_build_query(
             $user->only('access_token', 'session')
         );
 

@@ -26,7 +26,7 @@ trait CanManageCustomers
     {
         $message = strtolower($message);
 
-        if (!Str::contains($message, 'customer')) {
+        if (! Str::contains($message, 'customer')) {
             return false;
         } elseif ($message == 'customer') {
             return ' ';
@@ -42,9 +42,9 @@ trait CanManageCustomers
     {
         return sprintf(
             '%s%s/%s%s: %s',
-            $customer['name'] . "\n",
-            data_get($customer, 'workPhone'),
-            data_get($customer, 'mobilePhone') . "\n",
+            $customer['name']."\n",
+            data_get($customer, 'workPhone', 'HP tidak terdaftar'),
+            data_get($customer, 'mobilePhone', 'HP tidak terdaftar')."\n",
             __('bot.outstanding'),
             idr(data_get($customer, 'balanceList.0.balance', 0)),
         );
@@ -62,7 +62,7 @@ trait CanManageCustomers
         }
 
         $customers = static::askAccurate($psid, 'customer/list.do', [
-            'fields' => 'id,name,balanceList,createDate,customerBranchName',
+            'fields' => 'id,name,balanceList,mobilePhone,workPhone',
             'filter.keywords.op' => 'CONTAIN',
             'filter.keywords.val' => $keyword,
             // FB allows max 13 quick replies.
@@ -78,7 +78,7 @@ trait CanManageCustomers
         } elseif (count($customers) === 1) {
             $payload = static::customerToString($customers[0]);
         } else {
-            $text = __('bot.multiple_customers_match_keyword') . "\n\n";
+            $text = __('bot.multiple_customers_match_keyword')."\n\n";
             $buttons = [];
 
             foreach ($customers as $i => $customer) {
