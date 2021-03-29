@@ -11,6 +11,7 @@ return [
     'registered_since' => 'Terdaftar sejak',
     'stock' => 'Stok',
     'yes' => 'Ya',
+    'still_learning' => 'Sepertinya Naya belum mengerti \':message\' nih. Kamu bisa ketik "help" untuk bantuan 😊.',
 
     // Available Functions
     'available_functions' => 'Untuk saat ini, Naya bisa:',
