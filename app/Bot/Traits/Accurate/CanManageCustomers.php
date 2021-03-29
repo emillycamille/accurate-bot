@@ -27,12 +27,14 @@ trait CanManageCustomers
     {
         $message = strtolower($message);
 
-        if (! Str::contains($message, 'customer')) {
-            return false;
+        foreach (['customer', 'pelanggan'] as $needle) {
+            if (Str::contains($message, $needle)) {
+                // Return ' ' (space) if keyword is not given.
+                return trim(Str::after($message, $needle)) ?: ' ';
+            }
         }
 
-        // Return ' ' (space) if customer keyword is not given.
-        return trim(Str::after($message, 'customer')) ?: ' ';
+        return false;
     }
 
     /**

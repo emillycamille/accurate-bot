@@ -41,13 +41,14 @@ trait CanManageItems
     {
         $message = strtolower($message);
 
-        if (! Str::contains($message, 'item')) {
-            return false;
-        } elseif ($message == 'item') {
-            return ' ';
+        foreach (['item', 'stok'] as $needle) {
+            if (Str::contains($message, $needle)) {
+                // Return ' ' (space) if item keyword is not given.
+                return trim(Str::after($message, $needle)) ?: ' ';
+            }
         }
 
-        return trim(Str::after($message, 'item'));
+        return false;
     }
 
     /**
@@ -70,7 +71,9 @@ trait CanManageItems
      */
     public static function listItem(string $psid, string $keyword): void
     {
-        if ($keyword == ' ') {
+        $keyword = trim($keyword);
+
+        if (!$keyword) {
             static::sendMessage(__('bot.unknown_item'), $psid);
 
             return;
