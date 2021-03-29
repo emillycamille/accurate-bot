@@ -20,7 +20,9 @@ trait CanManageItems
 
         // If there's an image, offer to show that image.
         if ($image = data_get($item, 'detailItemImage.0.fileName')) {
-            $payload = static::makeButtonPayload(__('bot.prompt_show_image'), [[
+            $payload = static::makeButtonPayload(
+                __('bot.prompt_show_image'),
+                [[
                     'type' => 'postback',
                     'title' => __('bot.yes'),
                     'payload' => "SHOW_IMAGE:$psid:$image",
@@ -39,8 +41,10 @@ trait CanManageItems
     {
         $message = strtolower($message);
 
-        if (! Str::contains($message, 'item')) {
+        if (!Str::contains($message, 'item')) {
             return false;
+        } elseif ($message == 'item') {
+            return ' ';
         }
 
         return trim(Str::after($message, 'item'));
@@ -54,8 +58,10 @@ trait CanManageItems
         return sprintf(
             "%s\n%s: %s\n%s: %s",
             $item['name'],
-            __('bot.price'), idr($item['unitPrice']),
-            __('bot.stock'), $item['availableToSell'],
+            __('bot.price'),
+            idr($item['unitPrice']),
+            __('bot.stock'),
+            $item['availableToSell'],
         );
     }
 
@@ -64,6 +70,12 @@ trait CanManageItems
      */
     public static function listItem(string $psid, string $keyword): void
     {
+        if ($keyword == ' ') {
+            static::sendMessage(__('bot.unknown_item'), $psid);
+
+            return;
+        }
+
         $items = static::askAccurate($psid, 'item/list.do', [
             'fields' => 'id,name,availableToSell,unitPrice',
             'filter.keywords.op' => 'CONTAIN',
@@ -81,7 +93,7 @@ trait CanManageItems
         } elseif (count($items) === 1) {
             $payload = static::itemToString($items[0]);
         } else {
-            $text = __('bot.multiple_items_match_keyword')."\n\n";
+            $text = __('bot.multiple_items_match_keyword') . "\n\n";
             $buttons = [];
 
             foreach ($items as $i => $item) {
@@ -108,7 +120,7 @@ trait CanManageItems
     {
         $user = User::where('psid', $psid)->firstOrFail();
 
-        $url = $user->host.$url.'?'.http_build_query(
+        $url = $user->host . $url . '?' . http_build_query(
             $user->only('access_token', 'session')
         );
 

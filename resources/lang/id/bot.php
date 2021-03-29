@@ -54,6 +54,7 @@ return [
     'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang anda maksud?',
     'no_items_match_keyword' => 'Tidak ditemukan item dengan keyword ":keyword"',
     'prompt_show_image' => 'Tampilkan gambar?',
+    'unknown_item' => 'Untuk mencari item, bisa dengan ketik "item <keyword item>"',
 
     // Purchases
     'ask_next_page' => 'Halaman berikutnya?',
