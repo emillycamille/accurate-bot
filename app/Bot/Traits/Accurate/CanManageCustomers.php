@@ -28,11 +28,9 @@ trait CanManageCustomers
 
         if (! Str::contains($message, 'customer')) {
             return false;
-        } elseif ($message == 'customer') {
-            return ' ';
         }
 
-        return trim(Str::after($message, 'customer'));
+        return trim(Str::after($message, 'customer')) ?: ' ';
     }
 
     /**
@@ -67,7 +65,9 @@ trait CanManageCustomers
      */
     public static function listCustomer(string $psid, string $keyword): void
     {
-        if ($keyword == ' ') {
+        $keyword = trim($keyword);
+
+        if (!$keyword) {
             static::sendMessage(__('bot.unknown_customer'), $psid);
 
             return;

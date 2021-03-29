@@ -50,7 +50,7 @@ test('bot can detail customer', function () {
 
     $this->receivePostback('DETAIL_CUSTOMER:PS_ID:1');
 
-    test()->assertRequestSent(true);
+    $this->assertRequestSent(true);
 });
 
 test('bot can handle unknown customer', function () {
@@ -58,7 +58,6 @@ test('bot can handle unknown customer', function () {
 
     $this->receiveMessage('customer');
 
-    // Assert that correct Send API request is sent.
     $this->assertRequestSent();
 });
 
