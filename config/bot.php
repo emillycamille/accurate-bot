@@ -41,6 +41,11 @@ return [
     'fb_verify_token' => env('FB_VERIFY_TOKEN'),
 
     /*
+     * A boolean to indicate whether "typing on" should be sent to Messenger.
+     */
+    'typing_on' => env('TYPING_ON', true),
+
+    /*
      * Weather API key.
      */
     'weather_api_key' => env('WEATHER_API_KEY'),

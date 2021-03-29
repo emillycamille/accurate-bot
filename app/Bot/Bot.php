@@ -200,6 +200,10 @@ class Bot
      */
     public static function typingOn(string $psid): void
     {
-        static::sendToFb($psid, ['sender_action' => 'typing_on']);
+        // Typing on is turned off during testing to prevent extra snapshot for
+        // each feature test.
+        if (config('bot.typing_on')) {
+            static::sendToFb($psid, ['sender_action' => 'typing_on']);
+        }
     }
 }
