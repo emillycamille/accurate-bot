@@ -20,7 +20,9 @@ trait CanManageItems
 
         // If there's an image, offer to show that image.
         if ($image = data_get($item, 'detailItemImage.0.fileName')) {
-            $payload = static::makeButtonPayload(__('bot.prompt_show_image'), [[
+            $payload = static::makeButtonPayload(
+                __('bot.prompt_show_image'),
+                [[
                     'type' => 'postback',
                     'title' => __('bot.yes'),
                     'payload' => "SHOW_IMAGE:$psid:$image",
@@ -39,11 +41,14 @@ trait CanManageItems
     {
         $message = strtolower($message);
 
-        if (! Str::contains($message, 'item')) {
-            return false;
+        foreach (['item', 'stok'] as $needle) {
+            if (Str::contains($message, $needle)) {
+                // Return ' ' (space) if item keyword is not given.
+                return trim(Str::after($message, $needle)) ?: ' ';
+            }
         }
 
-        return trim(Str::after($message, 'item'));
+        return false;
     }
 
     /**
@@ -54,8 +59,10 @@ trait CanManageItems
         return sprintf(
             "%s\n%s: %s\n%s: %s",
             $item['name'],
-            __('bot.price'), idr($item['unitPrice']),
-            __('bot.stock'), $item['availableToSell'],
+            __('bot.price'),
+            idr($item['unitPrice']),
+            __('bot.stock'),
+            $item['availableToSell'],
         );
     }
 
@@ -64,6 +71,14 @@ trait CanManageItems
      */
     public static function listItem(string $psid, string $keyword): void
     {
+        $keyword = trim($keyword);
+
+        if (! $keyword) {
+            static::sendMessage(__('bot.unknown_item'), $psid);
+
+            return;
+        }
+
         $items = static::askAccurate($psid, 'item/list.do', [
             'fields' => 'id,name,availableToSell,unitPrice',
             'filter.keywords.op' => 'CONTAIN',

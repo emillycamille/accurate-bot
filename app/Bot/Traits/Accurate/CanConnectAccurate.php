@@ -3,6 +3,7 @@
 namespace App\Bot\Traits\Accurate;
 
 use App\Models\User;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -10,7 +11,11 @@ use Illuminate\Support\Str;
 
 trait CanConnectAccurate
 {
-    use CanManageItems, CanManageSales, CanManagePurchases, CanManageDb;
+    use CanManageCustomers,
+        CanManageItems,
+        CanManageSales,
+        CanManagePurchases,
+        CanManageDb;
 
     /**
      * Make GET request to Accurate, to retrieve information.
@@ -34,7 +39,7 @@ trait CanConnectAccurate
 
         // If request is not basic, and user has no session or no host, ask which
         // db they want to open.
-        if (! $isBasic && ((! $user->session) || (! $user->host))) {
+        if (! $isBasic && ((! $user->session) || (! $user->host) || (! $user->database_id))) {
             static::askWhichDb($psid);
 
             return null;
@@ -49,18 +54,34 @@ trait CanConnectAccurate
 
         Log::debug("askAccurate: $psid: $url", $query ?? []);
 
-        $response = Http::withToken($user->access_token)
-            ->withHeaders(['X-Session-ID' => $user->session])
-            ->get($url, $query)
-            ->throw()
-            ->json();
+        try {
+            $response = Http::withToken($user->access_token)
+                ->withHeaders(['X-Session-ID' => $user->session])
+                ->get($url, $query)
+                ->throw()
+                ->json();
+        } catch (RequestException $e) {
+            // If unauthorized or access token invalid, send login button.
+            if (in_array($e->response->json('error'), ['unauthorized', 'invalid_token'])) {
+                static::sendLoginButton($psid);
 
-        // If `s` is false, this means the user's session is expired. Open DB
-        // again to refresh the user's session, then reask Accurate.
-        if (data_get($response, 's', true) === false) {
-            static::openDb($psid, $user->database_id);
+                return null;
+            }
 
-            return static::askAccurate($psid, $uri, $query);
+            // If session is invalid, reopen db and reask Accurate.
+            if ($e->response->json('s') === false && $user->session && $user->database_id) {
+                $dbid = $user->database_id;
+
+                // Nullify user's database_id to prevent infinite loop. If this second
+                // request fails, the user will be asked which DB to open.
+                $user->update(['database_id' => null]);
+
+                static::openDb($psid, $dbid);
+
+                return static::askAccurate($psid, $uri, $query);
+            }
+
+            throw $e;
         }
 
         Log::debug('fromAccurate:', ($response ?? []) + ["\n"]);
@@ -87,8 +108,7 @@ trait CanConnectAccurate
         $name = $response->json('user.name');
         $data = Arr::only($response->json(), ['access_token', 'refresh_token']);
         $data['email'] = $response->json('user.email');
-        // CHANGE: name from accurate jangan disimpan lagi
-        $data['name'] = $name;
+        $data['accurate_name'] = $name;
 
         // Save the data to the `users` table.
         User::updateOrCreate(['psid' => $psid], $data);

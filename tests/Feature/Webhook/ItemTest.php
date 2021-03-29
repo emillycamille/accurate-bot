@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Webhook\Verify\Item;
+namespace Tests\Feature\Webhook\Item;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
@@ -41,7 +41,7 @@ test('bot can show no items found', function () {
 
 test('bot can detail item', function () {
     Http::fake([
-        'item/detail.do*' => Http::response(['s'=>true, 'd' => ITEMS[0]]),
+        'item/detail.do*' => Http::response(['s' => true, 'd' => ITEMS[0]]),
         '*' => Http::response(),
     ]);
 
@@ -58,15 +58,31 @@ test('bot can show item image', function () {
     test()->assertRequestSent(true);
 });
 
+test('bot can handle unknown item', function () {
+    Http::fake();
+
+    $this->receiveMessage('item');
+
+    // Assert that correct Send API request is sent.
+    $this->assertRequestSent();
+});
+
 function testFindItem(string $mode): void
 {
+    $message = 'item';
+
     switch ($mode) {
         case 'multiple':
-            $data = ITEMS; break;
+            $data = ITEMS;
+            break;
         case 'single':
-            $data = [ITEMS[0]]; break;
+            $data = [ITEMS[0]];
+            // Test that 'stok' should trigger the same function as 'item'.
+            $message = 'stok';
+            break;
         case 'none':
-            $data = []; break;
+            $data = [];
+            break;
     }
 
     Http::fake([
@@ -74,7 +90,7 @@ function testFindItem(string $mode): void
         '*' => Http::response(),
     ]);
 
-    test()->receiveMessage('item KEYWORD');
+    test()->receiveMessage("$message KEYWORD");
 
     test()->assertRequestSent(true);
 }

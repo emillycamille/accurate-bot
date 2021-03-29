@@ -42,19 +42,19 @@ test('bot can calculate "3^2"', function () {
     $this->assertRequestSent();
 });
 
-test('bot cant calculate "64 /+8"', function () {
+test('bot can return fallback for invalid math expression', function () {
     $this->receiveMessage('64 /+8');
 
     $this->assertRequestSent();
 });
 
-test('bot cant calculate "1/0"', function () {
+test('bot can return fallback for division by zero', function () {
     $this->receiveMessage('1/0');
 
     $this->assertRequestSent();
 });
 
-test('bot cant calculate "(1+2"', function () {
+test('bot can return fallback for mismatching parenthesis', function () {
     $this->receiveMessage('(1+2');
 
     $this->assertRequestSent();

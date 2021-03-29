@@ -1,0 +1,21 @@
+{
+    "headers": {
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Authorization": [
+            "Bearer ACCESS_TOKEN"
+        ],
+        "X-Session-ID": [
+            "SESSION"
+        ]
+    },
+    "method": "GET",
+    "url": "HOST\/accurate\/api\/customer\/list.do?fields=id%2Cname%2CbalanceList%2CmobilePhone%2CworkPhone&filter.keywords.op=CONTAIN&filter.keywords.val=keyword&sp.pageSize=13",
+    "data": {
+        "fields": "id,name,balanceList,mobilePhone,workPhone",
+        "filter.keywords.op": "CONTAIN",
+        "filter.keywords.val": "keyword",
+        "sp.pageSize": 13
+    }
+}

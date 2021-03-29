@@ -18,8 +18,7 @@ trait CanManageSales
     /**
      * List last 5 sales invoices.
      */
-    // CHANGE: $page pastikan int
-    public static function salesInvoice(string $psid, string $page): void
+    public static function showSalesInvoice(string $psid, int $page, string $message = 'histori penjualan'): void
     {
         // CHANGE: try to make this function more DRY.
         // $transactions = [
@@ -36,6 +35,20 @@ trait CanManageSales
         // $type -> salesInvoice / purchaseInvoice.
 
         // $data = $transactions[$type];
+        $date = Str::of($message)->match('/\d{1,2}\/\d{1,2}\/\d{2,4}/');
+
+        // If $message contains a date, show TOTAL sales of that date.
+        if ($date->isNotEmpty()) {
+            static::showTotalSales($psid, $date);
+
+            return;
+
+        // If $message does not contain "history", return the TOTAL sales at that moment.
+        } elseif (! Str::contains(strtolower($message), ['history', 'histori'])) {
+            static::showTotalSales($psid, now()->format('d/m/Y'));
+
+            return;
+        }
 
         $items = static::askAccurate($psid, 'sales-invoice/list.do', [
             'fields' => 'transDate,totalAmount,statusName,customer',
@@ -49,31 +62,68 @@ trait CanManageSales
             return;
         }
 
+        // Show sales HISTORY.
         $message = sprintf(__('bot.show_sales_title'), count($items['d']))."\n\n";
-        for ($i = 0; $i < count($items['d']); $i++) {
-            $message .= sprintf('%d. ', (5 * (int) $page - 4) + $i);
+
+        foreach ($items['d'] as $key => $value) {
+            $message .= sprintf('%d. ', (5 * (int) $page - 4) + $key);
             $message .= sprintf(
-                '%s - %s %s (%s)',
-                $items['d'][$i]['transDate'],
-                $items['d'][$i]['customer']['name'],
-                idr($items['d'][$i]['totalAmount']),
-                $items['d'][$i]['statusName']
+                '%s %s %s (%s)'."\n",
+                $items['d'][$key]['transDate']."\n",
+                $items['d'][$key]['customer']['name']."\n",
+                idr($items['d'][$key]['totalAmount'])."\n",
+                $items['d'][$key]['statusName']
             );
             $message .= "\n";
         }
-        $message .= sprintf(__('bot.page'), $page);
+        $message .= sprintf(__('bot.page', compact('page')));
         static::sendMessage($message, $psid);
 
-        // CHANGE: Kasi comment ya.
+        // Offer to show next page.
         if ($items['sp']['pageCount'] > (int) $page) {
-            $page += 1;
+            $page++;
             $payload = static::makeButtonPayload(__('bot.ask_next_page'), [[
                 'type' => 'postback',
                 'title' => __('bot.yes'),
-                'payload' => "SALES_INVOICE:$psid:$page",
+                'payload' => "SHOW_SALES_INVOICE:$psid:$page",
             ]]);
 
             static::sendMessage($payload, $psid);
         }
+    }
+
+    /**
+     * Show total sales at the requested date.
+     */
+    public static function showTotalSales(string $psid, string $date): void
+    {
+        $amount = 0;
+        $page = 1;
+
+        do {
+            $items = static::askAccurate($psid, 'sales-invoice/list.do', [
+                'fields' => 'totalAmount',
+                'filter.dueDate.val' => $date,
+                'page' => $page,
+            ]);
+
+            if (count($items['d']) == 0) {
+                static::sendMessage(__('bot.no_sales_at', compact('date')), $psid);
+
+                return;
+            }
+
+            foreach ($items['d'] as $key => $value) {
+                $amount += $items['d'][$key]['totalAmount'];
+            }
+
+            $page++;
+        } while ($page <= $items['sp']['pageCount']);
+
+        $amount = idr($amount);
+
+        $message = __('bot.total_sales_at', compact('date', 'amount'));
+
+        static::sendMessage($message, $psid);
     }
 }

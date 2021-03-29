@@ -1,0 +1,27 @@
+{
+    "headers": {
+        "Content-Length": [
+            "135"
+        ],
+        "User-Agent": [
+            "GuzzleHttp\/7"
+        ],
+        "Content-Type": [
+            "application\/json"
+        ],
+        "Host": [
+            "graph.facebook.com"
+        ]
+    },
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "recipient": {
+            "id": "PS_ID"
+        },
+        "message": {
+            "text": "CUST_NAME_2\nWORK_PHONE\/MOBILE_PHONE\nPiutang: Rp200.000"
+        }
+    }
+}

@@ -3,7 +3,7 @@
     "url": "HOST\/accurate\/api\/sales-invoice\/list.do?fields=transDate%2CtotalAmount%2CstatusName%2Ccustomer&sp.page=1&sp.pageSize=5",
     "data": {
         "fields": "transDate,totalAmount,statusName,customer",
-        "sp.page": "1",
+        "sp.page": 1,
         "sp.pageSize": "5"
     }
 }

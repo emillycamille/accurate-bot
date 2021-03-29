@@ -2,12 +2,9 @@
     "method": "POST",
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
-        "messaging_type": "RESPONSE",
+        "sender_action": "typing_on",
         "recipient": {
             "id": "PS_ID"
-        },
-        "message": {
-            "text": "I'm still learning, so I don't understand 'Yooooo bot!' yet. Chat with me again in a few days!"
         }
     }
 }

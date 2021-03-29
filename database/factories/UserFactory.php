@@ -24,6 +24,8 @@ class UserFactory extends Factory
         return [
             'psid' => 'PS_ID',
             'access_token' => 'ACCESS_TOKEN',
+            'first_name' => 'TEST_FIRST_NAME',
+            'last_name' => 'TEST_LAST_NAME',
         ];
     }
 
@@ -37,16 +39,6 @@ class UserFactory extends Factory
                 'database_id' => 'DATABASE_ID',
                 'session' => 'SESSION',
                 'host' => 'HOST',
-            ];
-        });
-    }
-
-    public function withFbName(): Factory
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'fb_firstname' => 'TEST_FIRST_NAME',
-                'fb_lastname' => 'TEST_LAST_NAME',
             ];
         });
     }

@@ -3,10 +3,6 @@
 namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanConnectAccurate;
-use App\Bot\Traits\Accurate\CanManageDb;
-use App\Bot\Traits\Accurate\CanManageItems;
-use App\Bot\Traits\Accurate\CanManagePurchases;
-use App\Bot\Traits\Accurate\CanManageSales;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGetStarted;
 use App\Bot\Traits\CanGreetUser;
@@ -21,29 +17,34 @@ class Bot
 {
     use CanDoMath,
         CanTellTime,
-        CanManageItems,
         CanTellWeather,
         CanGreetUser,
         CanConnectAccurate,
-        CanManageSales,
-        CanManagePurchases,
-        CanManageDb,
         CanShowHelp,
         CanGetStarted;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
      */
-    public static function getPostbackHandler(string $postback): array
+    public static function getPostbackHandler(string $postback, string $forcePsid = null): array
     {
-        // The postback payload is a string with this format: `HANDLER:PSID:PAYLOAD`.
-        // We need to split them to variables, so the handler method can be called
-        // (see `receivedPostback()`). The payload may not be always there, we use null
-        // as default.
+        if (Str::contains($postback, ':')) {
+            // The postback payload is a string with this format: `HANDLER:PSID:PAYLOAD`.
+            // We need to split them to variables, so the handler method can be called
+            // (see `receivedPostback()`). The payload may not be always there, we use null
+            // as default.
 
-        [$handler, $psid, $payload] = explode(':', $postback, 3) + [2 => null];
+            [$handler, $psid, $payload] = explode(':', $postback, 3) + [2 => null];
+        } else {
+            $handler = $postback;
+            $payload = null;
+        }
 
         $handler = Str::camel(strtolower($handler));
+
+        if ($forcePsid) {
+            $psid = $forcePsid;
+        }
 
         return [$handler, $psid, $payload];
     }
@@ -117,26 +118,28 @@ class Bot
 
         if (static::isRequestingLogin($message)) {
             static::sendLoginButton($senderId);
+        } elseif ($keyword = static::isAskingCustomerDetail($message)) {
+            static::listCustomer($senderId, $keyword);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
-        } elseif (static::isAskingWeather($message)) {
-            $reply = static::tellWeather($message);
         } elseif (static::isAskingSwitchingDb($message)) {
             static::askWhichDb($senderId);
-        } elseif (static::isAskingTime($message)) {
-            $reply = static::tellTime($message);
+        } elseif (static::isAskingPurchaseInvoice($message)) {
+            static::showPurchaseInvoice($senderId, 1, $message);
+        } elseif (static::isAskingSalesInvoice($message)) {
+            static::showSalesInvoice($senderId, 1, $message);
         } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
         } elseif (static::isSayingHello($message)) {
             $reply = static::greetUser($message, $senderId);
-        } elseif (static::isAskingPurchaseInvoice($message)) {
-            static::purchaseInvoice($senderId, 1);
-        } elseif (static::isAskingSalesInvoice($message)) {
-            static::salesInvoice($senderId, 1);
         } elseif (static::isAskingHelp($message)) {
             $reply = static::tellHelp();
+        } elseif (static::isAskingWeather($message)) {
+            $reply = static::tellWeather($message);
+        } elseif (static::isAskingTime($message)) {
+            $reply = static::tellTime($message);
         } else {
-            $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
+            $reply = __('bot.fallback_reply', compact('message'));
         }
 
         if (isset($reply)) {
@@ -152,22 +155,18 @@ class Bot
         $postback = is_string($event) ? $event : $event['postback']['payload'];
         Log::debug("receivedPostback: $postback");
 
-        if ($postback == 'FACEBOOK_WELCOME') {
-            $psid = $event['sender']['id'];
-            [$handler, $psid] = ['getStarted', $psid];
-            $payload = null;
-        } else {
-            [$handler, $psid, $payload] = static::getPostbackHandler($postback);
-        }
+        [$handler, $psid, $payload] = static::getPostbackHandler(
+            $postback,
+            data_get($event, 'sender.id'),
+        );
 
         static::$handler($psid, $payload);
     }
 
     /**
-     * Send $payload to $recipient using Messenger Send API.
-     * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
+     * Send message (text or button) to $psid.
      */
-    public static function sendMessage($payload, string $recipient): void
+    public static function sendMessage($payload, string $psid): void
     {
         if (is_string($payload)) {
             $payload = ['text' => $payload];
@@ -175,12 +174,36 @@ class Bot
 
         $data = [
             'messaging_type' => 'RESPONSE',
-            'recipient' => ['id' => $recipient],
             'message' => $payload,
         ];
 
-        Log::debug("sendMessage: $recipient", $data + ["\n"]);
+        static::sendToFb($psid, $data);
+    }
 
-        Http::post(config('bot.fb_sendapi_url'), $data)->throw();
+    /**
+     * Send $payload to $psid using Messenger Send API.
+     * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
+     */
+    public static function sendToFb(string $psid, array $payload): void
+    {
+        $payload += [
+            'recipient' => ['id' => $psid],
+        ];
+
+        Log::debug("sendToFb: $psid", $payload + ["\n"]);
+
+        Http::post(config('bot.fb_sendapi_url'), $payload)->throw();
+    }
+
+    /**
+     * Trigger bot to show "typing on" on Messenger.
+     */
+    public static function typingOn(string $psid): void
+    {
+        // Typing on is turned off during testing to prevent extra snapshot for
+        // each feature test.
+        if (config('bot.typing_on')) {
+            static::sendToFb($psid, ['sender_action' => 'typing_on']);
+        }
     }
 }

@@ -1,0 +1,9 @@
+{
+    "method": "GET",
+    "url": "HOST\/accurate\/api\/purchase-invoice\/list.do?fields=totalAmount&filter.transDate.val=06%2F02%2F2021&page=1",
+    "data": {
+        "fields": "totalAmount",
+        "filter.transDate.val": "06\/02\/2021",
+        "page": 1
+    }
+}

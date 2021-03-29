@@ -16,7 +16,7 @@
                         {
                             "type": "postback",
                             "title": "Ya",
-                            "payload": "PURCHASE_INVOICE:PS_ID:2"
+                            "payload": "SHOW_PURCHASE_INVOICE:PS_ID:2"
                         }
                     ]
                 }

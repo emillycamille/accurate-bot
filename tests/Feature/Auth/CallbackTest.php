@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Http;
 test('user can store accurate access token', function () {
     $data = [
         'psid' => 'PS_ID',
-        'name' => 'USER_NAME',
+        'accurate_name' => 'USER_NAME',
         'email' => 'USER_EMAIL',
         'access_token' => 'ACCESS_TOKEN',
         'refresh_token' => 'REFRESH_TOKEN',
@@ -16,7 +16,7 @@ test('user can store accurate access token', function () {
             'access_token' => $data['access_token'],
             'refresh_token' => $data['refresh_token'],
             'user' => [
-                'name' => $data['name'],
+                'name' => $data['accurate_name'],
                 'email' => $data['email'],
             ],
         ]),
