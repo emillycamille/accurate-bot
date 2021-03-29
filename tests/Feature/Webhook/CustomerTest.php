@@ -8,21 +8,19 @@ use Illuminate\Support\Facades\Http;
 const CUSTOMERS = [
     [
         'id' => 1,
-        'name' => 'KEYWORD_1',
+        'name' => 'CUST_NAME_1',
         'balanceList' => [[
             'balance' => 250000,
         ]],
-        'createDate' => '19/04/2018 14:29:29',
-        'customerBranchName' => 'SURABAYA',
+        'mobilePhone' => 'MOBILE_NUMBER',
     ],
     [
         'id' => 2,
-        'name' => 'KEYWORD_2',
+        'name' => 'CUST_NAME_2',
         'balanceList' => [[
             'balance' => 200000,
         ]],
-        'createDate' => '21/04/2018 20:00:29',
-        'customerBranchName' => 'JAKARTA',
+        'mobilePhone' => 'MOBILE_NUMBER',
     ],
 ];
 
@@ -66,11 +64,14 @@ function testFindCustomer(string $mode): void
 {
     switch ($mode) {
         case 'multiple':
-            $data = CUSTOMERS; break;
+            $data = CUSTOMERS;
+            break;
         case 'single':
-            $data = [CUSTOMERS[0]]; break;
+            $data = [CUSTOMERS[0]];
+            break;
         case 'none':
-            $data = []; break;
+            $data = [];
+            break;
     }
 
     Http::fake([

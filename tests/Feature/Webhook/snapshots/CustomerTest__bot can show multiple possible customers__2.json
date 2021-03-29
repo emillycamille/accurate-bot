@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "324"
+            "328"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -21,7 +21,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "Ada beberapa customer ditemukan, siapa yang anda maksud?\n\n1. KEYWORD_1\n2. KEYWORD_2\n",
+            "text": "Ada beberapa customer ditemukan, siapa yang anda maksud?\n\n1. CUST_NAME_1\n2. CUST_NAME_2\n",
             "quick_replies": [
                 {
                     "content_type": "text",

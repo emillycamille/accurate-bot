@@ -41,11 +41,11 @@ trait CanManageCustomers
     public static function customerToString(array $customer): string
     {
         return sprintf(
-            "%s\n%s: %s\n%s: %s\n%s: %s",
-            $customer['name'],
-            __('bot.balance'), idr(data_get($customer, 'balanceList.0.balance', 0)),
-            __('bot.city'), data_get($customer, 'customerBranchName', 'Tidak terdaftar'),
-            __('bot.registered_since'), Str::before($customer['createDate'], ' '),
+            '%s %s %s: %s',
+            $customer['name']."\n",
+            data_get($customer, 'mobilePhone', )."\n",
+            __('bot.outstanding'),
+            idr(data_get($customer, 'balanceList.0.balance', 0)),
         );
     }
 
