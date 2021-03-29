@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "126"
+            "141"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -21,7 +21,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "CUST_NAME_1\n MOBILE_NUMBER\n Piutang: Rp250.000"
+            "text": "CUST_NAME_1\nBUSINESS_NUMBER\/MOBILE_NUMBER\nPiutang: Rp250.000"
         }
     }
 }

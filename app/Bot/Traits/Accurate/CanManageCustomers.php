@@ -26,7 +26,7 @@ trait CanManageCustomers
     {
         $message = strtolower($message);
 
-        if (! Str::contains($message, 'customer')) {
+        if (!Str::contains($message, 'customer')) {
             return false;
         } elseif ($message == 'customer') {
             return ' ';
@@ -41,9 +41,10 @@ trait CanManageCustomers
     public static function customerToString(array $customer): string
     {
         return sprintf(
-            '%s %s %s: %s',
-            $customer['name']."\n",
-            data_get($customer, 'mobilePhone', 'HP tidak terdaftar')."\n",
+            '%s%s/%s%s: %s',
+            $customer['name'] . "\n",
+            data_get($customer, 'workPhone'),
+            data_get($customer, 'mobilePhone') . "\n",
             __('bot.outstanding'),
             idr(data_get($customer, 'balanceList.0.balance', 0)),
         );
@@ -77,7 +78,7 @@ trait CanManageCustomers
         } elseif (count($customers) === 1) {
             $payload = static::customerToString($customers[0]);
         } else {
-            $text = __('bot.multiple_customers_match_keyword')."\n\n";
+            $text = __('bot.multiple_customers_match_keyword') . "\n\n";
             $buttons = [];
 
             foreach ($customers as $i => $customer) {

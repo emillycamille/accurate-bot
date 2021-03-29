@@ -12,6 +12,7 @@ const CUSTOMERS = [
         'balanceList' => [[
             'balance' => 250000,
         ]],
+        'workPhone' => 'BUSINESS_NUMBER',
         'mobilePhone' => 'MOBILE_NUMBER',
     ],
     [
@@ -20,6 +21,7 @@ const CUSTOMERS = [
         'balanceList' => [[
             'balance' => 200000,
         ]],
+        'workPhone' => 'BUSINESS_NUMBER',
         'mobilePhone' => 'MOBILE_NUMBER',
     ],
 ];
