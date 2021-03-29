@@ -4,6 +4,7 @@ return [
     // Emoji Unicode
 
     // Common words
+    'ask_next_page' => 'Halaman berikutnya?',
     'outstanding' => 'Piutang',
     'balance' => 'Saldo',
     'city' => 'Kota',
@@ -12,9 +13,8 @@ return [
     'stock' => 'Stok',
     'yes' => 'Ya',
 
-    // Available Functions
+    // Abilities
     'available_functions' => 'Untuk saat ini, Naya bisa:',
-
     'abilities' => [
         'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>")',
         'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer>")',
@@ -57,7 +57,6 @@ return [
     'unknown_item' => 'Untuk mencari item, bisa dengan ketik "item <keyword item>"',
 
     // Purchases
-    'ask_next_page' => 'Halaman berikutnya?',
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
     'no_purchases_date' => 'Tidak ada pembelian pada tanggal :date',
     'page' => '--- Halaman :page ---',

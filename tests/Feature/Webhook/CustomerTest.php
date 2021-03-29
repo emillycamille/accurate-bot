@@ -12,8 +12,8 @@ const CUSTOMERS = [
         'balanceList' => [[
             'balance' => 250000,
         ]],
-        'workPhone' => 'BUSINESS_NUMBER',
-        'mobilePhone' => 'MOBILE_NUMBER',
+        'workPhone' => 'WORK_PHONE',
+        'mobilePhone' => '',
     ],
     [
         'id' => 2,
@@ -21,8 +21,8 @@ const CUSTOMERS = [
         'balanceList' => [[
             'balance' => 200000,
         ]],
-        'workPhone' => 'BUSINESS_NUMBER',
-        'mobilePhone' => 'MOBILE_NUMBER',
+        'workPhone' => 'WORK_PHONE',
+        'mobilePhone' => 'MOBILE_PHONE',
     ],
 ];
 
@@ -68,7 +68,7 @@ function testFindCustomer(string $mode): void
             $data = CUSTOMERS;
             break;
         case 'single':
-            $data = [CUSTOMERS[0]];
+            $data = [CUSTOMERS[1]];
             break;
         case 'none':
             $data = [];
