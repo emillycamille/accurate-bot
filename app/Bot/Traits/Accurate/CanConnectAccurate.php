@@ -39,7 +39,7 @@ trait CanConnectAccurate
 
         // If request is not basic, and user has no session or no host, ask which
         // db they want to open.
-        if (! $isBasic && ((! $user->session) || (! $user->host))) {
+        if (! $isBasic && ((! $user->session) || (! $user->host) || (! $user->database_id))) {
             static::askWhichDb($psid);
 
             return null;
@@ -61,10 +61,22 @@ trait CanConnectAccurate
                 ->throw()
                 ->json();
         } catch (RequestException $e) {
-            // 401 means the user's session is expired. Open DB
-            // again to refresh the user's session, then reask Accurate.
-            if ($e->getCode() === 401) {
-                static::openDb($psid, $user->database_id);
+            // If unauthorized or access token invalid, send login button.
+            if (in_array($e->response->json('error'), ['unauthorized', 'invalid_token'])) {
+                static::sendLoginButton($psid);
+
+                return null;
+            }
+
+            // If session is invalid, reopen db and reask Accurate.
+            if ($e->response->json('s') === false && $user->session && $user->database_id) {
+                $dbid = $user->database_id;
+
+                // Nullify user's database_id to prevent infinite loop. If this second
+                // request fails, the user will be asked which DB to open.
+                $user->update(['database_id' => null]);
+
+                static::openDb($psid, $dbid);
 
                 return static::askAccurate($psid, $uri, $query);
             }
