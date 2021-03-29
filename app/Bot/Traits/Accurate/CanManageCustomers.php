@@ -43,7 +43,7 @@ trait CanManageCustomers
         return sprintf(
             '%s %s %s: %s',
             $customer['name']."\n",
-            data_get($customer, 'mobilePhone', )."\n",
+            data_get($customer, 'mobilePhone', 'HP tidak terdaftar')."\n",
             __('bot.outstanding'),
             idr(data_get($customer, 'balanceList.0.balance', 0)),
         );
