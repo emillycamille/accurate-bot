@@ -21,7 +21,7 @@
             "id": "PS_ID"
         },
         "message": {
-            "text": "CUST_NAME_1\nBUSINESS_NUMBER\/MOBILE_NUMBER\nPiutang: Rp250.000"
+            "text": "CUST_NAME_1\nMOBILE_NUMBER\/BUSINESS_NUMBER\nPiutang: Rp250.000"
         }
     }
 }

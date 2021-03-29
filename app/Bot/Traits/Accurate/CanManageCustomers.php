@@ -40,11 +40,23 @@ trait CanManageCustomers
      */
     public static function customerToString(array $customer): string
     {
+        $mobilePhone = data_get($customer, 'mobilePhone');
+        $workPhone = data_get($customer, 'workPhone');
+
+        if (! is_null($mobilePhone)) {
+            if (! is_null($workPhone)) {
+                $phone = $mobilePhone.'/'.$workPhone;
+            } elseif (is_null($workPhone)) {
+                $phone = $mobilePhone;
+            }
+        } else {
+            $phone = $workPhone;
+        }
+
         return sprintf(
-            '%s%s/%s%s: %s',
-            $customer['name']."\n",
-            data_get($customer, 'workPhone', 'HP tidak terdaftar'),
-            data_get($customer, 'mobilePhone', 'HP tidak terdaftar')."\n",
+            "%s\n%s\n%s: %s",
+            $customer['name'],
+            $phone,
             __('bot.outstanding'),
             idr(data_get($customer, 'balanceList.0.balance', 0)),
         );
