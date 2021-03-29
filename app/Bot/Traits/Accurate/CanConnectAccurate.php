@@ -63,7 +63,7 @@ trait CanConnectAccurate
         } catch (RequestException $e) {
             // 401 means the user's session is expired. Open DB
             // again to refresh the user's session, then reask Accurate.
-            if ($e->getCode() === 401) {
+            if ($e->getCode() === 401 && $user->session && $user->database_id) {
                 static::openDb($psid, $user->database_id);
 
                 return static::askAccurate($psid, $uri, $query);
