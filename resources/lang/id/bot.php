@@ -1,10 +1,7 @@
 <?php
 
 return [
-    // Emoji Unicode
-
     // Common words
-    'ask_next_page' => 'Halaman berikutnya?',
     'outstanding' => 'Piutang',
     'balance' => 'Saldo',
     'city' => 'Kota',
@@ -12,6 +9,10 @@ return [
     'registered_since' => 'Terdaftar sejak',
     'stock' => 'Stok',
     'yes' => 'Ya',
+
+    // Common Replies
+    'ask_next_page' => 'Halaman berikutnya?',
+    'fallback_reply' => 'Maaf untuk saat ini Naya belum mengerti ":message" 😅. Ketik "help" untuk melihat apa aja yang Naya sudah bisa',
 
     // Abilities
     'available_functions' => 'Untuk saat ini, Naya bisa:',

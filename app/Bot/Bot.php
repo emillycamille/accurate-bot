@@ -122,12 +122,8 @@ class Bot
             static::listCustomer($senderId, $keyword);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
-        } elseif (static::isAskingWeather($message)) {
-            $reply = static::tellWeather($message);
         } elseif (static::isAskingSwitchingDb($message)) {
             static::askWhichDb($senderId);
-        } elseif (static::isAskingTime($message)) {
-            $reply = static::tellTime($message);
         } elseif (static::isAskingPurchaseInvoice($message)) {
             static::showPurchaseInvoice($senderId, 1, $message);
         } elseif (static::isAskingSalesInvoice($message)) {
@@ -138,8 +134,12 @@ class Bot
             $reply = static::greetUser($message, $senderId);
         } elseif (static::isAskingHelp($message)) {
             $reply = static::tellHelp();
+        } elseif (static::isAskingWeather($message)) {
+            $reply = static::tellWeather($message);
+        } elseif (static::isAskingTime($message)) {
+            $reply = static::tellTime($message);
         } else {
-            $reply = "I'm still learning, so I don't understand '$message' yet. Chat with me again in a few days!";
+            $reply = __('bot.fallback_reply', compact('message'));
         }
 
         if (isset($reply)) {
