@@ -2,7 +2,10 @@
     "method": "POST",
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
-        "sender_action": "typing_on",
+        "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Maaf untuk saat ini Naya belum mengerti \"Yooooo bot!\" \ud83d\ude05. Ketik \"help\" untuk melihat apa aja yang Naya sudah bisa"
+        },
         "recipient": {
             "id": "PS_ID"
         }

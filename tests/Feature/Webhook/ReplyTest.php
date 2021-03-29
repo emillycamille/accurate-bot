@@ -8,7 +8,8 @@ beforeEach(function () {
 
 test('bot can reply message', function () {
     // Turn on "typing on" to assert correct request is sent.
-    config(['bot.typing_on' => true]);
+    // Temporarily turned off because new EU rule bans this. 
+    config(['bot.typing_on' => false]);
 
     $this->receiveMessage('Yooooo bot!');
 

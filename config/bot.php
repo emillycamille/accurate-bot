@@ -43,7 +43,7 @@ return [
     /*
      * A boolean to indicate whether "typing on" should be sent to Messenger.
      */
-    'typing_on' => env('TYPING_ON', true),
+    'typing_on' => env('TYPING_ON', false),
 
     /*
      * Weather API key.
