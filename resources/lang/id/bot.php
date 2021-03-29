@@ -1,8 +1,6 @@
 <?php
 
 return [
-    // Emoji Unicode
-
     // Common words
     'outstanding' => 'Piutang',
     'balance' => 'Saldo',
@@ -11,11 +9,13 @@ return [
     'registered_since' => 'Terdaftar sejak',
     'stock' => 'Stok',
     'yes' => 'Ya',
-    'still_learning' => 'Sepertinya Naya belum mengerti \':message\' nih. Kamu bisa ketik "help" untuk bantuan 😊.',
 
-    // Available Functions
+    // Common Replies
+    'ask_next_page' => 'Halaman berikutnya?',
+    'fallback_reply' => 'Maaf untuk saat ini Naya belum mengerti ":message" 😅. Ketik "help" untuk melihat apa aja yang Naya sudah bisa',
+
+    // Abilities
     'available_functions' => 'Untuk saat ini, Naya bisa:',
-
     'abilities' => [
         'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>")',
         'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer>")',
@@ -58,7 +58,6 @@ return [
     'unknown_item' => 'Untuk mencari item, bisa dengan ketik "item <keyword item>"',
 
     // Purchases
-    'ask_next_page' => 'Halaman berikutnya?',
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
     'no_purchases_date' => 'Tidak ada pembelian pada tanggal :date',
     'page' => '--- Halaman :page ---',

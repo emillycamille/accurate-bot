@@ -2,6 +2,7 @@
 
 namespace App\Bot\Traits\Accurate;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 trait CanManageCustomers
@@ -26,13 +27,14 @@ trait CanManageCustomers
     {
         $message = strtolower($message);
 
-        if (! Str::contains($message, 'customer')) {
-            return false;
-        } elseif ($message == 'customer') {
-            return ' ';
+        foreach (['customer', 'pelanggan'] as $needle) {
+            if (Str::contains($message, $needle)) {
+                // Return ' ' (space) if keyword is not given.
+                return trim(Str::after($message, $needle)) ?: ' ';
+            }
         }
 
-        return trim(Str::after($message, 'customer'));
+        return false;
     }
 
     /**
@@ -40,23 +42,13 @@ trait CanManageCustomers
      */
     public static function customerToString(array $customer): string
     {
-        $mobilePhone = data_get($customer, 'mobilePhone');
-        $workPhone = data_get($customer, 'workPhone');
-
-        if (! is_null($mobilePhone)) {
-            if (! is_null($workPhone)) {
-                $phone = $mobilePhone.'/'.$workPhone;
-            } elseif (is_null($workPhone)) {
-                $phone = $mobilePhone;
-            }
-        } else {
-            $phone = $workPhone;
-        }
+        $phones = array_filter(Arr::only($customer, ['mobilePhone', 'workPhone']));
+        $phones = implode('/', $phones);
 
         return sprintf(
             "%s\n%s\n%s: %s",
             $customer['name'],
-            $phone,
+            $phones,
             __('bot.outstanding'),
             idr(data_get($customer, 'balanceList.0.balance', 0)),
         );
@@ -67,7 +59,9 @@ trait CanManageCustomers
      */
     public static function listCustomer(string $psid, string $keyword): void
     {
-        if ($keyword == ' ') {
+        $keyword = trim($keyword);
+
+        if (! $keyword) {
             static::sendMessage(__('bot.unknown_customer'), $psid);
 
             return;

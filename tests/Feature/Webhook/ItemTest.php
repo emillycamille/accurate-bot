@@ -69,12 +69,16 @@ test('bot can handle unknown item', function () {
 
 function testFindItem(string $mode): void
 {
+    $message = 'item';
+
     switch ($mode) {
         case 'multiple':
             $data = ITEMS;
             break;
         case 'single':
             $data = [ITEMS[0]];
+            // Test that 'stok' should trigger the same function as 'item'.
+            $message = 'stok';
             break;
         case 'none':
             $data = [];
@@ -86,7 +90,7 @@ function testFindItem(string $mode): void
         '*' => Http::response(),
     ]);
 
-    test()->receiveMessage('item KEYWORD');
+    test()->receiveMessage("$message KEYWORD");
 
     test()->assertRequestSent(true);
 }

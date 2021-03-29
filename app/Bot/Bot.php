@@ -122,12 +122,8 @@ class Bot
             static::listCustomer($senderId, $keyword);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
-        } elseif (static::isAskingWeather($message)) {
-            $reply = static::tellWeather($message);
         } elseif (static::isAskingSwitchingDb($message)) {
             static::askWhichDb($senderId);
-        } elseif (static::isAskingTime($message)) {
-            $reply = static::tellTime($message);
         } elseif (static::isAskingPurchaseInvoice($message)) {
             static::showPurchaseInvoice($senderId, 1, $message);
         } elseif (static::isAskingSalesInvoice($message)) {
@@ -138,8 +134,12 @@ class Bot
             $reply = static::greetUser($message, $senderId);
         } elseif (static::isAskingHelp($message)) {
             $reply = static::tellHelp();
+        } elseif (static::isAskingWeather($message)) {
+            $reply = static::tellWeather($message);
+        } elseif (static::isAskingTime($message)) {
+            $reply = static::tellTime($message);
         } else {
-            $reply = __('bot.still_learning', compact('message'));
+            $reply = __('bot.fallback_reply', compact('message'));
         }
 
         if (isset($reply)) {
@@ -164,10 +164,9 @@ class Bot
     }
 
     /**
-     * Send $payload to $recipient using Messenger Send API.
-     * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
+     * Send message (text or button) to $psid.
      */
-    public static function sendMessage($payload, string $recipient): void
+    public static function sendMessage($payload, string $psid): void
     {
         if (is_string($payload)) {
             $payload = ['text' => $payload];
@@ -175,12 +174,36 @@ class Bot
 
         $data = [
             'messaging_type' => 'RESPONSE',
-            'recipient' => ['id' => $recipient],
             'message' => $payload,
         ];
 
-        Log::debug("sendMessage: $recipient", $data + ["\n"]);
+        static::sendToFb($psid, $data);
+    }
 
-        Http::post(config('bot.fb_sendapi_url'), $data)->throw();
+    /**
+     * Send $payload to $psid using Messenger Send API.
+     * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
+     */
+    public static function sendToFb(string $psid, array $payload): void
+    {
+        $payload += [
+            'recipient' => ['id' => $psid],
+        ];
+
+        Log::debug("sendToFb: $psid", $payload + ["\n"]);
+
+        Http::post(config('bot.fb_sendapi_url'), $payload)->throw();
+    }
+
+    /**
+     * Trigger bot to show "typing on" on Messenger.
+     */
+    public static function typingOn(string $psid): void
+    {
+        // Typing on is turned off during testing to prevent extra snapshot for
+        // each feature test.
+        if (config('bot.typing_on')) {
+            static::sendToFb($psid, ['sender_action' => 'typing_on']);
+        }
     }
 }

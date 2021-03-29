@@ -12,8 +12,8 @@ const CUSTOMERS = [
         'balanceList' => [[
             'balance' => 250000,
         ]],
-        'workPhone' => 'BUSINESS_NUMBER',
-        'mobilePhone' => 'MOBILE_NUMBER',
+        'workPhone' => 'WORK_PHONE',
+        'mobilePhone' => '',
     ],
     [
         'id' => 2,
@@ -21,8 +21,8 @@ const CUSTOMERS = [
         'balanceList' => [[
             'balance' => 200000,
         ]],
-        'workPhone' => 'BUSINESS_NUMBER',
-        'mobilePhone' => 'MOBILE_NUMBER',
+        'workPhone' => 'WORK_PHONE',
+        'mobilePhone' => 'MOBILE_PHONE',
     ],
 ];
 
@@ -50,7 +50,7 @@ test('bot can detail customer', function () {
 
     $this->receivePostback('DETAIL_CUSTOMER:PS_ID:1');
 
-    test()->assertRequestSent(true);
+    $this->assertRequestSent(true);
 });
 
 test('bot can handle unknown customer', function () {
@@ -58,7 +58,6 @@ test('bot can handle unknown customer', function () {
 
     $this->receiveMessage('customer');
 
-    // Assert that correct Send API request is sent.
     $this->assertRequestSent();
 });
 
@@ -69,7 +68,7 @@ function testFindCustomer(string $mode): void
             $data = CUSTOMERS;
             break;
         case 'single':
-            $data = [CUSTOMERS[0]];
+            $data = [CUSTOMERS[1]];
             break;
         case 'none':
             $data = [];

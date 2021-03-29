@@ -28,6 +28,10 @@ class HandleWebhook implements ShouldQueue
         foreach ($this->entries as $entry) {
             $messagingEvent = $entry['messaging'][0];
 
+            if ($psid = data_get($messagingEvent, 'sender.id')) {
+                Bot::typingOn($psid);
+            }
+
             if (array_key_exists('message', $messagingEvent)) {
                 Bot::receivedMessage($messagingEvent);
             } elseif (array_key_exists('postback', $messagingEvent)) {
