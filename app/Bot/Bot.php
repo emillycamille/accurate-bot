@@ -164,10 +164,9 @@ class Bot
     }
 
     /**
-     * Send $payload to $recipient using Messenger Send API.
-     * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
+     * Send message (text or button) to $psid.
      */
-    public static function sendMessage($payload, string $recipient): void
+    public static function sendMessage($payload, string $psid): void
     {
         if (is_string($payload)) {
             $payload = ['text' => $payload];
@@ -175,12 +174,32 @@ class Bot
 
         $data = [
             'messaging_type' => 'RESPONSE',
-            'recipient' => ['id' => $recipient],
             'message' => $payload,
         ];
 
-        Log::debug("sendMessage: $recipient", $data + ["\n"]);
+        static::sendToFb($psid, $data);
+    }
 
-        Http::post(config('bot.fb_sendapi_url'), $data)->throw();
+    /**
+     * Send $payload to $psid using Messenger Send API.
+     * https://developers.facebook.com/docs/messenger-platform/send-messages/#send_api_basics.
+     */
+    public static function sendToFb(string $psid, array $payload): void
+    {
+        $payload += [
+            'recipient' => ['id' => $psid],
+        ];
+
+        Log::debug("sendToFb: $psid", $payload + ["\n"]);
+
+        Http::post(config('bot.fb_sendapi_url'), $payload)->throw();
+    }
+
+    /**
+     * Trigger bot to show "typing on" on Messenger.
+     */
+    public static function typingOn(string $psid): void
+    {
+        static::sendToFb($psid, ['sender_action' => 'typing_on']);
     }
 }
