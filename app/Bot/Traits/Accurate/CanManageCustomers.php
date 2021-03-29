@@ -61,7 +61,7 @@ trait CanManageCustomers
     {
         $keyword = trim($keyword);
 
-        if (!$keyword) {
+        if (! $keyword) {
             static::sendMessage(__('bot.unknown_customer'), $psid);
 
             return;

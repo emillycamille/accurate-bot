@@ -73,7 +73,7 @@ trait CanManageItems
     {
         $keyword = trim($keyword);
 
-        if (!$keyword) {
+        if (! $keyword) {
             static::sendMessage(__('bot.unknown_item'), $psid);
 
             return;
