@@ -26,6 +26,10 @@ trait CanTranslate
             if (Str::contains($message, $needle)) {
                 $text = trim(Str::after($message, $needle));
 
+                if (! $text) {
+                    return __('bot.unknown_translate');
+                }
+
                 $response = Http::get(config('bot.translate_api_url'), [
                     'engine' => 'google',
                     'text' => $text,

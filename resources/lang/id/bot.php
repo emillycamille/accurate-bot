@@ -71,4 +71,7 @@ return [
     'sales_date_title' => 'Penjualan tanggal :date sebesar ',
     'show_sales_title' => 'Berikut %d Histori Transaksi Penjualan terakhirmu:',
     'total_sales_at' => 'Total penjualan tanggal :date sebesar :amount',
+
+    // Translate
+    'unknown_translate' => 'Untuk menerjemahkan, bisa dengan format "translate .... / terjemahkan ...."',
 ];

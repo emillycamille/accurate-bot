@@ -24,3 +24,9 @@ test('bot can translate sentence to English', function () {
 
     $this->assertRequestSent();
 });
+
+test('bot can handle unknown translate text', function () {
+    $this->receiveMessage('Terjemahkan');
+
+    $this->assertRequestSent();
+});
