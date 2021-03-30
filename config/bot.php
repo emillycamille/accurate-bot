@@ -54,4 +54,9 @@ return [
      * Weather API endpoint URL.
      */
     'weather_api_url' => 'http://api.openweathermap.org/data/2.5/weather',
+
+    /*
+     * Translate API endpoint URL.
+     */
+    'translate_api_url' => 'https://amm-api-translate.herokuapp.com/translate?',
 ];

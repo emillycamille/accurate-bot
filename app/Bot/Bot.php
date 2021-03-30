@@ -9,6 +9,7 @@ use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanShowHelp;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
+use App\Bot\Traits\CanTranslate;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -21,7 +22,8 @@ class Bot
         CanGreetUser,
         CanConnectAccurate,
         CanShowHelp,
-        CanGetStarted;
+        CanGetStarted,
+        CanTranslate;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
@@ -136,6 +138,8 @@ class Bot
             $reply = static::tellHelp();
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
+        } elseif (static::isAskingToTranslate($message)) {
+            $reply = static::doTranslate($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
         } else {
