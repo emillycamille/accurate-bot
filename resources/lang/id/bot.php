@@ -26,6 +26,7 @@ return [
         'can_show_sales_today' => 'Menampilkan total penjualan hari ini ("Penjualan"/"Sales")',
         'can_show_sales' => 'Menampilkan penjualan pada tanggal tertentu ("Penjualan DD/MM/YYYY")',
         'can_switch_db' => 'Mengganti database yang sedang aktif ("Ganti db")',
+        'can_translate' => 'Menerjemahkan kata/kalimat ke dalam bahasa Inggris ("translate .... / terjemahkan ....")',
         'can_do_math' => 'Menjalankan operasi matematika',
         'can_tell_time' => 'Menampilkan waktu saat ini ("Jam"/"Hari"/"Hari jam")',
         'can_tell_weather' => 'Menampilkan kondisi cuaca ("Cuaca di <nama kota>")',
