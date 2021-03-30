@@ -17,11 +17,8 @@
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
         "messaging_type": "RESPONSE",
-        "recipient": {
-            "id": "PS_ID"
-        },
         "message": {
-            "text": "Ada beberapa item ditemukan, mana yang anda maksud?\n\n1. KEYWORD_1\n2. KEYWORD_2\n",
+            "text": "Ada beberapa item ditemukan, mana yang kamu maksud?\n\n1. KEYWORD_1\n2. KEYWORD_2\n",
             "quick_replies": [
                 {
                     "content_type": "text",
@@ -34,6 +31,9 @@
                     "payload": "DETAIL_ITEM:PS_ID:2"
                 }
             ]
+        },
+        "recipient": {
+            "id": "PS_ID"
         }
     }
 }
