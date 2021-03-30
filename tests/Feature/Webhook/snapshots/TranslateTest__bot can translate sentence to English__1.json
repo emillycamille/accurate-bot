@@ -1,9 +1,9 @@
 {
     "method": "GET",
-    "url": "https:\/\/amm-api-translate.herokuapp.com\/translate?engine=google&text=sekolah%20saya%20ada%20di%20Surabaya&to=en",
+    "url": "https:\/\/amm-api-translate.herokuapp.com\/translate?engine=google&text=sekolah%20saya%20ada%20di%20surabaya&to=en",
     "data": {
         "engine": "google",
-        "text": "sekolah saya ada di Surabaya",
+        "text": "sekolah saya ada di surabaya",
         "to": "en"
     }
 }

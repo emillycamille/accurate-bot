@@ -20,6 +20,8 @@ trait CanTranslate
      */
     public static function doTranslate(string $message): string
     {
+        $message = strtolower($message);
+
         foreach (['translate', 'terjemahkan'] as $needle) {
             if (Str::contains($message, $needle)) {
                 $text = trim(Str::after($message, $needle));
