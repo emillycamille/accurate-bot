@@ -43,16 +43,16 @@ return [
     // Basic
     'choose_db' => 'Pilih database dulu ya..',
     'db_opened' => 'Database berhasil dibuka! Silakan lanjut 😊',
-    'login_successful' => 'Anda berhasil terhubung ke Accurate sebagai user :name!',
+    'login_successful' => 'Kamu berhasil terhubung ke Accurate sebagai user :name!',
     'no_db' => 'Tidak ada database yang ditemukan untuk akun Accurate ini. Coba ganti akun?',
 
     // Customer
-    'multiple_customers_match_keyword' => 'Ada beberapa customer ditemukan, siapa yang anda maksud?',
+    'multiple_customers_match_keyword' => 'Ada beberapa customer ditemukan, siapa yang kamu maksud?',
     'no_customers_match_keyword' => 'Tidak ditemukan customer dengan keyword ":keyword"',
     'unknown_customer' => 'Untuk mencari customer, bisa dengan ketik "customer <keyword customer>"',
 
     // Item
-    'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang anda maksud?',
+    'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang kamu maksud?',
     'no_items_match_keyword' => 'Tidak ditemukan item dengan keyword ":keyword"',
     'prompt_show_image' => 'Tampilkan gambar?',
     'unknown_item' => 'Untuk mencari item, bisa dengan ketik "item <keyword item>"',
