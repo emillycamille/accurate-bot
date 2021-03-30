@@ -2,7 +2,6 @@
 
 return [
     // Common words
-    'outstanding' => 'Piutang',
     'balance' => 'Saldo',
     'city' => 'Kota',
     'price' => 'Harga',
@@ -48,6 +47,7 @@ return [
     'no_db' => 'Tidak ada database yang ditemukan untuk akun Accurate ini. Coba ganti akun?',
 
     // Customer
+    'outstanding' => 'Piutang per :time',
     'multiple_customers_match_keyword' => 'Ada beberapa customer ditemukan, siapa yang kamu maksud?',
     'no_customers_match_keyword' => 'Tidak ditemukan customer dengan keyword ":keyword"',
     'unknown_customer' => 'Untuk mencari customer, bisa dengan ketik "customer <keyword customer>"',

@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "135"
+            "162"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -17,11 +17,11 @@
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
         "messaging_type": "RESPONSE",
+        "message": {
+            "text": "CUST_NAME_2\nWORK_PHONE\/MOBILE_PHONE\nPiutang per 06\/02\/2021 10:00:00:\nRp200.000"
+        },
         "recipient": {
             "id": "PS_ID"
-        },
-        "message": {
-            "text": "CUST_NAME_2\nWORK_PHONE\/MOBILE_PHONE\nPiutang: Rp200.000"
         }
     }
 }

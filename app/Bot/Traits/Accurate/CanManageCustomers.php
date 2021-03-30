@@ -44,12 +44,13 @@ trait CanManageCustomers
     {
         $phones = array_filter(Arr::only($customer, ['mobilePhone', 'workPhone']));
         $phones = implode('/', $phones);
+        $time = now()->format('d/m/Y H:i:s');
 
         return sprintf(
-            "%s\n%s\n%s: %s",
+            "%s\n%s\n%s:\n%s",
             $customer['name'],
             $phones,
-            __('bot.outstanding'),
+            __('bot.outstanding', compact(['time'])),
             idr(data_get($customer, 'balanceList.0.balance', 0)),
         );
     }
