@@ -47,7 +47,7 @@ trait CanManageCustomers
         $time = now()->format('d/m/Y H:i:s');
 
         return sprintf(
-            "%s\n%s\n%s:\n%s",
+            "%s\n%s\n%s\n%s",
             $customer['name'],
             $phones,
             __('bot.outstanding', compact(['time'])),
@@ -62,7 +62,7 @@ trait CanManageCustomers
     {
         $keyword = trim($keyword);
 
-        if (! $keyword) {
+        if (!$keyword) {
             static::sendMessage(__('bot.unknown_customer'), $psid);
 
             return;
@@ -85,7 +85,7 @@ trait CanManageCustomers
         } elseif (count($customers) === 1) {
             $payload = static::customerToString($customers[0]);
         } else {
-            $text = __('bot.multiple_customers_match_keyword')."\n\n";
+            $text = __('bot.multiple_customers_match_keyword') . "\n\n";
             $buttons = [];
 
             foreach ($customers as $i => $customer) {

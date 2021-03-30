@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "148"
+            "147"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -18,7 +18,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "message": {
-            "text": "CUST_NAME_1\nWORK_PHONE\nPiutang per 06\/02\/2021 10:00:00:\nRp250.000"
+            "text": "CUST_NAME_1\nWORK_PHONE\nPiutang per 06\/02\/2021 10:00:00\nRp250.000"
         },
         "recipient": {
             "id": "PS_ID"
