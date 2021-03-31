@@ -68,5 +68,5 @@ return [
     /*
      * SERP API endpoint URL.
      */
-    'serp_api_url' => 'https://api.scaleserp.com/search',
+    'serp_api_url' => env('SERP_API_KEY'),
 ];
