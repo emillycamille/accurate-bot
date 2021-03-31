@@ -1,0 +1,13 @@
+{
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Maaf untuk saat ini Naya belum mengerti \"nayapedia\" \ud83d\ude05. Ketik \"help\" untuk melihat apa aja yang Naya sudah bisa"
+        },
+        "recipient": {
+            "id": "PS_ID"
+        }
+    }
+}

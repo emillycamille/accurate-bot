@@ -1,12 +1,12 @@
 {
     "method": "GET",
-    "url": "https:\/\/id.wikipedia.org\/w\/api.php?action=query&format=json&list=search&formatversion=latest&srsearch=Yooooo%20bot%21&srlimit=1",
+    "url": "https:\/\/id.wikipedia.org\/w\/api.php?action=query&format=json&list=search&formatversion=latest&srsearch=nayapedia&srlimit=1",
     "data": {
         "action": "query",
         "format": "json",
         "list": "search",
         "formatversion": "latest",
-        "srsearch": "Yooooo bot!",
+        "srsearch": "nayapedia",
         "srlimit": "1"
     }
 }

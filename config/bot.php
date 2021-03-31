@@ -59,4 +59,14 @@ return [
      * Translate API endpoint URL.
      */
     'translate_api_url' => 'https://amm-api-translate.herokuapp.com/translate?',
+
+    /*
+     * Wikipedia API endpoint URL.
+     */
+    'wikipedia_api_url' => 'https://id.wikipedia.org/w/api.php',
+
+    /*
+     * SERP API endpoint URL.
+     */
+    'serp_api_url' => 'https://api.scaleserp.com/search',
 ];
