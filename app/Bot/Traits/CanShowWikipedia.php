@@ -3,6 +3,7 @@
 namespace App\Bot\Traits;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 trait CanShowWikipedia
 {
@@ -11,6 +12,10 @@ trait CanShowWikipedia
      */
     public static function showWikipedia(string $message): false | string
     {
+        if (Str::contains(strtolower($message), ['apa', 'mana'])) {
+            return false;
+        }
+
         $response = Http::get(config('bot.wikipedia_api_url'), [
         'action' => 'query',
         'format' => 'json',
