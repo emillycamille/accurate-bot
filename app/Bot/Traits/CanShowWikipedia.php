@@ -26,6 +26,6 @@ trait CanShowWikipedia
             return false;
         }
 
-        return $result;
+        return strip_tags($result);
     }
 }
