@@ -1,0 +1,17 @@
+{
+    "method": "GET",
+    "url": "https:\/\/api.scaleserp.com\/search?api_key=721FCA1ECAEF46328FD35750064A0A72&q=Yooooo%20bot%21&gl=id&hl=id&location=Indonesia&google_domain=google.co.id&include_answer_box=true&output=json&include_html=false&flatten_results=false&filter=",
+    "data": {
+        "api_key": "721FCA1ECAEF46328FD35750064A0A72",
+        "q": "Yooooo bot!",
+        "gl": "id",
+        "hl": "id",
+        "location": "Indonesia",
+        "google_domain": "google.co.id",
+        "include_answer_box": "true",
+        "output": "json",
+        "include_html": "false",
+        "flatten_results": "false",
+        "filter": ""
+    }
+}

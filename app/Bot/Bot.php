@@ -6,7 +6,9 @@ use App\Bot\Traits\Accurate\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGetStarted;
 use App\Bot\Traits\CanGreetUser;
+use App\Bot\Traits\CanShowGoogle;
 use App\Bot\Traits\CanShowHelp;
+use App\Bot\Traits\CanShowWikipedia;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
 use App\Bot\Traits\CanTranslate;
@@ -21,7 +23,9 @@ class Bot
         CanTellWeather,
         CanGreetUser,
         CanConnectAccurate,
+        CanShowGoogle,
         CanShowHelp,
+        CanShowWikipedia,
         CanGetStarted,
         CanTranslate;
 
@@ -142,7 +146,7 @@ class Bot
             $reply = static::doTranslate($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
-        } else {
+        } elseif ($reply = static::showWikipedia($message)); elseif ($reply = static::showGoogleSearch($message)); else {
             $reply = __('bot.fallback_reply', compact('message'));
         }
 
