@@ -31,6 +31,9 @@ trait CanShowWikipedia
             return false;
         }
 
-        return strip_tags($result);
+        $resultSplit = explode('.', strip_tags($result), 2);
+        $result = $resultSplit[0];
+
+        return $result;
     }
 }
