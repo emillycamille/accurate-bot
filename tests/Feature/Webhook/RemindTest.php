@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Http;
 
-
 test('bot can send confirmation', function () {
-
     Http::fake([
         config('bot.translate_api_url').'*' => Http::response([
             'status' => true,
@@ -20,7 +18,6 @@ test('bot can send confirmation', function () {
 });
 
 test('bot can return exception', function () {
-
     Http::fake([
         config('bot.translate_api_url').'*' => Http::response([
             'status' => true,
@@ -31,6 +28,14 @@ test('bot can return exception', function () {
     ]);
 
     $this->receiveMessage('remind makan - Besok pukul 10');
+
+    $this->assertRequestSent();
+});
+
+test('bot can return exception if there is no "-"', function () {
+    Http::fake();
+
+    $this->receiveMessage('remind makan Besok pukul 10');
 
     $this->assertRequestSent();
 });

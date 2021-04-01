@@ -128,28 +128,28 @@ class Bot
             static::sendLoginButton($senderId);
         } elseif ($keyword = static::isAskingCustomerDetail($message)) {
             static::listCustomer($senderId, $keyword);
-        } elseif ([$action,$time] = static::isAskingToRemind($message)) {
+        } elseif ([$action,$time] = static::isAskingToRemind($message, $senderId)) {
             $reply = static::confirmReminder($action, $time, $senderId);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
         } elseif (static::isAskingSwitchingDb($message)) {
             static::askWhichDb($senderId);
+        } elseif (static::isAskingHelp($message)) {
+            static::tellHelp($senderId);
         } elseif (static::isAskingPurchaseInvoice($message)) {
             static::showPurchaseInvoice($senderId, 1, $message);
         } elseif (static::isAskingSalesInvoice($message)) {
             static::showSalesInvoice($senderId, 1, $message);
-        } elseif (static::isMathExpression($message)) {
-            $reply = static::calculateMathExpression($message);
+        } elseif (static::isAskingToTranslate($message)) {
+            $reply = static::doTranslate($message);
         } elseif (static::isSayingHello($message)) {
             $reply = static::greetUser($message, $senderId);
-        } elseif (static::isAskingHelp($message)) {
-            static::tellHelp($senderId);
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
-        } elseif (static::isAskingToTranslate($message)) {
-            static::doTranslate($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
+        } elseif (static::isMathExpression($message)) {
+            $reply = static::calculateMathExpression($message);
         } elseif ($reply = static::showWikipedia($message)); elseif ($reply = static::showGoogleSearch($message)); else {
             $reply = __('bot.fallback_reply', compact('message'));
         }
