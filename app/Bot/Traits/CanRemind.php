@@ -2,6 +2,7 @@
 
 namespace App\Bot\Traits;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 trait CanRemind
@@ -28,10 +29,11 @@ trait CanRemind
                 $action = $information[0];
                 $time = $information[1];
 
+                $timenow = Carbon::parse('tomorrow at 9:17')->locale('id');
                 // Change time to now() or Carbon format
 
                 // If there are no information (e. g. only "ingatkan")
-                if (!$information) {
+                if (! $information) {
                     // Reply with remind format
                 }
 
