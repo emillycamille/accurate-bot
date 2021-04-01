@@ -8,7 +8,7 @@ return [
     'registered_since' => 'Terdaftar sejak',
     'stock' => 'Stok',
     'yes' => 'Ya',
-    'choices' => 'Silakan *klik* pilihan di bawah 😊',
+    'choices' => 'Silakan klik pilihan di bawah 😊',
 
     // Common Replies
     'ask_next_page' => 'Halaman berikutnya?',
@@ -20,19 +20,19 @@ return [
     'video_tutorial' => 'Naya sarankan kamu nonton video ini dulu ya https://youtu.be/gAdHZdxAxzI',
     'available_functions' => 'Untuk saat ini, Naya bisa:',
     'abilities' => [
-        'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>" *CONTOH: Item baju*)',
-        'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer>" *CONTOH: Customer Bayu*)',
+        'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>" CONTOH: Item baju)',
+        'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer>" CONTOH: Customer Bayu)',
         'can_show_purchases_history' => 'Menampilkan histori pembelian ("Histori pembelian"/"Purchase history")',
         'can_show_purchases_today' => 'Menampilkan total pembelian hari ini ("Pembelian"/"Purchase")',
-        'can_show_purchases' => 'Menampilkan pembelian pada tanggal tertentu ("Pembelian DD/MM/YYYY" *CONTOH: Pembelian 31/12/2020*)',
+        'can_show_purchases' => 'Menampilkan pembelian pada tanggal tertentu ("Pembelian DD/MM/YYYY" CONTOH: Pembelian 31/12/2020)',
         'can_show_sales_history' => 'Menampilkan histori penjualan ("Histori penjualan"/"Sales history")',
         'can_show_sales_today' => 'Menampilkan total penjualan hari ini ("Penjualan"/"Sales")',
-        'can_show_sales' => 'Menampilkan penjualan pada tanggal tertentu ("Penjualan DD/MM/YYYY" *CONTOH: Penjualan 31/12/2021*)',
+        'can_show_sales' => 'Menampilkan penjualan pada tanggal tertentu ("Penjualan DD/MM/YYYY" CONTOH: Penjualan 31/12/2021)',
         'can_switch_db' => 'Mengganti database yang sedang aktif ("Ganti db")',
         'can_translate' => 'Menerjemahkan kata/kalimat ke dalam bahasa Inggris ("translate .... / terjemahkan ....")',
         'can_do_math' => 'Menjalankan operasi matematika',
         'can_tell_time' => 'Menampilkan waktu saat ini ("Jam"/"Hari"/"Hari jam")',
-        'can_tell_weather' => 'Menampilkan kondisi cuaca ("Cuaca di <nama kota>" *CONTOH: Cuaca di Jakarta*)',
+        'can_tell_weather' => 'Menampilkan kondisi cuaca ("Cuaca di <nama kota>" CONTOH: Cuaca di Jakarta)',
     ],
 
     // Greet User
