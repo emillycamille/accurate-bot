@@ -1,8 +1,8 @@
 {
     "method": "GET",
-    "url": "https:\/\/api.scaleserp.com\/search?api_key=721FCA1ECAEF46328FD35750064A0A72&q=tralala%20trilili&gl=id&hl=id&location=Indonesia&google_domain=google.co.id&include_answer_box=true&output=json&include_html=false&flatten_results=false&filter=",
+    "url": "https:\/\/api.scaleserp.com\/search?api_key=TEST_SERP_KEY&q=tralala%20trilili&gl=id&hl=id&location=Indonesia&google_domain=google.co.id&include_answer_box=true&output=json&include_html=false&flatten_results=false&filter=",
     "data": {
-        "api_key": "721FCA1ECAEF46328FD35750064A0A72",
+        "api_key": "TEST_SERP_KEY",
         "q": "tralala trilili",
         "gl": "id",
         "hl": "id",
