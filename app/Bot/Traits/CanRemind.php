@@ -25,17 +25,18 @@ trait CanRemind
             if (Str::contains($message, $needle)) {
 
                 // Explode message to grab the information
-                $information = '';
+                $information = explode("/\s+/", (Str::after($message, $needle)));
+                $action = $information[0];
+                $time = $information[1];
 
                 // Change time to now() or Carbon format
 
                 // If there are no information (e. g. only "ingatkan")
-                if (!$information) {
+                if (! $information) {
                     // Reply with remind format
                 }
 
                 // Save information to database
-
             }
         }
 

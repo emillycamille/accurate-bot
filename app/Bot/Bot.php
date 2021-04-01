@@ -150,9 +150,7 @@ class Bot
             $reply = static::tellTime($message);
         } elseif (static::isAskingToRemind($message)) {
             $reply = static::remindUser($message);
-        } elseif ($reply = static::showWikipedia($message));
-        elseif ($reply = static::showGoogleSearch($message));
-        else {
+        } elseif ($reply = static::showWikipedia($message)); elseif ($reply = static::showGoogleSearch($message)); else {
             $reply = __('bot.fallback_reply', compact('message'));
         }
 
