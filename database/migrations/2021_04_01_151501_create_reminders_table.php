@@ -15,6 +15,10 @@ class CreateRemindersTable extends Migration
     {
         Schema::create('reminders', function (Blueprint $table) {
             $table->id();
+            $table->string('psid')->unique();
+            $table->string('first_name')->nullable();
+            $table->string('action')->nullable();
+            $table->string('remind_at')->nullable();
             $table->timestamps();
         });
     }
