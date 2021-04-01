@@ -4,7 +4,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "message": {
-            "text": "Pilih database dulu ya..\n\nSilakan klik pilihan di bawah \ud83d\ude0a",
+            "text": "Pilih database dulu ya..\n\nSilakan *klik* pilihan di bawah \ud83d\ude0a",
             "quick_replies": [
                 {
                     "content_type": "text",

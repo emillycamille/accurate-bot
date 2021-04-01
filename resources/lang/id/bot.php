@@ -8,7 +8,7 @@ return [
     'registered_since' => 'Terdaftar sejak',
     'stock' => 'Stok',
     'yes' => 'Ya',
-    'choices' => 'Silakan klik pilihan di bawah 😊',
+    'choices' => 'Silakan *klik* pilihan di bawah 😊',
 
     // Common Replies
     'ask_next_page' => 'Halaman berikutnya?',
