@@ -16,6 +16,7 @@ return [
     // Abilities
     'available_functions' => 'Untuk saat ini, Naya bisa:',
     'abilities' => [
+        'video_tutorial' => 'Naya sarankan kamu nonton video ini dulu ya https://youtu.be/gAdHZdxAxzI',
         'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>")',
         'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer>")',
         'can_show_purchases_history' => 'Menampilkan histori pembelian ("Histori pembelian"/"Purchase history")',

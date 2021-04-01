@@ -33,7 +33,7 @@ trait CanTranslate
                 $response = Http::get(config('bot.translate_api_url'), [
                     'engine' => 'google',
                     'text' => $text,
-                    'to' => 'en',
+                    'to' => 'id',
                 ]);
 
                 return $response['data']['result'];
