@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 trait CanRemind
 {
     /**
-     * Determine whether $message is a math expression.
+     * Determine whether $message is asking to remind.
      */
     public static function isAskingToRemind(string $message): bool
     {
@@ -15,7 +15,7 @@ trait CanRemind
     }
 
     /**
-     * Calculate the given math expression.
+     * Process the message.
      */
     public static function remindUser(string $message): void
     {
