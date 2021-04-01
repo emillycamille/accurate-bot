@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "328"
+            "372"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -18,7 +18,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "message": {
-            "text": "Ada beberapa customer ditemukan, siapa yang kamu maksud?\n\n1. CUST_NAME_1\n2. CUST_NAME_2\n",
+            "text": "Ada beberapa customer ditemukan, siapa yang kamu maksud?\n1. CUST_NAME_1\n2. CUST_NAME_2\n\nSilakan *klik* pilihan di bawah \ud83d\ude0a",
             "quick_replies": [
                 {
                     "content_type": "text",
