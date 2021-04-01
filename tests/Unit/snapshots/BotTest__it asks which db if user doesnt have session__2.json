@@ -3,11 +3,8 @@
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
         "messaging_type": "RESPONSE",
-        "recipient": {
-            "id": "PS_ID"
-        },
         "message": {
-            "text": "Pilih database dulu ya..",
+            "text": "Pilih database dulu ya..\n\nSilakan klik pilihan di bawah \ud83d\ude0a",
             "quick_replies": [
                 {
                     "content_type": "text",
@@ -15,6 +12,9 @@
                     "payload": "OPEN_DB:PS_ID:1"
                 }
             ]
+        },
+        "recipient": {
+            "id": "PS_ID"
         }
     }
 }

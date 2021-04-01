@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "311"
+            "357"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -18,7 +18,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "message": {
-            "text": "Ada beberapa item ditemukan, mana yang kamu maksud?\n\n1. KEYWORD_1\n2. KEYWORD_2\n",
+            "text": "Ada beberapa item ditemukan, mana yang kamu maksud?\n\n1. KEYWORD_1\n2. KEYWORD_2\n\n\nSilakan klik pilihan di bawah \ud83d\ude0a",
             "quick_replies": [
                 {
                     "content_type": "text",

@@ -98,7 +98,7 @@ trait CanManageCustomers
                     'payload' => "DETAIL_CUSTOMER:$psid:{$customer['id']}",
                 ];
             }
-
+            $text .= "\n\n".__('bot.choices');
             $payload = static::makeQuickRepliesPayload($text, $buttons);
         }
 
