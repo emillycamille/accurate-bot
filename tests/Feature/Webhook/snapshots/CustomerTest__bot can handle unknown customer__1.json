@@ -3,11 +3,11 @@
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
         "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Untuk mencari customer, bisa dengan ketik \"customer <keyword customer>\". CONTOH: Customer Adi"
+        },
         "recipient": {
             "id": "PS_ID"
-        },
-        "message": {
-            "text": "Untuk mencari customer, bisa dengan ketik \"customer <keyword customer>\""
         }
     }
 }

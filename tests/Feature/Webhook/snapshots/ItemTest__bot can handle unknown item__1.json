@@ -3,11 +3,11 @@
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
         "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Untuk mencari item, bisa dengan ketik \"item <keyword item>\". CONTOH: Item sepatu"
+        },
         "recipient": {
             "id": "PS_ID"
-        },
-        "message": {
-            "text": "Untuk mencari item, bisa dengan ketik \"item <keyword item>\""
         }
     }
 }
