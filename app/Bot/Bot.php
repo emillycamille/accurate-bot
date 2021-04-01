@@ -139,14 +139,16 @@ class Bot
         } elseif (static::isSayingHello($message)) {
             $reply = static::greetUser($message, $senderId);
         } elseif (static::isAskingHelp($message)) {
-            $reply = static::tellHelp($senderId);
+            static::tellHelp($senderId);
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
         } elseif (static::isAskingToTranslate($message)) {
             $reply = static::doTranslate($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
-        } elseif ($reply = static::showWikipedia($message)); elseif ($reply = static::showGoogleSearch($message)); else {
+        } elseif ($reply = static::showWikipedia($message));
+        elseif ($reply = static::showGoogleSearch($message));
+        else {
             $reply = __('bot.fallback_reply', compact('message'));
         }
 
