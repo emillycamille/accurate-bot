@@ -23,9 +23,8 @@ trait CanRemind
 
         foreach (['ingatkan', 'remind'] as $needle) {
             if (Str::contains($message, $needle)) {
-
                 // Explode message to grab the information
-                $information = explode("/\s+/", trim(Str::after($message, $needle)));
+                $information = preg_split("/\s+/", trim(Str::after($message, $needle)));
                 $action = $information[0];
                 $time = $information[1];
 
