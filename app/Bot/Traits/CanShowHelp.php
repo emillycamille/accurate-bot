@@ -18,7 +18,7 @@ trait CanShowHelp
     public static function tellHelp(string $psid): void
     {
         static::sendMessage(__('bot.video_tutorial'), $psid);
-        $reply = __('bot.available_functions') . "\n\n";
+        $reply = __('bot.available_functions')."\n\n";
         $count = 1;
 
         foreach (__('bot.abilities') as $key => $value) {

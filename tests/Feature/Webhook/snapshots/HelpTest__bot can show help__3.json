@@ -4,7 +4,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "message": {
-            "text": "Jika ada beberapa hasil yang ditemukan, maka akan ditampilkan button untuk memilih nomor nya. \n    Klik button-nya ya \u263a\ufe0f, tidak perlu menulis ulang angkanya"
+            "text": "Jika ada beberapa hasil yang ditemukan, maka akan ditampilkan button untuk memilih nomor nya. Klik button-nya ya \u263a\ufe0f, tidak perlu menulis ulang angkanya"
         },
         "recipient": {
             "id": "PS_ID"

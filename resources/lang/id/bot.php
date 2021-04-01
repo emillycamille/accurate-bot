@@ -14,8 +14,8 @@ return [
     'fallback_reply' => 'Maaf untuk saat ini Naya belum mengerti ":message" 😅. Ketik "help" untuk melihat apa aja yang Naya sudah bisa',
 
     // Abilities
-    'quick_reply_explanation' => 'Jika ada beberapa hasil yang ditemukan, maka akan ditampilkan button untuk memilih nomor nya. 
-    Klik button-nya ya ☺️, tidak perlu menulis ulang angkanya',
+    'quick_reply_explanation' => 'Jika ada beberapa hasil yang ditemukan, maka akan ditampilkan button untuk memilih nomor nya. '.
+    'Klik button-nya ya ☺️, tidak perlu menulis ulang angkanya',
     'video_tutorial' => 'Naya sarankan kamu nonton video ini dulu ya https://youtu.be/gAdHZdxAxzI',
     'available_functions' => 'Untuk saat ini, Naya bisa:',
     'abilities' => [
