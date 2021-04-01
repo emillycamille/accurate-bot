@@ -37,6 +37,11 @@ return [
     'get_started_message' => 'Salam kenal, :name! 👋🏻 Aku Naya, kalau kamu butuh bantuan, bisa ketik "help"',
     'greet_user' => 'Hai, :name! 🤗 Apa kabar? Have a nice day ya ☺️. Kalau kamu butuh bantuan, bisa ketik "help"',
 
+    // Reminder
+    'reminder_confirmation' => "Apakah reminder berikut sudah benar?\n\n:action\nKapan: :date, jam :time",
+    'reminder_exception' => "Naya kurang mengerti nih.. Coba seperti ini\n\n".
+    '"Ingatkan beli token - besok jam 10:00" atau "Ingatkan isi bensin - tanggal 1/1/2021 jam 17:00"',
+
     // Weather
     'city_not_found' => 'Waduhh, Naya gak bisa ketemu kota yang kamu cari nih.. Coba isi kota lain 😉.',
     'weather_reply' => 'Cuaca di kota :city adalah :description dengan suhu :temp ºC.',

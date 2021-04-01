@@ -2,12 +2,35 @@
 
 use Illuminate\Support\Facades\Http;
 
-beforeEach(function () {
-    Http::fake();
-});
 
-test('bot can explode remind message', function () {
-    $this->receiveMessage('remind makan 20:00');
+test('bot can send confirmation', function () {
+
+    Http::fake([
+        config('bot.translate_api_url').'*' => Http::response([
+            'status' => true,
+            'message' => 'success',
+            'data' => ['result' => 'tomorrow at 10:00'],
+        ]),
+        '*' => Http::response(),
+    ]);
+
+    $this->receiveMessage('remind makan - Besok pukul 10:00');
 
     $this->assertRequestSent();
-})->skip();
+});
+
+test('bot can return exception', function () {
+
+    Http::fake([
+        config('bot.translate_api_url').'*' => Http::response([
+            'status' => true,
+            'message' => 'success',
+            'data' => ['result' => 'tomorrow at 10'],
+        ]),
+        '*' => Http::response(),
+    ]);
+
+    $this->receiveMessage('remind makan - Besok pukul 10');
+
+    $this->assertRequestSent();
+});

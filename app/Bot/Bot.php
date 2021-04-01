@@ -128,8 +128,8 @@ class Bot
             static::sendLoginButton($senderId);
         } elseif ($keyword = static::isAskingCustomerDetail($message)) {
             static::listCustomer($senderId, $keyword);
-        } elseif (static::isAskingToRemind($message)) {
-            $reply = static::remindUser($message);
+        } elseif ([$action,$time] = static::isAskingToRemind($message)) {
+            $reply = static::confirmReminder($action, $time, $senderId);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
         } elseif (static::isAskingSwitchingDb($message)) {
@@ -147,7 +147,7 @@ class Bot
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
         } elseif (static::isAskingToTranslate($message)) {
-            $reply = static::doTranslate($message);
+            static::doTranslate($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
         } elseif ($reply = static::showWikipedia($message)); elseif ($reply = static::showGoogleSearch($message)); else {

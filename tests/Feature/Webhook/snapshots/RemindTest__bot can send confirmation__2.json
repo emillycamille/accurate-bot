@@ -1,0 +1,13 @@
+{
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Apakah reminder berikut sudah benar?\n\nMakan \nKapan: 03 April 2021, jam 10:00"
+        },
+        "recipient": {
+            "id": "PS_ID"
+        }
+    }
+}

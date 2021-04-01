@@ -2,45 +2,56 @@
 
 namespace App\Bot\Traits;
 
+use Carbon\Exceptions\InvalidFormatException;
 use Carbon\Carbon;
+use App\Bot\Traits\CanTranslate;
 use Illuminate\Support\Str;
 
 trait CanRemind
 {
+    use CanTranslate;
+
     /**
      * Determine whether $message is asking to remind.
      */
-    public static function isAskingToRemind(string $message): bool
+    public static function isAskingToRemind(string $message): array | bool
     {
-        return Str::contains(strtolower($message), ['ingatkan', 'remind']);
+
+        $message = strtolower($message);
+
+        foreach (['ingatkan','remind'] as $needle) {
+            if (Str::contains($message, $needle)) {
+
+                // Explode message to grab the information
+                $information = explode('-',trim(Str::after($message, $needle)));
+                return [$information[0],$information[1]];
+            }
+        }
+        return false;
     }
 
     /**
      * Process the message.
      */
-    public static function remindUser(string $message): void
+    public static function confirmReminder(string $action, string $time, string $psid): void
     {
-        $message = strtolower($message);
+        try{
+            // Translate the time to English
+            $translatedTime = static::doTranslate("translate ".$time);
 
-        foreach (['ingatkan', 'remind'] as $needle) {
-            if (Str::contains($message, $needle)) {
-                // Explode message to grab the information
-                $information = preg_split("/\s+/", trim(Str::after($message, $needle)));
-                $action = $information[0];
-                $time = $information[1];
+            // Change time to now() or Carbon format
+            $carbonTime = Carbon::parse($translatedTime);
+            $date = $carbonTime->format('d F Y');
+            $time = $carbonTime->format('H:i');
+            $action = ucfirst($action);
 
-                $timenow = Carbon::parse('tomorrow at 9:17')->locale('id');
-                // Change time to now() or Carbon format
+            // Return confirmation message
+            static::sendMessage(__('bot.reminder_confirmation',
+            compact('action','date','time')), $psid);
+        } catch (InvalidFormatException $e) {
 
-                // If there are no information (e. g. only "ingatkan")
-                if (! $information) {
-                    // Reply with remind format
-                }
-
-                // Save information to database
-            }
+            // Catch invalid time format
+            static::sendMessage(__('bot.reminder_exception'), $psid);
         }
-
-        // Return confirmation message
     }
 }

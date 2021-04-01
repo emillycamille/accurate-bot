@@ -1,0 +1,13 @@
+{
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Naya kurang mengerti nih.. Coba seperti ini\n\n\"Ingatkan beli token - besok jam 10:00\" atau \"Ingatkan isi bensin - tanggal 1\/1\/2021 jam 17:00\""
+        },
+        "recipient": {
+            "id": "PS_ID"
+        }
+    }
+}

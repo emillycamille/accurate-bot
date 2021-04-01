@@ -1,0 +1,9 @@
+{
+    "method": "GET",
+    "url": "https:\/\/amm-api-translate.herokuapp.com\/translate?engine=google&text=besok%20pukul%2010&to=en",
+    "data": {
+        "engine": "google",
+        "text": "besok pukul 10",
+        "to": "en"
+    }
+}
