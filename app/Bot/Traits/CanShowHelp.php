@@ -15,10 +15,10 @@ trait CanShowHelp
     /**
      * Tell available functions, as requested in $message.
      */
-    public static function tellHelp(): string
+    public static function tellHelp(string $psid): string
     {
-        $reply = __('bot.video_tutorial')."\n\n";
-        $reply .= __('bot.available_functions')."\n\n";
+        static::sendMessage(__('bot.video_tutorial'), $psid);
+        $reply = __('bot.available_functions')."\n\n";
         $count = 1;
 
         foreach (__('bot.abilities') as $key => $value) {

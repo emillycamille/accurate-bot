@@ -4,7 +4,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "message": {
-            "text": "Naya sarankan kamu nonton video ini dulu ya https:\/\/youtu.be\/gAdHZdxAxzI\n\nUntuk saat ini, Naya bisa:\n\n1. Cek stok dan harga barang pada Accurate (\"Item <nama item>\")\n\n2. Cek saldo customer (\"Customer <nama customer>\")\n\n3. Menampilkan histori pembelian (\"Histori pembelian\"\/\"Purchase history\")\n\n4. Menampilkan total pembelian hari ini (\"Pembelian\"\/\"Purchase\")\n\n5. Menampilkan pembelian pada tanggal tertentu (\"Pembelian DD\/MM\/YYYY\")\n\n6. Menampilkan histori penjualan (\"Histori penjualan\"\/\"Sales history\")\n\n7. Menampilkan total penjualan hari ini (\"Penjualan\"\/\"Sales\")\n\n8. Menampilkan penjualan pada tanggal tertentu (\"Penjualan DD\/MM\/YYYY\")\n\n9. Mengganti database yang sedang aktif (\"Ganti db\")\n\n10. Menerjemahkan kata\/kalimat ke dalam bahasa Inggris (\"translate .... \/ terjemahkan ....\")\n\n11. Menjalankan operasi matematika\n\n12. Menampilkan waktu saat ini (\"Jam\"\/\"Hari\"\/\"Hari jam\")\n\n13. Menampilkan kondisi cuaca (\"Cuaca di <nama kota>\")\n\n"
+            "text": "Naya sarankan kamu nonton video ini dulu ya https:\/\/youtu.be\/gAdHZdxAxzI"
         },
         "recipient": {
             "id": "PS_ID"

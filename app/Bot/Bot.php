@@ -139,7 +139,7 @@ class Bot
         } elseif (static::isSayingHello($message)) {
             $reply = static::greetUser($message, $senderId);
         } elseif (static::isAskingHelp($message)) {
-            $reply = static::tellHelp();
+            $reply = static::tellHelp($senderId);
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
         } elseif (static::isAskingToTranslate($message)) {
