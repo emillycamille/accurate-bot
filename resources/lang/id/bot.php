@@ -52,13 +52,13 @@ return [
     'outstanding' => 'Piutang per :time',
     'multiple_customers_match_keyword' => 'Ada beberapa customer ditemukan, siapa yang kamu maksud?',
     'no_customers_match_keyword' => 'Tidak ditemukan customer dengan keyword ":keyword"',
-    'unknown_customer' => 'Untuk mencari customer, bisa dengan ketik "customer <keyword customer>"',
+    'unknown_customer' => 'Untuk mencari customer, bisa dengan ketik "customer <keyword customer>". CONTOH: Customer Adi',
 
     // Item
     'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang kamu maksud?',
     'no_items_match_keyword' => 'Tidak ditemukan item dengan keyword ":keyword"',
     'prompt_show_image' => 'Tampilkan gambar?',
-    'unknown_item' => 'Untuk mencari item, bisa dengan ketik "item <keyword item>"',
+    'unknown_item' => 'Untuk mencari item, bisa dengan ketik "item <keyword item>". CONTOH: Item sepatu',
 
     // Purchases
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
@@ -75,5 +75,5 @@ return [
     'total_sales_at' => 'Total penjualan tanggal :date sebesar :amount',
 
     // Translate
-    'unknown_translate' => 'Untuk menerjemahkan, bisa dengan format "translate .... / terjemahkan ...."',
+    'unknown_translate' => 'Untuk menerjemahkan, bisa dengan format "translate .... / terjemahkan ....". CONTOH: Translate pesawat',
 ];
