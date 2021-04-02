@@ -39,3 +39,11 @@ test('bot can return exception if there is no "-"', function () {
 
     $this->assertRequestSent();
 });
+
+test('bot can run set reminder', function () {
+    Http::fake();
+
+    $this->receivePostback('SET_REMINDER:PS_ID:CARBON_TIME//ACTION');
+
+    test()->assertRequestSent(true);
+})->skip();
