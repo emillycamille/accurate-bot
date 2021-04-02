@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Reminder;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 test('bot can send confirmation', function () {
@@ -40,10 +42,21 @@ test('bot can return exception if there is no "-"', function () {
     $this->assertRequestSent();
 });
 
-test('bot can run set reminder', function () {
+test('bot can save reminder to database', function () {
     Http::fake();
 
-    $this->receivePostback('SET_REMINDER:PS_ID:CARBON_TIME//ACTION');
+    $user = User::factory()->create();
+    $reminder = Reminder::factory()->create();
 
-    test()->assertRequestSent(true);
-})->skip();
+    $this->receivePostback('SET_REMINDER:PS_ID:2021-04-03 10:00:00//ACTION');
+
+    test()->assertRequestSent();
+
+    $this->assertDatabaseHas('users', ['first_name' => $user->first_name]);
+    $this->assertDatabaseHas('reminders', [
+        'action' => $reminder->action,
+        'remind_at' => $reminder->remind_at,
+        'first_name' => $reminder->first_name,
+        'psid' => $reminder->psid,
+    ]);
+})->only();

@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Reminder extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'psid', 'first_name', 'action', 'remind_at',
+    ];
 }

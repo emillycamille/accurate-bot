@@ -2,6 +2,8 @@
 
 namespace App\Bot\Traits;
 
+use App\Models\Reminder;
+use App\Models\User;
 use Carbon\Carbon;
 use Carbon\Exceptions\InvalidFormatException;
 use Illuminate\Support\Str;
@@ -78,13 +80,17 @@ trait CanRemind
     public static function setReminder(string $psid, string $parsedInformation): void
     {
         // Process $parsedInformation
-        $carbonTime = Str::before($parsedInformation, '//');
+        $time = Str::before($parsedInformation, '//');
+
+        $remind_at = Carbon::parse($time);
         $action = Str::after($parsedInformation, '//');
+        $first_name = User::firstWhere('psid', $psid)->first_name;
 
-        // Successfully dump, but test still fail. Skip test for the time being.
-        dump($carbonTime.'---'.$action);
+        // Save PSID, First Name, Action, and Remind At to reminders table
+        $reminderData = ['action' => $action, 'remind_at' => $remind_at, 'psid' => $psid, 'first_name' => $first_name];
+        Reminder::create($reminderData);
 
-        // Save PSID to reminders table
-        // Save $action->action and $carbonTime->remind_at to reminders table
+        // Return success message.
+        static::sendMessage(__('bot.success_remind'), $psid);
     }
 }

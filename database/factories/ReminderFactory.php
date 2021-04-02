@@ -22,7 +22,10 @@ class ReminderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'psid' => 'PS_ID',
+            'first_name' => 'FIRST_NAME',
+            'action' => 'ACTION',
+            'remind_at' => '2021-04-02 22:45:57',
         ];
     }
 }
