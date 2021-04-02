@@ -68,17 +68,29 @@ trait CanConnectAccurate
                 return null;
             }
 
-            // If session is invalid, reopen db and reask Accurate.
-            if ($e->response->json('s') === false && $user->session && $user->database_id) {
-                $dbid = $user->database_id;
+            if ($e->response->json('s') === false) {
+                $errorMessage = $e->response->json('d');
 
-                // Nullify user's database_id to prevent infinite loop. If this second
-                // request fails, the user will be asked which DB to open.
-                $user->update(['database_id' => null]);
+                // If session is invalid, reopen db and reask Accurate.
+                if (
+                    Str::containsAll($errorMessage, ['Session', 'tidak', 'tepat'])
+                    && $user->database_id
+                ) {
+                    $dbid = $user->database_id;
 
-                static::openDb($psid, $dbid);
+                    // Nullify user's database_id to prevent infinite loop. If this second
+                    // request fails, the user will be asked which DB to open.
+                    $user->update(['database_id' => null]);
 
-                return static::askAccurate($psid, $uri, $query);
+                    static::openDb($psid, $dbid);
+
+                    return static::askAccurate($psid, $uri, $query);
+                }
+
+                // Else, show the error message to the user.
+                static::sendMessage($errorMessage, $psid);
+
+                return null;
             }
 
             throw $e;

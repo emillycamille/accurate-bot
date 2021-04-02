@@ -4,7 +4,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "message": {
-            "text": "Untuk menerjemahkan, bisa dengan format \"translate .... \/ terjemahkan ....\""
+            "text": "Untuk menerjemahkan, bisa dengan format \"translate .... \/ terjemahkan ....\". CONTOH: Translate pesawat"
         },
         "recipient": {
             "id": "PS_ID"

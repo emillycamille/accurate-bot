@@ -110,6 +110,8 @@ trait CanManageItems
                 ];
             }
 
+            $text .= "\n".__('bot.choices');
+
             $payload = static::makeQuickRepliesPayload($text, $buttons);
         }
 
