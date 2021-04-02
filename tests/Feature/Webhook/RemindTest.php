@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 test('bot can send confirmation', function () {
     Http::fake([
-        config('bot.translate_api_url').'*' => Http::response([
+        config('bot.translate_api_url') . '*' => Http::response([
             'status' => true,
             'message' => 'success',
             'data' => ['result' => 'tomorrow at 10:00'],
@@ -21,7 +21,7 @@ test('bot can send confirmation', function () {
 
 test('bot can return exception', function () {
     Http::fake([
-        config('bot.translate_api_url').'*' => Http::response([
+        config('bot.translate_api_url') . '*' => Http::response([
             'status' => true,
             'message' => 'success',
             'data' => ['result' => 'tomorrow at 10'],
@@ -59,4 +59,4 @@ test('bot can save reminder to database', function () {
         'first_name' => $reminder->first_name,
         'psid' => $reminder->psid,
     ]);
-})->only();
+});
