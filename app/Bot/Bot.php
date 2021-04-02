@@ -146,6 +146,8 @@ class Bot
             $reply = static::doTranslate($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
+        } elseif (static::isSendingNumber($message)) {
+            static::sendMessage(__('bot.quick_reply_explanation'), $senderId);
         } elseif ($reply = static::showWikipedia($message)); elseif ($reply = static::showGoogleSearch($message)); else {
             $reply = __('bot.fallback_reply', compact('message'));
         }
