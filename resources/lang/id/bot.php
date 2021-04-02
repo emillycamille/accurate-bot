@@ -8,29 +8,31 @@ return [
     'registered_since' => 'Terdaftar sejak',
     'stock' => 'Stok',
     'yes' => 'Ya',
+    'choices' => 'Silakan klik pilihan di bawah 😊',
 
     // Common Replies
     'ask_next_page' => 'Halaman berikutnya?',
     'fallback_reply' => 'Maaf untuk saat ini Naya belum mengerti ":message" 😅. Ketik "help" untuk melihat apa aja yang Naya sudah bisa',
 
     // Abilities
-    'quick_reply_explanation' => 'Jika ada beberapa hasil yang ditemukan, maka akan ditampilkan button untuk memilih nomor nya. Klik button-nya ya ☺️, tidak perlu menulis ulang angkanya',
+    'quick_reply_explanation' => 'Jika ada beberapa hasil yang ditemukan, maka akan ditampilkan button untuk memilih nomor nya.'
+    .' Klik button-nya ya ☺️, tidak perlu menulis ulang angkanya',
     'video_tutorial' => 'Naya sarankan kamu nonton video ini dulu ya https://youtu.be/gAdHZdxAxzI',
     'available_functions' => 'Untuk saat ini, Naya bisa:',
     'abilities' => [
-        'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>" *CONTOH: Item baju*)',
-        'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer>" *CONTOH: Customer Bayu*)',
+        'can_manage_items' => 'Cek stok dan harga barang pada Accurate ("Item <nama item>" CONTOH: Item baju)',
+        'can_manage_customers' => 'Cek saldo customer ("Customer <nama customer>" CONTOH: Customer Bayu)',
         'can_show_purchases_history' => 'Menampilkan histori pembelian ("Histori pembelian"/"Purchase history")',
         'can_show_purchases_today' => 'Menampilkan total pembelian hari ini ("Pembelian"/"Purchase")',
-        'can_show_purchases' => 'Menampilkan pembelian pada tanggal tertentu ("Pembelian DD/MM/YYYY" *CONTOH: Pembelian 31/12/2020*)',
+        'can_show_purchases' => 'Menampilkan pembelian pada tanggal tertentu ("Pembelian DD/MM/YYYY" CONTOH: Pembelian 31/12/2020)',
         'can_show_sales_history' => 'Menampilkan histori penjualan ("Histori penjualan"/"Sales history")',
         'can_show_sales_today' => 'Menampilkan total penjualan hari ini ("Penjualan"/"Sales")',
-        'can_show_sales' => 'Menampilkan penjualan pada tanggal tertentu ("Penjualan DD/MM/YYYY" *CONTOH: Penjualan 31/12/2021*)',
+        'can_show_sales' => 'Menampilkan penjualan pada tanggal tertentu ("Penjualan DD/MM/YYYY" CONTOH: Penjualan 31/12/2021)',
         'can_switch_db' => 'Mengganti database yang sedang aktif ("Ganti db")',
         'can_translate' => 'Menerjemahkan kata/kalimat ke dalam bahasa Inggris ("translate .... / terjemahkan ....")',
         'can_do_math' => 'Menjalankan operasi matematika',
         'can_tell_time' => 'Menampilkan waktu saat ini ("Jam"/"Hari"/"Hari jam")',
-        'can_tell_weather' => 'Menampilkan kondisi cuaca ("Cuaca di <nama kota>" *CONTOH: Cuaca di Jakarta*)',
+        'can_tell_weather' => 'Menampilkan kondisi cuaca ("Cuaca di <nama kota>" CONTOH: Cuaca di Jakarta)',
     ],
 
     // Greet User
@@ -57,13 +59,13 @@ return [
     'outstanding' => 'Piutang per :time',
     'multiple_customers_match_keyword' => 'Ada beberapa customer ditemukan, siapa yang kamu maksud?',
     'no_customers_match_keyword' => 'Tidak ditemukan customer dengan keyword ":keyword"',
-    'unknown_customer' => 'Untuk mencari customer, bisa dengan ketik "customer <keyword customer>"',
+    'unknown_customer' => 'Untuk mencari customer, bisa dengan ketik "customer <keyword customer>". CONTOH: Customer Adi',
 
     // Item
     'multiple_items_match_keyword' => 'Ada beberapa item ditemukan, mana yang kamu maksud?',
     'no_items_match_keyword' => 'Tidak ditemukan item dengan keyword ":keyword"',
     'prompt_show_image' => 'Tampilkan gambar?',
-    'unknown_item' => 'Untuk mencari item, bisa dengan ketik "item <keyword item>"',
+    'unknown_item' => 'Untuk mencari item, bisa dengan ketik "item <keyword item>". CONTOH: Item sepatu',
 
     // Purchases
     'no_purchases' => 'Kakak belum ada pembelian saat ini :)',
@@ -80,5 +82,5 @@ return [
     'total_sales_at' => 'Total penjualan tanggal :date sebesar :amount',
 
     // Translate
-    'unknown_translate' => 'Untuk menerjemahkan, bisa dengan format "translate .... / terjemahkan ...."',
+    'unknown_translate' => 'Untuk menerjemahkan, bisa dengan format "translate .... / terjemahkan ....". CONTOH: Translate pesawat',
 ];

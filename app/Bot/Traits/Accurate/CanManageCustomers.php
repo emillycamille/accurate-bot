@@ -85,7 +85,7 @@ trait CanManageCustomers
         } elseif (count($customers) === 1) {
             $payload = static::customerToString($customers[0]);
         } else {
-            $text = __('bot.multiple_customers_match_keyword')."\n\n";
+            $text = __('bot.multiple_customers_match_keyword')."\n";
             $buttons = [];
 
             foreach ($customers as $i => $customer) {
@@ -98,7 +98,7 @@ trait CanManageCustomers
                     'payload' => "DETAIL_CUSTOMER:$psid:{$customer['id']}",
                 ];
             }
-
+            $text .= "\n".__('bot.choices');
             $payload = static::makeQuickRepliesPayload($text, $buttons);
         }
 
