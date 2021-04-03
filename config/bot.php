@@ -46,6 +46,11 @@ return [
     'typing_on' => env('TYPING_ON', false),
 
     /*
+     * Definition API url.
+     */
+    'definition_api_url' => 'http://kateglo.com/api.php',
+
+    /*
      * Weather API key.
      */
     'weather_api_key' => env('WEATHER_API_KEY'),

@@ -35,6 +35,9 @@ return [
         'can_tell_weather' => 'Menampilkan kondisi cuaca ("Cuaca di <nama kota>" CONTOH: Cuaca di Jakarta)',
     ],
 
+    // Definition
+    'definition' => 'Arti kata :message adalah :definition',
+
     // Greet User
     'get_started_message' => 'Salam kenal, :name! 👋🏻 Aku Naya, kalau kamu butuh bantuan, bisa ketik "help"',
     'greet_user' => 'Hai, :name! 🤗 Apa kabar? Have a nice day ya ☺️. Kalau kamu butuh bantuan, bisa ketik "help"',
