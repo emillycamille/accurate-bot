@@ -18,7 +18,7 @@ class CreateRemindersTable extends Migration
             $table->string('psid')->nullable();
             $table->string('first_name')->nullable();
             $table->string('action')->nullable();
-            $table->string('remind_at')->nullable();
+            $table->timestamp('remind_at')->nullable();
             $table->timestamps();
         });
     }
