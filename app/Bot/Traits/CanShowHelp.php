@@ -13,6 +13,20 @@ trait CanShowHelp
     }
 
     /**
+     * Determine whether the $message is number from 1-13.
+     */
+    public static function isSendingNumber(string $message): bool
+    {
+        for ($i = 1; $i < 14; $i++) {
+            if ($message == $i) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Tell available functions, as requested in $message.
      */
     public static function tellHelp(string $psid): void

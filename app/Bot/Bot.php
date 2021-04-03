@@ -7,6 +7,7 @@ use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGetStarted;
 use App\Bot\Traits\CanGreetUser;
 use App\Bot\Traits\CanRemind;
+use App\Bot\Traits\CanShowDefinition;
 use App\Bot\Traits\CanShowGoogle;
 use App\Bot\Traits\CanShowHelp;
 use App\Bot\Traits\CanShowWikipedia;
@@ -25,6 +26,7 @@ class Bot
         CanGreetUser,
         CanConnectAccurate,
         CanRemind,
+        CanShowDefinition,
         CanShowGoogle,
         CanShowHelp,
         CanShowWikipedia,
@@ -150,6 +152,10 @@ class Bot
             $reply = static::tellTime($message);
         } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
+        } elseif ($keyword = static::isAskingdefinition($message)) {
+            $reply = static::showDefinition($keyword);
+        } elseif (static::isSendingNumber($message)) {
+            static::sendMessage(__('bot.quick_reply_explanation'), $senderId);
         } elseif ($reply = static::showWikipedia($message));
         elseif ($reply = static::showGoogleSearch($message));
         else {

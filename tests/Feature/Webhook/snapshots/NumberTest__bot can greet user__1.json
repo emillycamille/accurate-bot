@@ -1,0 +1,13 @@
+{
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Jika ada beberapa hasil yang ditemukan, maka akan ditampilkan button untuk memilih nomor nya. Klik button-nya ya \u263a\ufe0f, tidak perlu menulis ulang angkanya"
+        },
+        "recipient": {
+            "id": "PS_ID"
+        }
+    }
+}
