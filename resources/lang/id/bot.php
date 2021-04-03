@@ -47,6 +47,7 @@ return [
     'wrong_reminder_format' => "Naya kurang mengerti nih.. Coba seperti ini\n\n".
         '"Ingatkan beli token - besok jam 10:00" atau "Ingatkan isi bensin - tanggal 1/1/2021 jam 17:00"',
     'reminder_created' => 'Reminder kamu berhasil disimpan!',
+    'remind' => 'Halo :name! Jangan lupa :action 😊',
     'remind_adding_dash' => 'Jangan lupa tambahkan "-" ya 😊',
 
     // Weather

@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Bot\Bot;
+use App\Models\Reminder;
+use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 
 class sendReminder extends Command
 {
@@ -38,7 +40,15 @@ class sendReminder extends Command
      */
     public function handle()
     {
-        Bot::sendMessage('halo adiet', '5196920073666570');
-        echo 'hello world';
+        $time = Carbon::now();
+        $reminders = Reminder::where('remind_at', $time)->get();
+
+        foreach ($reminders as $reminder) {
+            $action = $reminder->action;
+            $psid = $reminder->psid;
+            $name = $reminder->first_name;
+
+            Bot::sendMessage(__('bot_remind', compact('name', 'action')), $psid);
+        }
     }
 }
