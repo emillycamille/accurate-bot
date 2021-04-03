@@ -23,9 +23,9 @@ class ReminderFactory extends Factory
     {
         return [
             'psid' => 'PS_ID',
-            'first_name' => 'FIRST_NAME',
+            'first_name' => 'TEST_FIRST_NAME',
             'action' => 'ACTION',
-            'remind_at' => '2021-04-02 22:45:57',
+            'remind_at' => '2021-04-03 10:00:00',
         ];
     }
 }

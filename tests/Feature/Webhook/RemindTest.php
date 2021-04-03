@@ -3,10 +3,17 @@
 use App\Models\Reminder;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Carbon;
+
+beforeEach(function () {
+    $time = new Carbon('06-02-2021 10:00');
+
+    $this->travelTo($time);
+});
 
 test('bot can send confirmation', function () {
     Http::fake([
-        config('bot.translate_api_url').'*' => Http::response([
+        config('bot.translate_api_url') . '*' => Http::response([
             'status' => true,
             'message' => 'success',
             'data' => ['result' => 'tomorrow at 10:00'],
@@ -21,7 +28,7 @@ test('bot can send confirmation', function () {
 
 test('bot can return exception', function () {
     Http::fake([
-        config('bot.translate_api_url').'*' => Http::response([
+        config('bot.translate_api_url') . '*' => Http::response([
             'status' => true,
             'message' => 'success',
             'data' => ['result' => 'tomorrow at 10'],
@@ -46,7 +53,7 @@ test('bot can save reminder to database', function () {
     Http::fake();
 
     $user = User::factory()->create();
-    $reminder = Reminder::factory()->create();
+    $reminder = Reminder::factory()->make();
 
     $this->receivePostback('SET_REMINDER:PS_ID:2021-04-03 10:00:00//ACTION');
 

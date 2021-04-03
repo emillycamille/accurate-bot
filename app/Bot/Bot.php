@@ -128,7 +128,7 @@ class Bot
             static::sendLoginButton($senderId);
         } elseif ($keyword = static::isAskingCustomerDetail($message)) {
             static::listCustomer($senderId, $keyword);
-        } elseif ([$action,$time] = static::isAskingToRemind($message, $senderId)) {
+        } elseif ([$action, $time] = static::isAskingToRemind($message)) {
             $reply = static::confirmReminder($action, $time, $senderId);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
@@ -150,7 +150,9 @@ class Bot
             $reply = static::tellTime($message);
         } elseif (static::isMathExpression($message)) {
             $reply = static::calculateMathExpression($message);
-        } elseif ($reply = static::showWikipedia($message)); elseif ($reply = static::showGoogleSearch($message)); else {
+        } elseif ($reply = static::showWikipedia($message));
+        elseif ($reply = static::showGoogleSearch($message));
+        else {
             $reply = __('bot.fallback_reply', compact('message'));
         }
 
