@@ -24,7 +24,7 @@ trait CanRemind
 
                 // If the user does not write "-", make the default action and time an empty string.
                 // This empty strings are processed in the confirmReminder function.
-                if (!Str::contains($message, '-')) {
+                if (! Str::contains($message, '-')) {
                     return ['', ''];
                 }
                 // Explode message to grab the information.
@@ -44,7 +44,7 @@ trait CanRemind
     {
         // If the user does not write "-", the bot send the correct format example.
         if ([$action, $time] == ['', '']) {
-            static::sendMessage(__('bot.wrong_reminder_format') . "\n\n" .
+            static::sendMessage(__('bot.wrong_reminder_format')."\n\n".
                 __('bot.remind_adding_dash'), $psid);
 
             return;
@@ -52,14 +52,14 @@ trait CanRemind
 
         try {
             // Translate the time to English.
-            $translatedTime = static::doTranslate('translate ' . $time);
+            $translatedTime = static::doTranslate('translate '.$time);
 
             // Change time to Carbon format.
             $carbonTime = Carbon::parse($translatedTime);
             $date = $carbonTime->format('d F Y');
             $time = $carbonTime->format('H:i');
             $action = ucfirst($action);
-            $parsedInformation = $carbonTime . '//' . $action;
+            $parsedInformation = $carbonTime.'//'.$action;
 
             // Return confirmation message.
             static::sendMessage(__(
