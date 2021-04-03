@@ -14,7 +14,7 @@ class Change2RemindAtType extends Migration
     public function up()
     {
         Schema::table('reminders', function (Blueprint $table) {
-            $table->string('remind_at');
+            $table->string('remind_at')->nullable();
         });
     }
 
