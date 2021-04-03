@@ -48,7 +48,7 @@ class sendReminder extends Command
             $psid = $reminder->psid;
             $name = $reminder->first_name;
 
-            Bot::sendMessage(__('bot_remind', compact('name', 'action')), $psid);
+            Bot::sendMessage(__('bot.remind', compact('name', 'action')), $psid);
         }
     }
 }
