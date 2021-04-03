@@ -16,7 +16,7 @@ return [
 
     // Abilities
     'quick_reply_explanation' => 'Jika ada beberapa hasil yang ditemukan, maka akan ditampilkan button untuk memilih nomor nya.'
-    .' Klik button-nya ya ☺️, tidak perlu menulis ulang angkanya',
+        .' Klik button-nya ya ☺️, tidak perlu menulis ulang angkanya',
     'video_tutorial' => 'Naya sarankan kamu nonton video ini dulu ya https://youtu.be/gAdHZdxAxzI',
     'available_functions' => 'Untuk saat ini, Naya bisa:',
     'abilities' => [
@@ -41,6 +41,14 @@ return [
     // Greet User
     'get_started_message' => 'Salam kenal, :name! 👋🏻 Aku Naya, kalau kamu butuh bantuan, bisa ketik "help"',
     'greet_user' => 'Hai, :name! 🤗 Apa kabar? Have a nice day ya ☺️. Kalau kamu butuh bantuan, bisa ketik "help"',
+
+    // Reminder
+    'reminder_confirmation' => "Apakah reminder berikut sudah benar?\n\n:action\nKapan: :date, jam :time",
+    'wrong_reminder_format' => "Naya kurang mengerti nih.. Coba seperti ini\n\n".
+        '"Ingatkan beli token - besok jam 10:00" atau "Ingatkan isi bensin - tanggal 1/1/2021 jam 17:00"',
+    'reminder_created' => 'Reminder kamu berhasil disimpan!',
+    'remind' => 'Halo :name! Jangan lupa :action 😊',
+    'remind_adding_dash' => 'Jangan lupa tambahkan "-" ya 😊',
 
     // Weather
     'city_not_found' => 'Waduhh, Naya gak bisa ketemu kota yang kamu cari nih.. Coba isi kota lain 😉.',

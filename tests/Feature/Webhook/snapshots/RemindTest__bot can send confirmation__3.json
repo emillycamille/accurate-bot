@@ -1,0 +1,26 @@
+{
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
+    "data": {
+        "messaging_type": "RESPONSE",
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "bot.confirm_reminder",
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "Ya",
+                            "payload": "SET_REMINDER:PS_ID:2021-02-07 10:00:00\/\/Makan "
+                        }
+                    ]
+                }
+            }
+        },
+        "recipient": {
+            "id": "PS_ID"
+        }
+    }
+}
