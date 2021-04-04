@@ -1,12 +1,13 @@
 {
-    "method": "GET",
-    "url": "https:\/\/id.wikipedia.org\/w\/api.php?action=query&format=json&list=search&formatversion=latest&srsearch=Yooooo%20bot%21&srlimit=1",
+    "method": "POST",
+    "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
-        "action": "query",
-        "format": "json",
-        "list": "search",
-        "formatversion": "latest",
-        "srsearch": "Yooooo bot!",
-        "srlimit": "1"
+        "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Maaf untuk saat ini Naya belum mengerti \"Yooooo bot!\" \ud83d\ude05. Ketik \"help\" untuk melihat apa aja yang Naya sudah bisa"
+        },
+        "recipient": {
+            "id": "PS_ID"
+        }
     }
 }

@@ -17,7 +17,7 @@ test('bot can tell first president of Indonesia', function () {
     $this->receiveMessage('manusia pertama di bulan');
 
     $this->assertRequestSent();
-});
+})->skip();
 
 test('bot can\'t find answer', function () {
     Http::fake([
@@ -28,4 +28,4 @@ test('bot can\'t find answer', function () {
     $this->receiveMessage('tralala trilili');
 
     $this->assertRequestSent();
-});
+})->skip();

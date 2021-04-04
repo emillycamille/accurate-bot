@@ -17,7 +17,7 @@ test('bot can tell information from Wikipedia', function () {
     $this->receiveMessage('wikipedia');
 
     $this->assertRequestSent();
-});
+})->skip();
 
 test('bot can tell information from Wikipedia (no result)', function () {
     Http::fake([
@@ -34,4 +34,4 @@ test('bot can tell information from Wikipedia (no result)', function () {
     $this->receiveMessage('nayapedia');
 
     $this->assertRequestSent();
-});
+})->skip();
