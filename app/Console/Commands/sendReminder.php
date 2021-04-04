@@ -6,6 +6,7 @@ use App\Bot\Bot;
 use App\Models\Reminder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class sendReminder extends Command
 {
@@ -47,6 +48,8 @@ class sendReminder extends Command
             $action = $reminder->action;
             $psid = $reminder->psid;
             $name = $reminder->first_name;
+
+            Log::debug("sendReminder: $action: $name: $psid");
 
             Bot::sendMessage(__('bot.remind', compact('name', 'action')), $psid);
         }
