@@ -8,7 +8,7 @@
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": "bot.confirm_reminder",
+                    "text": "Tekan \"Ya\" jika sudah sesuai",
                     "buttons": [
                         {
                             "type": "postback",
