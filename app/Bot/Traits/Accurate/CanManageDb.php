@@ -24,7 +24,7 @@ trait CanManageDb
 
         // Send postback buttons so user can choose which DB to open.
         $payload = static::makeQuickRepliesPayload(
-            __('bot.choose_db')."\n\n".__('bot.choices'),
+            __('bot.choose_db')."\n\n".__('bot.choose_options_below'),
             array_map(function ($db) use ($psid) {
                 return [
                     'title' => $db['alias'],
