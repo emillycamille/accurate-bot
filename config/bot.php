@@ -13,7 +13,7 @@ return [
     'accurate_login_url' => 'https://accurate.id/oauth/authorize?'.http_build_query([
         'client_id' => $accurateClientId,
         'response_type' => 'code',
-        'redirect_uri' => 'https://accurate-bot.herokuapp.com/accurate-callback',
+        'redirect_uri' => env('APP_URL').'accurate-callback',
         'scope' => 'item_view item_save sales_invoice_view',
     ]),
 
