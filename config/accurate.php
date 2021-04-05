@@ -23,7 +23,7 @@ return [
      */
     'access_token_url' => 'https://account.accurate.id/oauth/token',
 
-    'redirect_url' => 'https://accurate-bot.herokuapp.com/auth/callback',
+    'redirect_url' => env('APP_URL').'auth/callback',
 
     /*
      * URL to login to Accurate. Note that this is still missing a `redirect_uri`
