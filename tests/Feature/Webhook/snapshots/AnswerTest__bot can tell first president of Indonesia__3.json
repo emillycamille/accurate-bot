@@ -4,7 +4,7 @@
     "data": {
         "messaging_type": "RESPONSE",
         "message": {
-            "text": "Maaf untuk saat ini Naya belum mengerti \"Yooooo bot!\" \ud83d\ude05. Ketik \"help\" untuk melihat apa aja yang Naya sudah bisa"
+            "text": "TEST_ANSWER"
         },
         "recipient": {
             "id": "PS_ID"

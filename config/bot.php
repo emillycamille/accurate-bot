@@ -43,7 +43,12 @@ return [
     /*
      * A boolean to indicate whether "typing on" should be sent to Messenger.
      */
-    'typing_on' => env('TYPING_ON', true),
+    'typing_on' => env('TYPING_ON', false),
+
+    /*
+     * Definition API url.
+     */
+    'definition_api_url' => 'http://kateglo.com/api.php',
 
     /*
      * Weather API key.
@@ -54,4 +59,24 @@ return [
      * Weather API endpoint URL.
      */
     'weather_api_url' => 'http://api.openweathermap.org/data/2.5/weather',
+
+    /*
+     * Translate API endpoint URL.
+     */
+    'translate_api_url' => 'https://amm-api-translate.herokuapp.com/translate?',
+
+    /*
+     * Wikipedia API endpoint URL.
+     */
+    'wikipedia_api_url' => 'https://id.wikipedia.org/w/api.php',
+
+    /*
+     * SERP API endpoint URL.
+     */
+    'serp_api_url' => 'https://api.scaleserp.com/search',
+
+    /*
+     * SERP API Key.
+     */
+    'serp_api_key' => env('SERP_API_KEY'),
 ];

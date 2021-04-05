@@ -1,7 +1,7 @@
 {
     "headers": {
         "Content-Length": [
-            "328"
+            "370"
         ],
         "User-Agent": [
             "GuzzleHttp\/7"
@@ -17,11 +17,8 @@
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
         "messaging_type": "RESPONSE",
-        "recipient": {
-            "id": "PS_ID"
-        },
         "message": {
-            "text": "Ada beberapa customer ditemukan, siapa yang anda maksud?\n\n1. CUST_NAME_1\n2. CUST_NAME_2\n",
+            "text": "Ada beberapa customer ditemukan, siapa yang kamu maksud?\n1. CUST_NAME_1\n2. CUST_NAME_2\n\nSilakan klik pilihan di bawah \ud83d\ude0a",
             "quick_replies": [
                 {
                     "content_type": "text",
@@ -34,6 +31,9 @@
                     "payload": "DETAIL_CUSTOMER:PS_ID:2"
                 }
             ]
+        },
+        "recipient": {
+            "id": "PS_ID"
         }
     }
 }

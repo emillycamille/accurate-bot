@@ -16,7 +16,6 @@ class User extends Model
      */
     protected $fillable = [
         'psid', 'first_name', 'last_name', 'accurate_name', 'email',
-        'access_token', 'refresh_token', 'host',
-        'session',
+        'access_token', 'refresh_token', 'host', 'session', 'database_id',
     ];
 }

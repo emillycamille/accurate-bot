@@ -1,0 +1,12 @@
+{
+    "method": "GET",
+    "url": "https:\/\/id.wikipedia.org\/w\/api.php?action=query&format=json&list=search&formatversion=latest&srsearch=manusia%20pertama%20di%20bulan&srlimit=1",
+    "data": {
+        "action": "query",
+        "format": "json",
+        "list": "search",
+        "formatversion": "latest",
+        "srsearch": "manusia pertama di bulan",
+        "srlimit": "1"
+    }
+}

@@ -6,9 +6,14 @@ use App\Bot\Traits\Accurate\CanConnectAccurate;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGetStarted;
 use App\Bot\Traits\CanGreetUser;
+use App\Bot\Traits\CanRemind;
+use App\Bot\Traits\CanShowDefinition;
+use App\Bot\Traits\CanShowGoogle;
 use App\Bot\Traits\CanShowHelp;
+use App\Bot\Traits\CanShowWikipedia;
 use App\Bot\Traits\CanTellTime;
 use App\Bot\Traits\CanTellWeather;
+use App\Bot\Traits\CanTranslate;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -20,8 +25,13 @@ class Bot
         CanTellWeather,
         CanGreetUser,
         CanConnectAccurate,
+        CanRemind,
+        CanShowDefinition,
+        CanShowGoogle,
         CanShowHelp,
-        CanGetStarted;
+        CanShowWikipedia,
+        CanGetStarted,
+        CanTranslate;
 
     /**
      * Get the handler method (camelCase string) and payload of $postback event.
@@ -120,24 +130,32 @@ class Bot
             static::sendLoginButton($senderId);
         } elseif ($keyword = static::isAskingCustomerDetail($message)) {
             static::listCustomer($senderId, $keyword);
+        } elseif ([$action, $time] = static::isAskingToRemind($message)) {
+            $reply = static::confirmReminder($action, $time, $senderId);
         } elseif ($keyword = static::isAskingItemDetail($message)) {
             static::listItem($senderId, $keyword);
         } elseif (static::isAskingSwitchingDb($message)) {
             static::askWhichDb($senderId);
+        } elseif (static::isAskingHelp($message)) {
+            static::tellHelp($senderId);
         } elseif (static::isAskingPurchaseInvoice($message)) {
             static::showPurchaseInvoice($senderId, 1, $message);
         } elseif (static::isAskingSalesInvoice($message)) {
             static::showSalesInvoice($senderId, 1, $message);
-        } elseif (static::isMathExpression($message)) {
-            $reply = static::calculateMathExpression($message);
+        } elseif (static::isAskingToTranslate($message)) {
+            $reply = static::doTranslate($message);
         } elseif (static::isSayingHello($message)) {
             $reply = static::greetUser($message, $senderId);
-        } elseif (static::isAskingHelp($message)) {
-            $reply = static::tellHelp();
         } elseif (static::isAskingWeather($message)) {
             $reply = static::tellWeather($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
+        } elseif (static::isMathExpression($message)) {
+            $reply = static::calculateMathExpression($message);
+        } elseif ($keyword = static::isAskingDefinition($message)) {
+            $reply = static::showDefinition($keyword);
+        } elseif (static::isSendingNumber($message)) {
+            static::sendMessage(__('bot.quick_reply_explanation'), $senderId);
         } else {
             $reply = __('bot.fallback_reply', compact('message'));
         }

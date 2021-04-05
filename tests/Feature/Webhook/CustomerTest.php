@@ -3,6 +3,7 @@
 namespace Tests\Feature\Webhook\Customer;
 
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
 const CUSTOMERS = [
@@ -28,6 +29,10 @@ const CUSTOMERS = [
 
 beforeEach(function () {
     User::factory()->withSession()->create();
+
+    $time = new Carbon('06-02-2021 10:00');
+
+    $this->travelTo($time);
 });
 
 test('bot can show multiple possible customers', function () {

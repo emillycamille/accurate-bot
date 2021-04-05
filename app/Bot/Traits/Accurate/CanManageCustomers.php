@@ -44,12 +44,13 @@ trait CanManageCustomers
     {
         $phones = array_filter(Arr::only($customer, ['mobilePhone', 'workPhone']));
         $phones = implode('/', $phones);
+        $time = now()->format('d/m/Y H:i:s');
 
         return sprintf(
-            "%s\n%s\n%s: %s",
+            "%s\n%s\n%s\n%s",
             $customer['name'],
             $phones,
-            __('bot.outstanding'),
+            __('bot.outstanding', compact(['time'])),
             idr(data_get($customer, 'balanceList.0.balance', 0)),
         );
     }
@@ -84,7 +85,7 @@ trait CanManageCustomers
         } elseif (count($customers) === 1) {
             $payload = static::customerToString($customers[0]);
         } else {
-            $text = __('bot.multiple_customers_match_keyword')."\n\n";
+            $text = __('bot.multiple_customers_match_keyword')."\n";
             $buttons = [];
 
             foreach ($customers as $i => $customer) {
@@ -97,7 +98,7 @@ trait CanManageCustomers
                     'payload' => "DETAIL_CUSTOMER:$psid:{$customer['id']}",
                 ];
             }
-
+            $text .= "\n".__('bot.choose_options_below');
             $payload = static::makeQuickRepliesPayload($text, $buttons);
         }
 

@@ -17,11 +17,11 @@
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
         "messaging_type": "RESPONSE",
+        "message": {
+            "text": "Kamu berhasil terhubung ke Accurate sebagai user USER_NAME!"
+        },
         "recipient": {
             "id": "PS_ID"
-        },
-        "message": {
-            "text": "Anda berhasil terhubung ke Accurate sebagai user USER_NAME!"
         }
     }
 }

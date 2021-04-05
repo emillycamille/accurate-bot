@@ -1,0 +1,12 @@
+{
+    "method": "GET",
+    "url": "https:\/\/id.wikipedia.org\/w\/api.php?action=query&format=json&list=search&formatversion=latest&srsearch=wikipedia&srlimit=1",
+    "data": {
+        "action": "query",
+        "format": "json",
+        "list": "search",
+        "formatversion": "latest",
+        "srsearch": "wikipedia",
+        "srlimit": "1"
+    }
+}

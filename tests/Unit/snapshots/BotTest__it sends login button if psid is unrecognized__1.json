@@ -3,15 +3,12 @@
     "url": "https:\/\/graph.facebook.com\/v9.0\/me\/messages?access_token=TEST_PAGE_TOKEN",
     "data": {
         "messaging_type": "RESPONSE",
-        "recipient": {
-            "id": "PS_ID"
-        },
         "message": {
             "attachment": {
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": "Login to Accurate",
+                    "text": "Sambungkan dengan Accurate",
                     "buttons": [
                         {
                             "type": "web_url",
@@ -22,6 +19,9 @@
                     ]
                 }
             }
+        },
+        "recipient": {
+            "id": "PS_ID"
         }
     }
 }

@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Http;
 beforeEach(function () {
     Http::fake([
         'EXPIRED/SESSION' => Http::sequence()
-            ->push(['s' => false], 401)
+            ->push([
+                's' => false,
+                'd' => 'Session key tidak tepat',
+            ], 401)
             ->push(['s' => true]),
 
         'INVALID/TOKEN' => Http::response([
