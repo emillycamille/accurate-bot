@@ -27,6 +27,7 @@ trait CanRemind
                 if (! Str::contains($message, '-')) {
                     return ['', ''];
                 }
+
                 // Explode message to grab the information.
                 $information = explode('-', trim(Str::after($message, $needle)));
 
