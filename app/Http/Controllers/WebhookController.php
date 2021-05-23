@@ -6,6 +6,7 @@ use App\Jobs\HandleWebhook;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class WebhookController
@@ -47,6 +48,8 @@ class WebhookController
 
     public function fulfill(Request $request): Response
     {
+        Log::debug('fromDf', $request->all() + ["\n"]);
+
         $message = $request->input('queryResult.queryText');
 
         $payload = [
@@ -60,7 +63,7 @@ class WebhookController
                 ],
             ],
         ];
-        
+
         return response($payload);
     }
 }
