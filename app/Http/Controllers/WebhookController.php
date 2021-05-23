@@ -44,4 +44,23 @@ class WebhookController
         // asynchronously.
         return response('');
     }
+
+    public function fulfill(Request $request): Response
+    {
+        $message = $request->input('queryResult.queryText');
+
+        $payload = [
+            'fulfillmentMessages' => [
+                [
+                    'text' => [
+                        'text' => [
+                            $message,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        
+        return response($payload);
+    }
 }

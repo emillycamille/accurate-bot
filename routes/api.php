@@ -9,3 +9,5 @@ Route::prefix('/webhook')
 
         Route::post('', [WebhookController::class, 'handle']);
     });
+
+Route::post('/dialog-flow', [WebhookController::class, 'fulfill']);
