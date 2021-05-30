@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Http;
 
 test('bot can tell weather of a city', function () {
-  Http::fake([
+    Http::fake([
       config('bot.weather_api_url').'*' => Http::response([
           'cod' => 200,
           'weather' => [['description' => 'TEST_WEATHER_RESULT']],
@@ -11,7 +11,7 @@ test('bot can tell weather of a city', function () {
           'main' => ['temp' => 'TEMPERATURE'],
       ]),
   ]);
-  
+
     $payload = [
         'queryResult' => [
             'action' => 'getWeather',
@@ -39,11 +39,11 @@ test('bot can tell weather of a city', function () {
 });
 
 test('bot can return error message for unavailable city', function () {
-  Http::fake([
+    Http::fake([
     config('bot.weather_api_url').'*' => Http::response(null, 404),
   ]);
 
-  $payload = [
+    $payload = [
       'queryResult' => [
           'action' => 'getWeather',
           'parameters' => [
@@ -62,9 +62,9 @@ test('bot can return error message for unavailable city', function () {
         ],
   ];
 
-  $response = $this->postJson('/dialog-flow', $payload);
+    $response = $this->postJson('/dialog-flow', $payload);
 
-  $response->assertStatus(200);
+    $response->assertStatus(200);
 
-  $this->assertMatchesJsonSnapshot($response->getContent());
+    $this->assertMatchesJsonSnapshot($response->getContent());
 });

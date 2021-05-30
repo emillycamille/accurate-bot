@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Bot\Bot;
 use App\Jobs\HandleWebhook;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
-use App\Bot\Bot;
 
 class WebhookController
 {
