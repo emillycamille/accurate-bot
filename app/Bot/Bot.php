@@ -148,8 +148,6 @@ class Bot
             $reply = static::doTranslate($message);
         } elseif (static::isSayingHello($message)) {
             $reply = static::greetUser($message, $senderId);
-        } elseif (static::isAskingWeather($message)) {
-            $reply = static::tellWeather($message);
         } elseif (static::isAskingTime($message)) {
             $reply = static::tellTime($message);
         } elseif (static::isMathExpression($message)) {
