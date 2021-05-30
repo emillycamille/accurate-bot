@@ -65,4 +65,32 @@ abstract class TestCase extends BaseTestCase
         // Messenger expects response 200 to be returned within 20 seconds.
         return $response->assertStatus(200);
     }
+
+    public function assertReceiveAction(string $action, array $params, string $template): TestResponse
+    {
+        $payload = [
+            'queryResult' => [
+                'action' => $action,
+                'parameters' => $params,
+                'fulfillmentMessages' => [
+                    [
+                        'text' => [
+                            'text' => [
+                                $template,
+                            ],
+                        ],
+                        'platform' => 'FACEBOOK',
+                    ],
+                ],
+            ],
+        ];
+
+        $response = $this->postJson('/dialog-flow', $payload);
+
+        $response->assertStatus(200);
+
+        $this->assertMatchesJsonSnapshot($response->getContent());
+
+        return $response;
+    }
 }
