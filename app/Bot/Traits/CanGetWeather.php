@@ -33,13 +33,13 @@ trait CanGetWeather
         }
 
         return [
-            'fulfillmentMessages' => [
+            'fulfillmentMessages' => [[
                 'text' => [
                     'text' => [
                         $message,
                     ],
                 ],
-            ],
+            ]],
         ];
     }
 }
