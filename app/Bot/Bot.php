@@ -88,10 +88,8 @@ class Bot
      */
     public static function makeQuickRepliesPayload(string $text, array $items): array
     {
-        if (count($items) > 13) {
-            throw new \Exception('Quick replies may not exceed 13 items.');
-        }
-
+        // FB only allow max 13 items in quick replies. For now we don't care about the rest.
+        $items = array_slice($items, 0, 13);
         $items = array_map(function ($item) {
             return [
                 'content_type' => 'text',

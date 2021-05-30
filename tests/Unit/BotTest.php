@@ -79,3 +79,16 @@ it('refreshes session if user session expired', function () {
 
     $this->assertRequestSent(true);
 });
+
+it('sends the first 13 items in quick replies', function () {
+    for ($i = 1; $i <= 14 ; $i++) { 
+        $items[] = [
+            'title' => $i,
+            'payload' => $i,
+        ];
+    }
+
+    $payload = Bot::makeQuickRepliesPayload('text', $items);
+
+    $this->assertMatchesJsonSnapshot($payload);
+});
