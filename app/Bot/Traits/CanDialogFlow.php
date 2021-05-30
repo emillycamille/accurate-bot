@@ -13,7 +13,7 @@ trait CanDialogFlow
     {
         $action = $request->input('queryResult.action');
         $params = $request->input('queryResult.parameters');
-        $template = $request->input('fulfillmentMessages.0');
+        $template = $request->input('queryResult.fulfillmentMessages.0');
 
         return static::$action($params, $template);
     }

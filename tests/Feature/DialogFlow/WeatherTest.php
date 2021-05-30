@@ -18,17 +18,17 @@ test('bot can tell weather of a city', function () {
             'parameters' => [
                 'city' => 'Eindhoven',
             ],
-        ],
-        'fulfillmentMessages' => [
-            [
-              'text' => [
-                'text' => [
-                  'Sekarang di Eindhoven lagi :description dengan temperatur :temperature derajat',
+            'fulfillmentMessages' => [
+                [
+                    'text' => [
+                        'text' => [
+                            'Sekarang di Eindhoven lagi :description dengan temperatur :temperature derajat',
+                        ],
+                    ],
+                    'platform' => 'FACEBOOK',
                 ],
-              ],
-              'platform' => 'FACEBOOK',
             ],
-          ],
+        ],
     ];
 
     $response = $this->postJson('/dialog-flow', $payload);
@@ -40,27 +40,27 @@ test('bot can tell weather of a city', function () {
 
 test('bot can return error message for unavailable city', function () {
     Http::fake([
-    config('bot.weather_api_url').'*' => Http::response(null, 404),
-  ]);
-
+        config('bot.weather_api_url').'*' => Http::response(null, 404),
+    ]);
+        
     $payload = [
-      'queryResult' => [
-          'action' => 'getWeather',
-          'parameters' => [
-              'city' => 'Eindhoven',
-          ],
-      ],
-      'fulfillmentMessages' => [
-          [
-            'text' => [
-              'text' => [
-                'Sekarang di Eindhoven lagi :description dengan temperatur :temperature derajat',
-              ],
+        'queryResult' => [
+            'action' => 'getWeather',
+            'parameters' => [
+                'city' => 'Eindhoven',
             ],
-            'platform' => 'FACEBOOK',
-          ],
+            'fulfillmentMessages' => [
+                [
+                    'text' => [
+                        'text' => [
+                            'Sekarang di Eindhoven lagi :description dengan temperatur :temperature derajat',
+                        ],
+                    ],
+                    'platform' => 'FACEBOOK',
+                ],
+            ],
         ],
-  ];
+    ];
 
     $response = $this->postJson('/dialog-flow', $payload);
 
