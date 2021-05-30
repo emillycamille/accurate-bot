@@ -3,6 +3,7 @@
 namespace App\Bot;
 
 use App\Bot\Traits\Accurate\CanConnectAccurate;
+use App\Bot\Traits\CanDialogFlow;
 use App\Bot\Traits\CanDoMath;
 use App\Bot\Traits\CanGetStarted;
 use App\Bot\Traits\CanGreetUser;
@@ -12,7 +13,7 @@ use App\Bot\Traits\CanShowGoogle;
 use App\Bot\Traits\CanShowHelp;
 use App\Bot\Traits\CanShowWikipedia;
 use App\Bot\Traits\CanTellTime;
-use App\Bot\Traits\CanTellWeather;
+use App\Bot\Traits\CanGetWeather;
 use App\Bot\Traits\CanTranslate;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -20,9 +21,10 @@ use Illuminate\Support\Str;
 
 class Bot
 {
-    use CanDoMath,
+    use CanDialogFlow,
+        CanDoMath,
         CanTellTime,
-        CanTellWeather,
+        CanGetWeather,
         CanGreetUser,
         CanConnectAccurate,
         CanRemind,

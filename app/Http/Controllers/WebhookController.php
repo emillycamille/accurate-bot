@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
+use App\Bot\Bot;
 
 class WebhookController
 {
@@ -50,20 +51,6 @@ class WebhookController
     {
         Log::debug('fromDf', $request->all() + ["\n"]);
 
-        $message = $request->input('queryResult.queryText');
-
-        $payload = [
-            'fulfillmentMessages' => [
-                [
-                    'text' => [
-                        'text' => [
-                            $message,
-                        ],
-                    ],
-                ],
-            ],
-        ];
-
-        return response($payload);
+        return response(Bot::fulfill($request));
     }
 }
