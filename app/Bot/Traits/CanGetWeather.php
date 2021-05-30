@@ -19,18 +19,18 @@ trait CanGetWeather
                 'lang' => 'id',
                 'appid' => config('bot.weather_api_key'),
             ])->throw();
+
+            $description = $response['weather'][0]['description'];
+            $temperature = $response['main']['temp'];
+
+            $template = data_get($template, 'text.text.0');
+
+            $message = make_replacements($template, compact('description', 'temperature'));
         } catch (RequestException $e) {
             if ($e->getCode() === 404) {
-                return __('bot.city_not_found');
+                $message = __('bot.city_not_found');
             }
         }
-
-        $description = $response['weather'][0]['description'];
-        $temperature = $response['main']['temp'];
-
-        $template = data_get($template, 'text.text.0');
-
-        $message = make_replacements($template, compact('description', 'temperature'));
 
         return [
             'fulfillmentMessages' => [
