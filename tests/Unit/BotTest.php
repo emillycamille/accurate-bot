@@ -9,7 +9,7 @@ beforeEach(function () {
         'EXPIRED/SESSION' => Http::sequence()
             ->push([
                 's' => false,
-                'd' => 'Session key tidak tepat',
+                'd' => ['Session key tidak tepat'],
             ], 401)
             ->push(['s' => true]),
 

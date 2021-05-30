@@ -70,6 +70,9 @@ trait CanConnectAccurate
 
             if ($e->response->json('s') === false) {
                 $errorMessage = $e->response->json('d');
+                $errorMessage = is_array($errorMessage)
+                    ? $errorMessage[0]
+                    : $errorMessage;
 
                 // If session is invalid, reopen db and reask Accurate.
                 if (
