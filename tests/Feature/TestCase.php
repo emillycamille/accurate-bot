@@ -66,10 +66,11 @@ abstract class TestCase extends BaseTestCase
         return $response->assertStatus(200);
     }
 
-    public function assertReceiveAction(string $action, array $params, string $template): TestResponse
+    public function assertReceiveAction(string $queryText, string $action, array $params, string $template): TestResponse
     {
         $payload = [
             'queryResult' => [
+                'queryText' => $queryText,
                 'action' => $action,
                 'parameters' => $params,
                 'fulfillmentMessages' => [
