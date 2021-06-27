@@ -10,4 +10,6 @@ test('bot can send login button', function () {
         [],
         'Silakan login dengan akun accurate mu',
     );
+
+    $this->assertRequestSent();
 });

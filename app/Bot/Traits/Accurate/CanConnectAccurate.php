@@ -161,13 +161,13 @@ trait CanConnectAccurate
         ]);
 
         static::sendMessage($payload, $psid);
-        
+
         return [
             'fulfillmentMessages' => [
                 [
                 'text' => [
                     'text' => [
-                        $template,
+                        data_get($template,'text.text'),
                         ],
                     ],
                 ],

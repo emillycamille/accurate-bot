@@ -3,14 +3,9 @@
         {
             "text": {
                 "text": [
-                    {
-                        "text": {
-                            "text": [
-                                "Silakan login dengan akun accurate mu"
-                            ]
-                        },
-                        "platform": "FACEBOOK"
-                    }
+                    [
+                        "Silakan login dengan akun accurate mu"
+                    ]
                 ]
             }
         }
