@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 trait CanGetStarted
 {
-    public static function facebookWelcome($params, $template): array
+    public static function facebookWelcome(array $params, string $template): string
     {
         $psid = $params['psid'];
 
@@ -21,17 +21,6 @@ trait CanGetStarted
 
         User::updateOrCreate(['psid' => $psid], $data);
 
-        $template = data_get($template, 'text.text.0');
-        $message = make_replacements($template, ['name' => $data['first_name']]);
-
-        return [
-            'fulfillmentMessages' => [[
-                'text' => [
-                    'text' => [
-                        $message,
-                    ],
-                ],
-            ]],
-        ];
+        return make_replacements($template, ['name' => $data['first_name']]);
     }
 }

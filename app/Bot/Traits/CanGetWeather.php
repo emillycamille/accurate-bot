@@ -10,7 +10,7 @@ trait CanGetWeather
     /**
      * Tell the current weather, as requested in $message.
      */
-    public static function getWeather(array $params, array $template): array
+    public static function getWeather(array $params, string $template): string
     {
         try {
             $response = Http::get(config('bot.weather_api_url'), [
@@ -23,8 +23,6 @@ trait CanGetWeather
             $description = $response['weather'][0]['description'];
             $temperature = $response['main']['temp'];
 
-            $template = data_get($template, 'text.text.0');
-
             $message = make_replacements($template, compact('description', 'temperature'));
         } catch (RequestException $e) {
             if ($e->getCode() === 404) {
@@ -32,14 +30,6 @@ trait CanGetWeather
             }
         }
 
-        return [
-            'fulfillmentMessages' => [[
-                'text' => [
-                    'text' => [
-                        $message,
-                    ],
-                ],
-            ]],
-        ];
+        return $message;
     }
 }

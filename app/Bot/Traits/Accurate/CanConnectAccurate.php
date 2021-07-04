@@ -160,12 +160,6 @@ trait CanConnectAccurate
             ],
         ]);
 
-        return [
-            'fulfillmentMessages' => [[
-                'payload' => [
-                    'facebook' => $payload,
-                ],
-            ]],
-        ];
+        return $payload;
     }
 }

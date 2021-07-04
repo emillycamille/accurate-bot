@@ -13,9 +13,26 @@ trait CanDialogFlow
     {
         $action = $request->input('queryResult.action');
         $params = $request->input('queryResult.parameters');
-        $template = $request->input('queryResult.fulfillmentMessages.0');
+        $template = $request->input('queryResult.fulfillmentMessages.0.text.text.0');
         $params['psid'] = $request->input('originalDetectIntentRequest.payload.data.sender.id');
 
-        return static::$action($params, $template);
+        $response = static::$action($params, $template);
+
+        return is_string($response)
+            ? [ // If response is string
+                'fulfillmentMessages' => [[
+                    'text' => [
+                        'text' => [
+                            $response,
+                        ],
+                    ],
+                ]],
+            ] : [ // If response is array
+                'fulfillmentMessages' => [[
+                    'payload' => [
+                        'facebook' => $response,
+                    ],
+                ]],
+            ];
     }
 }
