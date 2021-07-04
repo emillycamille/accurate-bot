@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
-
 test('bot can send login button', function () {
-
     $this->assertReceiveAction(
         'login',
         [],

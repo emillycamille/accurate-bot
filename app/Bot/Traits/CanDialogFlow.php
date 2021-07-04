@@ -15,7 +15,7 @@ trait CanDialogFlow
         $params = $request->input('queryResult.parameters');
         $template = $request->input('queryResult.fulfillmentMessages.0');
         $params['psid'] = $request->input('originalDetectIntentRequest.payload.data.sender.id');
-        
+
         return static::$action($params, $template);
     }
 }

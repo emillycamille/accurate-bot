@@ -50,6 +50,7 @@ class WebhookController
     public function fulfill(Request $request): Response
     {
         Log::debug('fromDf', $request->all() + ["\n"]);
+
         return response(Bot::fulfill($request));
     }
 }

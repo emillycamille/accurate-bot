@@ -146,7 +146,7 @@ trait CanConnectAccurate
         // Accurate should redirect back to this app carrying the PSID, so we can
         // associate the PSID with the Accurate access token.
         $redirect_uri = config('accurate.redirect_url')
-            .'?'.http_build_query(compact('psid')); 
+            .'?'.http_build_query(compact('psid'));
 
         $url = config('accurate.login_url')
             .'&'.http_build_query(compact('redirect_uri'));

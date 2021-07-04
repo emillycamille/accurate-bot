@@ -81,16 +81,16 @@ abstract class TestCase extends BaseTestCase
                         ],
                         'platform' => 'FACEBOOK',
                     ],
-                ],  
+                ],
             ],
             'originalDetectIntentRequest' => [
                 'payload' => [
                     'data' => [
                         'sender' => [
                             'id' => 'PS_ID',
-                        ], 
-                    ], 
-                ], 
+                        ],
+                    ],
+                ],
             ],
         ];
 

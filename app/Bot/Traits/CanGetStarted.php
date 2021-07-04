@@ -20,7 +20,7 @@ trait CanGetStarted
         $data = Arr::only($response->json(), ['first_name', 'last_name']);
 
         User::updateOrCreate(['psid' => $psid], $data);
-        
+
         $template = data_get($template, 'text.text.0');
         $message = make_replacements($template, ['name' => $data['first_name']]);
 
