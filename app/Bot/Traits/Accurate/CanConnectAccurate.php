@@ -160,18 +160,8 @@ trait CanConnectAccurate
             ],
         ]);
 
-        static::sendMessage($payload, $psid);
-
         return [
-            'fulfillmentMessages' => [
-                [
-                'text' => [
-                    'text' => [
-                        data_get($template,'text.text'),
-                        ],
-                    ],
-                ],
-            ],
+            'facebook' => $payload,
         ];
     }
 }

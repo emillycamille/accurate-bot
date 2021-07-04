@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Http;
 
 trait CanGetStarted
 {
-    public static function facebookWelcome(string $psid): void
+    public static function facebookWelcome($params, $template): array
     {
+        $psid = $params['psid'];
+
         $response = Http::get(config('bot.fb_api_url').$psid, [
             'access_token' => config('bot.fb_page_token'),
         ])->throw();
@@ -18,9 +20,18 @@ trait CanGetStarted
         $data = Arr::only($response->json(), ['first_name', 'last_name']);
 
         User::updateOrCreate(['psid' => $psid], $data);
+        
+        $template = data_get($template, 'text.text.0');
+        $message = make_replacements($template, ['name' => $data['first_name']]);
 
-        $message = __('bot.get_started_message', ['name' => $data['first_name']]);
-
-        static::sendMessage($message, $psid);
+        return [
+            'fulfillmentMessages' => [[
+                'text' => [
+                    'text' => [
+                        $message,
+                    ],
+                ],
+            ]],
+        ];
     }
 }
