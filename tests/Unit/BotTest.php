@@ -38,7 +38,7 @@ it('sends login button if psid is unrecognized', function () {
     Bot::askAccurate('PS_ID', 'ANY_URL');
 
     $this->assertRequestSent();
-});
+})->skip();
 
 it('sends login button if access token is invalid', function () {
     User::factory()->withSession()->create();
@@ -46,7 +46,7 @@ it('sends login button if access token is invalid', function () {
     Bot::askAccurate('PS_ID', 'INVALID/TOKEN');
 
     $this->assertRequestSent();
-});
+})->skip();
 
 it('asks accurate if user has session', function () {
     User::factory()->withSession()->create();
