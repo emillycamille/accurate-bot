@@ -13,7 +13,7 @@ trait CanManageDb
     public static function askWhichDb(array $params, string $template): array
     {
         $psid = $params['psid'];
-        $dbs = [$psid,'DB_A','DB_B','DB_C','DB_D'];
+        $dbs = [$psid, 'DB_A', 'DB_B', 'DB_C', 'DB_D'];
 
         // if (empty($dbs)) {
         //     static::sendMessage(__('bot.no_db'), $psid);
