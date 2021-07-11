@@ -1,0 +1,38 @@
+{
+    "fulfillmentMessages": [
+        {
+            "payload": {
+                "facebook": {
+                    "text": "Silakan pilih database",
+                    "quick_replies": [
+                        {
+                            "content_type": "text",
+                            "title": "PS_ID",
+                            "payload": "OPEN_DB:PS_ID:PS_ID"
+                        },
+                        {
+                            "content_type": "text",
+                            "title": "DB_A",
+                            "payload": "OPEN_DB:PS_ID:DB_A"
+                        },
+                        {
+                            "content_type": "text",
+                            "title": "DB_B",
+                            "payload": "OPEN_DB:PS_ID:DB_B"
+                        },
+                        {
+                            "content_type": "text",
+                            "title": "DB_C",
+                            "payload": "OPEN_DB:PS_ID:DB_C"
+                        },
+                        {
+                            "content_type": "text",
+                            "title": "DB_D",
+                            "payload": "OPEN_DB:PS_ID:DB_D"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
