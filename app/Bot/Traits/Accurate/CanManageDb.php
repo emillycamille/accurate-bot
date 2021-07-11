@@ -13,7 +13,7 @@ trait CanManageDb
     public static function askWhichDb(array $params, string $template): array
     {
         $psid = $params['psid'];
-        $dbs = [$psid, 'DB_A', 'DB_B', 'DB_C', 'DB_D'];
+        $dbs = ['123456', '789104', '546372', '827389', '247714'];
 
         // if (empty($dbs)) {
         //     static::sendMessage(__('bot.no_db'), $psid);
@@ -32,7 +32,7 @@ trait CanManageDb
 
                     // We should always include the $psid as the second payload,
                     // because FB won't include it in the `messaging_postback` event.
-                    'payload' => "OPEN_DB:$psid:{$db}",
+                    'payload' => "OPEN_DB:$db",
                 ];
             }, $dbs)
         );

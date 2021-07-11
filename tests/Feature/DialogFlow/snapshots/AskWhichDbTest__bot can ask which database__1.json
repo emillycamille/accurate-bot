@@ -7,28 +7,28 @@
                     "quick_replies": [
                         {
                             "content_type": "text",
-                            "title": "PS_ID",
-                            "payload": "OPEN_DB:PS_ID:PS_ID"
+                            "title": "123456",
+                            "payload": "OPEN_DB:123456"
                         },
                         {
                             "content_type": "text",
-                            "title": "DB_A",
-                            "payload": "OPEN_DB:PS_ID:DB_A"
+                            "title": "789104",
+                            "payload": "OPEN_DB:789104"
                         },
                         {
                             "content_type": "text",
-                            "title": "DB_B",
-                            "payload": "OPEN_DB:PS_ID:DB_B"
+                            "title": "546372",
+                            "payload": "OPEN_DB:546372"
                         },
                         {
                             "content_type": "text",
-                            "title": "DB_C",
-                            "payload": "OPEN_DB:PS_ID:DB_C"
+                            "title": "827389",
+                            "payload": "OPEN_DB:827389"
                         },
                         {
                             "content_type": "text",
-                            "title": "DB_D",
-                            "payload": "OPEN_DB:PS_ID:DB_D"
+                            "title": "247714",
+                            "payload": "OPEN_DB:247714"
                         }
                     ]
                 }

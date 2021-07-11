@@ -11,7 +11,7 @@ test('bot can ask which database', function () {
 test('bot can open database', function () {
     $this->assertReceiveAction(
         'openDb',
-        ['dbId' => 'TEST_DB_ID'],
+        ['dbId' => 123456],
         'Database berhasil dibuka',
     );
 });
