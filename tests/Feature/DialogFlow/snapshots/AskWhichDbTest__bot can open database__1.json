@@ -1,0 +1,11 @@
+{
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    "Database berhasil dibuka: TEST_DB_ID"
+                ]
+            }
+        }
+    ]
+}

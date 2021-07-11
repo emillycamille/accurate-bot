@@ -72,8 +72,9 @@ trait CanManageDb
     /**
      * Open an Accurate DB and save the host and session data.
      */
-    public static function openDb(string $psid, string $id): void
+    public static function openDb(array $params, string $template): string
     {
+        return $template.': '.$params['dbId'];
         // User::updateOrCreate(['psid' => $psid], ['database_id' => $id]);
         $data = static::askAccurate($psid, 'open-db.do', compact('id'));
 
