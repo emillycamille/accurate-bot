@@ -7,28 +7,13 @@
                     "quick_replies": [
                         {
                             "content_type": "text",
-                            "title": "123456",
-                            "payload": "openDb:123456"
+                            "title": "DB_1",
+                            "payload": "openDb:1"
                         },
                         {
                             "content_type": "text",
-                            "title": "789104",
-                            "payload": "openDb:789104"
-                        },
-                        {
-                            "content_type": "text",
-                            "title": "546372",
-                            "payload": "openDb:546372"
-                        },
-                        {
-                            "content_type": "text",
-                            "title": "827389",
-                            "payload": "openDb:827389"
-                        },
-                        {
-                            "content_type": "text",
-                            "title": "247714",
-                            "payload": "openDb:247714"
+                            "title": "DB_2",
+                            "payload": "openDb:2"
                         }
                     ]
                 }

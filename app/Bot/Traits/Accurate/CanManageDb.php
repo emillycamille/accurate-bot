@@ -13,7 +13,8 @@ trait CanManageDb
     public static function askWhichDb(array $params, string $template): array
     {
         $psid = $params['psid'];
-        $dbs = ['123456', '789104', '546372', '827389', '247714'];
+
+        $dbs = static::askAccurate($psid, 'db-list.do')['d'];
 
         // if (empty($dbs)) {
         //     static::sendMessage(__('bot.no_db'), $psid);
@@ -26,13 +27,10 @@ trait CanManageDb
         // Send postback buttons so user can choose which DB to open.
         $payload = static::makeQuickRepliesPayload(
             $template,
-            array_map(function ($db) use ($psid) {
+            array_map(function ($db) {
                 return [
-                    'title' => $db,
-
-                    // We should always include the $psid as the second payload,
-                    // because FB won't include it in the `messaging_postback` event.
-                    'payload' => "openDb:$db",
+                    'title' => $db['alias'],
+                    'payload' => 'openDb:'.$db['id'],
                 ];
             }, $dbs)
         );
