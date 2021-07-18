@@ -4,6 +4,7 @@ return [
     // Common words
     'balance' => 'Saldo',
     'city' => 'Kota',
+    'login' => 'Login',
     'price' => 'Harga',
     'registered_since' => 'Terdaftar sejak',
     'stock' => 'Stok',

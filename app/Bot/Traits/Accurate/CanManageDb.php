@@ -16,13 +16,9 @@ trait CanManageDb
 
         $dbs = static::askAccurate($psid, 'db-list.do')['d'];
 
-        // if (empty($dbs)) {
-        //     static::sendMessage(__('bot.no_db'), $psid);
-
-        //     static::sendLoginButton($psid);
-
-        //     return;
-        // }
+        if (empty($dbs)) {
+            return static::login($params, __('bot.no_db'));
+        }
 
         // Send postback buttons so user can choose which DB to open.
         $payload = static::makeQuickRepliesPayload(

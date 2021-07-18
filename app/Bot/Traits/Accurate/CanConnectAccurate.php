@@ -140,7 +140,7 @@ trait CanConnectAccurate
     /**
      * Return payload that will send login button to user.
      */
-    public static function login($params, $template): array
+    public static function login($params, string $template): array
     {
         $psid = $params['psid'];
         // Accurate should redirect back to this app carrying the PSID, so we can
@@ -151,10 +151,10 @@ trait CanConnectAccurate
         $url = config('accurate.login_url')
             .'&'.http_build_query(compact('redirect_uri'));
 
-        $payload = static::makeButtonPayload('Sambungkan dengan Accurate', [
+        $payload = static::makeButtonPayload($template, [
             [
                 'type' => 'web_url',
-                'title' => 'Login',
+                'title' => __('bot.login'),
                 'url' => $url,
                 'webview_height_ratio' => 'tall',
             ],
