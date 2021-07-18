@@ -28,9 +28,7 @@ trait CanConnectAccurate
 
         // If not found, we should ask the user to login to Accurate.
         if ((! $user) || (! $user->access_token)) {
-            static::sendLoginButton($psid);
-
-            return null;
+            return static::login(compact('psid'), __('bot.login'));
         }
 
         // 2. If the request is not basic, ensure that the user has session.
@@ -63,9 +61,7 @@ trait CanConnectAccurate
         } catch (RequestException $e) {
             // If unauthorized or access token invalid, send login button.
             if (in_array($e->response->json('error'), ['unauthorized', 'invalid_token'])) {
-                static::sendLoginButton($psid);
-
-                return null;
+                return static::login(compact('psid'), __('bot.login'));
             }
 
             if ($e->response->json('s') === false) {
