@@ -32,12 +32,30 @@ test('bot can show that user has no database', function () {
         [],
         'Silakan pilih database',
     );
-})->only();
+});
 
 test('bot can open database', function () {
+    $user = User::factory()->create();
+
+    Http::fake([
+        'open-db.do*' => Http::response([
+            'host' => 'DB_HOST',
+            'session' => 'DB_SESSION',
+        ]),
+    ]);
+
     $this->assertReceiveAction(
         'openDb',
         ['dbId' => 123456],
         'Database berhasil dibuka',
     );
+
+    $this->assertRequestSent();
+
+    $this->assertDatabaseHas('users', [
+        'id' => $user->id,
+        'host' => 'DB_HOST',
+        'session' => 'DB_SESSION',
+        'database_id' => 123456,
+    ]);
 });
