@@ -14,7 +14,13 @@ trait CanManageDb
     {
         $psid = $params['psid'];
 
-        $dbs = static::askAccurate($psid, 'db-list.do')['d'];
+        $response = static::askAccurate($psid, 'db-list.do');
+
+        if (! array_key_exists('d', $response)) {
+            return $response;
+        }
+
+        $dbs = $response['d'];
 
         if (empty($dbs)) {
             return static::login($params, __('bot.no_db'));
