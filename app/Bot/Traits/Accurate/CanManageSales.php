@@ -3,6 +3,7 @@
 namespace App\Bot\Traits\Accurate;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 trait CanManageSales
 {
@@ -13,6 +14,35 @@ trait CanManageSales
     public static function isAskingSalesInvoice(string $message): bool
     {
         return Str::contains(strtolower($message), ['sales', 'penjualan']);
+    }
+
+
+    public static function getSales(array $params, string $template): string
+    {
+        // parameter bisa ada 3 kemungkinan 
+        // 1. String -> langsung tanggal segini
+        // 2. Object -> 2 tanggal
+        // 3. String kosong -> Penjualan tok
+
+        $startDate = Carbon::parse(data_get($params,'time',now()));
+        $startDate = $startDate->format('d/m/Y');
+
+        $amount = 0;
+
+        $items = static::askAccurate($params['psid'], 'sales-invoice/list.do', [
+            'fields' => 'transDate,totalAmount,statusName,customer',
+            'sp.page' => 1,
+            'sp.pageSize' => '100',
+            'filter.transDate.val' => $startDate,
+        ]);
+
+        foreach ($items['d'] as $key => $value) {
+            $amount += $items['d'][$key]['totalAmount'];
+        }
+        $amount = idr($amount);
+        $message = make_replacements($template,['time' => $startDate]+compact('amount'));
+
+        return $message;        
     }
 
     /**

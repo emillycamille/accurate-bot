@@ -7,7 +7,7 @@
                         "type": "template",
                         "payload": {
                             "template_type": "button",
-                            "text": "Sambungkan dengan Accurate",
+                            "text": "Silakan login dengan akun accurate mu",
                             "buttons": [
                                 {
                                     "type": "web_url",
